@@ -9,6 +9,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger)
 }
 
+// Hook principal para animaciones sutiles y consistentes
 export const useGsapScrollAnimation = () => {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -18,22 +19,22 @@ export const useGsapScrollAnimation = () => {
     const element = ref.current
     if (!element) return
 
-    // Animación de fade in desde abajo
+    // Animación sutil desde abajo
     gsap.fromTo(
       element,
       {
         opacity: 0,
-        y: 100,
+        y: 40,
       },
       {
         opacity: 1,
         y: 0,
-        duration: 1.2,
-        ease: "power3.out",
+        duration: 0.8,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: element,
-          start: "top 80%",
-          end: "bottom 20%",
+          start: "top 85%",
+          end: "bottom 15%",
           toggleActions: "play none none reverse",
         },
       }
@@ -48,7 +49,8 @@ export const useGsapScrollAnimation = () => {
   return ref
 }
 
-export const useGsapStaggerAnimation = (delay = 0.2) => {
+// Hook para animaciones escalonadas sutiles
+export const useGsapStaggerAnimation = (delay = 0.15) => {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -59,23 +61,23 @@ export const useGsapStaggerAnimation = (delay = 0.2) => {
 
     const children = element.children
 
-    // Animación escalonada para elementos hijos
+    // Animación escalonada sutil
     gsap.fromTo(
       children,
       {
         opacity: 0,
-        y: 60,
+        y: 30,
       },
       {
         opacity: 1,
         y: 0,
-        duration: 0.8,
+        duration: 0.6,
         ease: "power2.out",
         stagger: delay,
         scrollTrigger: {
           trigger: element,
-          start: "top 75%",
-          end: "bottom 25%",
+          start: "top 85%",
+          end: "bottom 15%",
           toggleActions: "play none none reverse",
         },
       }
@@ -90,6 +92,50 @@ export const useGsapStaggerAnimation = (delay = 0.2) => {
   return ref
 }
 
+// Hook específico para cards - solo movimiento sutil
+export const useGsapCardAnimation = (delay = 0.15) => {
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+
+    const element = ref.current
+    if (!element) return
+
+    const children = element.children
+
+    // Animación muy sutil que no afecta el fondo - solo movimiento
+    gsap.fromTo(
+      children,
+      {
+        y: 20,
+        scale: 0.99,
+      },
+      {
+        y: 0,
+        scale: 1,
+        duration: 0.6,
+        ease: "power2.out",
+        stagger: delay,
+        scrollTrigger: {
+          trigger: element,
+          start: "top 85%",
+          end: "bottom 15%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    )
+
+    // Cleanup
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+    }
+  }, [delay])
+
+  return ref
+}
+
+// Hooks para animaciones laterales sutiles
 export const useGsapFadeInLeft = () => {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -103,17 +149,17 @@ export const useGsapFadeInLeft = () => {
       element,
       {
         opacity: 0,
-        x: -100,
+        x: -30,
       },
       {
         opacity: 1,
         x: 0,
-        duration: 1,
+        duration: 0.8,
         ease: "power2.out",
         scrollTrigger: {
           trigger: element,
-          start: "top 80%",
-          end: "bottom 20%",
+          start: "top 85%",
+          end: "bottom 15%",
           toggleActions: "play none none reverse",
         },
       }
@@ -140,17 +186,17 @@ export const useGsapFadeInRight = () => {
       element,
       {
         opacity: 0,
-        x: 100,
+        x: 30,
       },
       {
         opacity: 1,
         x: 0,
-        duration: 1,
+        duration: 0.8,
         ease: "power2.out",
         scrollTrigger: {
           trigger: element,
-          start: "top 80%",
-          end: "bottom 20%",
+          start: "top 85%",
+          end: "bottom 15%",
           toggleActions: "play none none reverse",
         },
       }

@@ -3,11 +3,11 @@
 import { FiExternalLink, FiGithub } from "react-icons/fi"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { useGsapScrollAnimation, useGsapStaggerAnimation } from "@/hooks/use-gsap-scroll"
+import { useGsapScrollAnimation, useGsapCardAnimation } from "@/hooks/use-gsap-scroll"
 
 export function Projects() {
   const titleRef = useGsapScrollAnimation()
-  const projectsGridRef = useGsapStaggerAnimation(0.3)
+  const projectsGridRef = useGsapCardAnimation(0.2)
 
   const projects = [
     {
