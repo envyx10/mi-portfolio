@@ -97,16 +97,18 @@ body {
 }
 
 @keyframes scroll {
-  0% {
+  from {
     transform: translateX(0);
   }
-  100% {
-    transform: translateX(-50%);
+  to {
+    transform: translateX(-100%);
   }
 }
 
 .animate-scroll {
-  animation: scroll 30s linear infinite;
+  animation: scroll 60s linear infinite;
+  will-change: transform;
+  -webkit-animation: scroll 60s linear infinite;
 }
 
 .animate-scroll:hover {

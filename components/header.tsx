@@ -1,14 +1,14 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import { FiMenu, FiX } from "react-icons/fi"
 import { Button } from "@/components/ui/button"
-import { gsap } from "gsap"
+import { useGsapInitialAnimation } from "@/hooks/use-gsap-initial"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const headerRef = useRef<HTMLElement>(null)
+  const headerRef = useGsapInitialAnimation(0) // Sin delay adicional - aparece primero
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,26 +16,6 @@ export function Header() {
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && headerRef.current) {
-      // Animación inicial del header
-      gsap.fromTo(
-        headerRef.current,
-        {
-          y: -100,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power2.out",
-          delay: 0.5,
-        }
-      )
-    }
   }, [])
 
   const navItems = [

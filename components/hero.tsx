@@ -1,17 +1,23 @@
-"use client"
+"use client";
 
-import { FiArrowDown, FiGithub, FiLinkedin, FiMail, FiArrowRight } from "react-icons/fi"
-import { Button } from "@/components/ui/button"
-import { TechSlider } from "@/components/tech-slider"
-import { useGsapFadeInLeft, useGsapFadeInRight } from "@/hooks/use-gsap-scroll"
-import Image from 'next/image'
+import {
+  FiArrowDown,
+  FiArrowRight,
+} from "react-icons/fi";
+import { Button } from "@/components/ui/button";
+import { TechSlider } from "@/components/tech-slider";
+import { useGsapInitialAnimation } from "@/hooks/use-gsap-initial";
+import Image from "next/image";
 
 export function Hero() {
-  const leftContentRef = useGsapFadeInLeft()
-  const rightContentRef = useGsapFadeInRight()
+  const leftContentRef = useGsapInitialAnimation(0.1); // Pequeño delay después del header
+  const rightContentRef = useGsapInitialAnimation(0.2); // Pequeño delay después del contenido izquierdo
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-20 relative overflow-hidden">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center px-4 pt-20 relative overflow-hidden"
+    >
       {/* Animated background gradients */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/60 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
@@ -26,41 +32,17 @@ export function Hero() {
           <div ref={leftContentRef} className="space-y-8">
             <div>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-                  Hola, soy
-                </span>
-                <br />
                 <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
                   Desarrollador Web FrontEnd
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-lg">
-                Creo experiencias digitales excepcionales con código limpio y diseño moderno
+                <b>Frontend Developer</b> con background en diseño gráfico, web e
+                informática. Apasionado por crear interfaces funcionales,
+                estéticas y accesibles. Trabajo con React, Next.js, TypeScript y
+                exploro la integración de IA en proyectos. Buscando un equipo
+                donde <b>crecer, aportar y construir con propósito desde cero.</b>
               </p>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <Button
-                variant="outline"
-                size="icon"
-                className="rounded-full border-white/20 bg-white/5 hover:bg-white/10 hover:text-white text-white"
-              >
-                <FiGithub className="h-5 w-5" />
-              </Button>
-              <Button
-                variant="outline"
-                size="icon"
-                className="rounded-full border-white/20 bg-white/5 hover:bg-white/10 hover:text-white text-white"
-              >
-                <FiLinkedin className="h-5 w-5" />
-              </Button>
-              <Button
-                variant="outline"
-                size="icon"
-                className="rounded-full border-white/20 bg-white/5 hover:bg-white/10 hover:text-white text-white"
-              >
-                <FiMail className="h-5 w-5" />
-              </Button>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -71,7 +53,7 @@ export function Hero() {
                   document.getElementById("projects")?.scrollIntoView({
                     behavior: "smooth",
                     block: "start",
-                  })
+                  });
                 }}
               >
                 <span className="flex items-center gap-2">
@@ -90,16 +72,19 @@ export function Hero() {
           </div>
 
           {/* Right side - Profile image */}
-          <div ref={rightContentRef} className="flex justify-center lg:justify-end">
+          <div
+            ref={rightContentRef}
+            className="flex justify-center lg:justify-end"
+          >
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur-2xl opacity-30 scale-110"></div>
               <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-white/10 bg-gradient-to-br from-purple-900/20 to-blue-900/20">
-                <Image 
-                  src="/yo.jpg" 
-                  alt="Profile" 
+                <Image
+                  src="/yo.jpg"
+                  alt="Profile"
                   width={200}
                   height={200}
-                  className="w-full h-full object-cover" 
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
@@ -118,5 +103,5 @@ export function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }
