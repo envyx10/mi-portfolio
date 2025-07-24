@@ -13,12 +13,6 @@ export const useGsapInitialAnimation = (delay = 0) => {
     const element = ref.current
     if (!element) return
 
-    // Establecer estado inicial inmediatamente
-    gsap.set(element, {
-      opacity: 0,
-      y: 30,
-    })
-
     // Animación unificada para todos los componentes
     gsap.to(element, {
       opacity: 1,

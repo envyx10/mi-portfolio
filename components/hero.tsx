@@ -12,6 +12,7 @@ import Image from "next/image";
 export function Hero() {
   const leftContentRef = useGsapInitialAnimation(0.1); // Pequeño delay después del header
   const rightContentRef = useGsapInitialAnimation(0.2); // Pequeño delay después del contenido izquierdo
+  const arrowRef = useGsapInitialAnimation(0.4); // Aparece después del tech slider
 
   return (
     <section
@@ -29,7 +30,7 @@ export function Hero() {
       <div className="max-w-6xl mx-auto w-full relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           {/* Left side - Text content */}
-          <div ref={leftContentRef} className="space-y-8">
+          <div ref={leftContentRef} className="space-y-8 opacity-0 translate-y-[30px]">
             <div>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
                 <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
@@ -74,7 +75,7 @@ export function Hero() {
           {/* Right side - Profile image */}
           <div
             ref={rightContentRef}
-            className="flex justify-center lg:justify-end"
+            className="flex justify-center lg:justify-end opacity-0 translate-y-[30px]"
           >
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur-2xl opacity-30 scale-110"></div>
@@ -97,7 +98,7 @@ export function Hero() {
         </div>
 
         <div className="text-center">
-          <div className="animate-bounce">
+          <div ref={arrowRef} className="animate-bounce opacity-0 translate-y-[30px]">
             <FiArrowDown className="h-6 w-6 mx-auto text-gray-400" />
           </div>
         </div>

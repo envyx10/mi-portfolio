@@ -37,7 +37,7 @@ export function SocialSidebar() {
 
   return (
     <div className="fixed left-[5%] xl:left-[8%] 2xl:left-[12%] top-[28%] z-50 hidden lg:block">
-      <div ref={sidebarRef} className="flex flex-col gap-6">
+      <div ref={sidebarRef} className="flex flex-col gap-6 opacity-0 translate-y-[30px]">
         {socialLinks.map((link, index) => (
           <Link
             key={index}

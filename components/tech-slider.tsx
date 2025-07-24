@@ -74,7 +74,7 @@ export function TechSlider() {
   const duplicatedTechnologies = [...technologies, ...technologies]
 
   return (
-    <div ref={sliderRef} className="w-full overflow-hidden mt-16">
+    <div ref={sliderRef} className="w-full overflow-hidden mt-16 opacity-0 translate-y-[30px]">
       <div className="flex animate-scroll w-fit">
         {duplicatedTechnologies.map((tech, index) => (
           <div 
