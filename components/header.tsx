@@ -8,21 +8,52 @@ import { useGsapInitialAnimation } from "@/hooks/use-gsap-initial"
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState("home")
   const headerRef = useGsapInitialAnimation(0) // Sin delay adicional - aparece primero
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
+      
+      // Detectar sección activa con mejor lógica
+      const sections = ["home", "about", "projects", "contact"]
+      const scrollPosition = window.scrollY + 200 // Aumentamos el offset
+      const windowHeight = window.innerHeight
+      const documentHeight = document.documentElement.scrollHeight
+      
+      // Si estamos cerca del final de la página, activar contacto
+      if (scrollPosition + windowHeight >= documentHeight - 100) {
+        setActiveSection("contact")
+        return
+      }
+      
+      let currentSection = "home" // Default
+      
+      for (const section of sections) {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          const elementTop = window.scrollY + rect.top
+          
+          // Si el elemento está visible en el viewport superior
+          if (scrollPosition >= elementTop - 300) { // Margen más amplio
+            currentSection = section
+          }
+        }
+      }
+      
+      setActiveSection(currentSection)
     }
+    
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const navItems = [
-    { name: "Inicio", href: "#home" },
-    { name: "Sobre mí", href: "#about" },
-    { name: "Proyectos", href: "#projects" },
-    { name: "Contacto", href: "#contact" },
+    { name: "Inicio", href: "#home", id: "home" },
+    { name: "Sobre mí", href: "#about", id: "about" },
+    { name: "Proyectos", href: "#projects", id: "projects" },
+    { name: "Contacto", href: "#contact", id: "contact" },
   ]
 
   return (
@@ -46,8 +77,16 @@ export function Header() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium"
+                  className={`relative text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                    activeSection === item.id 
+                      ? "text-white" 
+                      : "text-gray-300 hover:text-white"
+                  }`}
                 >
+                  {/* Indicador visual para sección activa */}
+                  {activeSection === item.id && (
+                    <div className="w-1.5 h-1.5 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full animate-pulse"></div>
+                  )}
                   {item.name}
                 </a>
               ))}
@@ -73,10 +112,20 @@ export function Header() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium py-2"
+                  className={`relative text-sm font-medium py-2 transition-all duration-300 ${
+                    activeSection === item.id 
+                      ? "text-white" 
+                      : "text-gray-300 hover:text-white"
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {item.name}
+                  <div className="flex items-center gap-3">
+                    {/* Indicador visual para sección activa en móvil */}
+                    {activeSection === item.id && (
+                      <div className="w-1.5 h-1.5 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full animate-pulse"></div>
+                    )}
+                    {item.name}
+                  </div>
                 </a>
               ))}
             </div>
