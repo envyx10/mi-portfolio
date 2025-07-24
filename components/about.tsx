@@ -20,27 +20,35 @@ export function About() {
   const experience = [
     {
       icon: <FiBriefcase className="h-8 w-8" />,
-      company: "Tech Solutions Inc.",
-      position: "Frontend Developer Senior",
-      period: "2022 - Presente",
-      location: "Madrid, España",
-      description: "Desarrollo de aplicaciones web con React, Next.js y TypeScript. Liderazgo de equipo frontend de 4 desarrolladores.",
+      company: "Freepik",
+      position: "Frontend Engineer Intern",
+      period: "mar. 2025 - jun. 2025 · 4 meses",
+      location: "Málaga, Andalucía, España · Híbrido",
+      description: "Desarrollo de dashboards técnicos con React, Next.js y Tailwind CSS. Creación de sistemas de comparación y filtrado, refactorización de componentes legacy y propuestas de nuevas funcionalidades.",
     },
     {
       icon: <FiBriefcase className="h-8 w-8" />,
-      company: "Digital Agency",
-      position: "Desarrollador Frontend",
-      period: "2020 - 2022",
-      location: "Barcelona, España",
-      description: "Creación de interfaces responsivas y optimizadas. Implementación de diseños complejos con CSS avanzado.",
+      company: "VS Gamers",
+      position: "Técnico informático",
+      period: "oct. 2017 - feb. 2023 · 5 años 5 meses",
+      location: "Málaga y alrededores, España",
+      description: "Resolución de problemas de hardware informático, mantenimiento de sistemas y soporte técnico especializado para equipos gaming y multimedia.",
     },
     {
       icon: <FiBriefcase className="h-8 w-8" />,
-      company: "StartUp Innovadora",
-      position: "Junior Frontend Developer",
-      period: "2019 - 2020",
-      location: "Valencia, España",
-      description: "Primeros pasos en desarrollo web profesional. Aprendizaje de frameworks modernos y metodologías ágiles.",
+      company: "ATLAS INFORMÁTICA S.L.",
+      position: "Técnico informático",
+      period: "ene. 2017 - feb. 2023 · 6 años 2 meses",
+      location: "Málaga y alrededores, España",
+      description: "Mantenimiento informático integral, resolución de problemas de hardware y software, y gestión de infraestructura tecnológica empresarial.",
+    },
+    {
+      icon: <FiBriefcase className="h-8 w-8" />,
+      company: "ATLAS INFORMÁTICA S.L.",
+      position: "Diseñador gráfico creativo",
+      period: "dic. 2014 - dic. 2016 · 2 años 1 mes",
+      location: "Málaga y alrededores, España · Presencial",
+      description: "Diseño de productos y materiales gráficos utilizando Adobe Photoshop y herramientas de diseño digital para proyectos creativos y comerciales.",
     },
   ]
 
@@ -90,11 +98,11 @@ export function About() {
             <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">Mi Experiencia</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Con más de 4 años de experiencia en desarrollo frontend, he trabajado en diversos proyectos desde startups hasta empresas consolidadas, siempre enfocado en crear soluciones innovadoras y escalables.
+            Con experiencia en desarrollo frontend en Freepik y un sólido background técnico en informática y diseño gráfico. Especializado en React, Next.js y TypeScript, con enfoque en crear interfaces funcionales y experiencias de usuario excepcionales.
           </p>
         </div>
 
-        <div ref={experienceGridRef} className="grid md:grid-cols-3 gap-8">{experience.map((job, index) => (
+        <div ref={experienceGridRef} className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">{experience.map((job, index) => (
             <div
               key={index}
               className="relative group cursor-pointer p-[2px] rounded-lg bg-gradient-to-r from-white/10 via-white/5 to-white/10"
