@@ -77,16 +77,18 @@ export function Header() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className={`relative text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
+                  className={`relative text-sm font-medium transition-all duration-300 flex items-center ${
                     activeSection === item.id 
                       ? "text-white" 
                       : "text-gray-300 hover:text-white"
                   }`}
                 >
-                  {/* Indicador visual para sección activa */}
-                  {activeSection === item.id && (
-                    <div className="w-1.5 h-1.5 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full animate-pulse"></div>
-                  )}
+                  {/* Contenedor fijo para el indicador - siempre ocupa espacio */}
+                  <div className="w-2 flex justify-center mr-2">
+                    {activeSection === item.id && (
+                      <div className="w-1.5 h-1.5 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full animate-pulse"></div>
+                    )}
+                  </div>
                   {item.name}
                 </a>
               ))}
