@@ -70,13 +70,18 @@ export function TechSlider() {
     },
   ]
 
-  // Duplicamos las tecnologías para crear un array largo sin cortes
-  const duplicatedTechnologies = [...technologies, ...technologies]
+  // Creamos múltiples copias para un scroll verdaderamente infinito
+  const infiniteTechnologies = [
+    ...technologies, 
+    ...technologies, 
+    ...technologies, 
+    ...technologies
+  ]
 
   return (
     <div ref={sliderRef} className="w-full overflow-hidden mt-16 opacity-0 translate-y-[30px]">
-      <div className="flex animate-scroll w-fit">
-        {duplicatedTechnologies.map((tech, index) => (
+      <div className="flex animate-scroll-infinite w-fit">
+        {infiniteTechnologies.map((tech, index) => (
           <div 
             key={index} 
             className="flex items-center gap-3 px-6 whitespace-nowrap flex-shrink-0"

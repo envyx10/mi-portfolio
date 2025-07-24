@@ -105,13 +105,32 @@ body {
   }
 }
 
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-25%);
+  }
+}
+
 .animate-scroll {
+  -webkit-animation: scroll 60s linear infinite;
   animation: scroll 60s linear infinite;
   will-change: transform;
-  -webkit-animation: scroll 60s linear infinite;
 }
 
 .animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+.animate-scroll-infinite {
+  -webkit-animation: scroll-infinite 40s linear infinite;
+  animation: scroll-infinite 40s linear infinite;
+  will-change: transform;
+}
+
+.animate-scroll-infinite:hover {
   animation-play-state: paused;
 }
 
