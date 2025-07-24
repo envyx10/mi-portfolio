@@ -44,7 +44,7 @@ export function About() {
     },
     {
       icon: <FiBriefcase className="h-8 w-8" />,
-      company: "ATLAS INFORMÁTICA S.L.",
+      company: "OZONE GAMING",
       position: "Diseñador gráfico creativo",
       period: "dic. 2014 - dic. 2016 · 2 años 1 mes",
       location: "Málaga y alrededores, España · Presencial",
@@ -105,23 +105,12 @@ export function About() {
         <div ref={experienceGridRef} className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">{experience.map((job, index) => (
             <div
               key={index}
-              className="relative group cursor-pointer p-[2px] rounded-lg bg-gradient-to-r from-white/10 via-white/5 to-white/10"
+              className="relative group cursor-pointer p-[2px] rounded-lg bg-gradient-to-r from-white/10 via-white/5 to-white/10 card-mouse-tracker"
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
-              style={
-                {
-                  "--mouse-x": "50%",
-                  "--mouse-y": "50%",
-                } as React.CSSProperties
-              }
             >
               {/* Gradient border effect */}
-              <div
-                className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{
-                  background: `radial-gradient(circle 250px at var(--mouse-x) var(--mouse-y), rgba(147, 51, 234, 0.15), rgba(168, 85, 247, 0.08) 50%, transparent 80%)`,
-                }}
-              ></div>
+              <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 card-gradient-effect"></div>
 
               <Card className="relative bg-black/40 border-transparent backdrop-blur-sm hover:bg-black/30 transition-all duration-300 h-full rounded-lg">
                 <CardContent className="p-6">
@@ -159,23 +148,12 @@ export function About() {
           <div ref={skillsGridRef} className="grid md:grid-cols-3 gap-8">{skills.map((skill, index) => (
               <div
                 key={index}
-                className="relative group cursor-pointer p-[2px] rounded-lg bg-gradient-to-r from-white/10 via-white/5 to-white/10"
+                className="relative group cursor-pointer p-[2px] rounded-lg bg-gradient-to-r from-white/10 via-white/5 to-white/10 card-mouse-tracker"
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
-                style={
-                  {
-                    "--mouse-x": "50%",
-                    "--mouse-y": "50%",
-                  } as React.CSSProperties
-                }
               >
                 {/* Gradient border effect */}
-                <div
-                  className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    background: `radial-gradient(circle 250px at var(--mouse-x) var(--mouse-y), rgba(147, 51, 234, 0.15), rgba(168, 85, 247, 0.08) 50%, transparent 80%)`,
-                  }}
-                ></div>
+                <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 card-gradient-effect"></div>
 
                 <Card className="relative bg-black/40 border-transparent backdrop-blur-sm hover:bg-black/30 transition-all duration-300 h-full rounded-lg">
                   <CardContent className="p-8 text-center">
