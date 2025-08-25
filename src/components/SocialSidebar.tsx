@@ -1,9 +1,7 @@
 "use client"
 
-import { useRef } from "react"
 import { FiGithub, FiLinkedin, FiMail, FiTwitter } from "react-icons/fi"
 import { useGsapInitialAnimation } from "@/hooks/use-gsap-initial"
-import Link from 'next/link'
 
 export function SocialSidebar() {
   const sidebarRef = useGsapInitialAnimation(0) // Sin delay adicional - aparece con el header
@@ -39,7 +37,7 @@ export function SocialSidebar() {
     <div className="fixed left-[5%] xl:left-[8%] 2xl:left-[12%] top-[28%] z-50 hidden lg:block">
       <div ref={sidebarRef} className="flex flex-col gap-6 opacity-0 translate-y-[30px]">
         {socialLinks.map((link, index) => (
-          <Link
+          <a
             key={index}
             href={link.href}
             target="_blank"
@@ -53,7 +51,7 @@ export function SocialSidebar() {
             <span className="absolute left-8 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
               {link.name}
             </span>
-          </Link>
+          </a>
         ))}
         
         {/* Línea decorativa extendida que va desde los iconos hasta abajo */}

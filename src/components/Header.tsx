@@ -16,14 +16,14 @@ export function Header() {
       setIsScrolled(window.scrollY > 50)
       
       // Detectar sección activa con mejor lógica
-      const sections = ["home", "about", "projects", "contact"]
+      const sections = ["home", "about", "projects"]
       const scrollPosition = window.scrollY + 200 // Aumentamos el offset
       const windowHeight = window.innerHeight
       const documentHeight = document.documentElement.scrollHeight
       
-      // Si estamos cerca del final de la página, activar contacto
+      // Si estamos cerca del final de la página, activar projects
       if (scrollPosition + windowHeight >= documentHeight - 100) {
-        setActiveSection("contact")
+        setActiveSection("projects")
         return
       }
       
@@ -53,7 +53,6 @@ export function Header() {
     { name: "Inicio", href: "#home", id: "home" },
     { name: "Sobre mí", href: "#about", id: "about" },
     { name: "Proyectos", href: "#projects", id: "projects" },
-    { name: "Contacto", href: "#contact", id: "contact" },
   ]
 
   return (
@@ -95,15 +94,17 @@ export function Header() {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden text-white hover:bg-white/10"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <FiX className="h-5 w-5" /> : <FiMenu className="h-5 w-5" />}
-          </Button>
+          <div className="flex items-center gap-2">
+            {/* Mobile Menu Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden text-white hover:bg-white/10"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <FiX className="h-5 w-5" /> : <FiMenu className="h-5 w-5" />}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}

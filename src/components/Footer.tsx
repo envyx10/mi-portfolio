@@ -18,6 +18,7 @@ export function Footer() {
               variant="ghost"
               size="icon"
               className="text-gray-400 hover:text-white hover:bg-white/10 rounded-full"
+              onClick={() => window.open('https://github.com/tu-usuario', '_blank')}
             >
               <FiGithub className="h-5 w-5" />
             </Button>
@@ -25,6 +26,7 @@ export function Footer() {
               variant="ghost"
               size="icon"
               className="text-gray-400 hover:text-white hover:bg-white/10 rounded-full"
+              onClick={() => window.open('https://linkedin.com/in/tu-perfil', '_blank')}
             >
               <FiLinkedin className="h-5 w-5" />
             </Button>
@@ -32,6 +34,7 @@ export function Footer() {
               variant="ghost"
               size="icon"
               className="text-gray-400 hover:text-white hover:bg-white/10 rounded-full"
+              onClick={() => window.open('https://twitter.com/tu-usuario', '_blank')}
             >
               <FiTwitter className="h-5 w-5" />
             </Button>
@@ -39,6 +42,7 @@ export function Footer() {
               variant="ghost"
               size="icon"
               className="text-gray-400 hover:text-white hover:bg-white/10 rounded-full"
+              onClick={() => window.open('mailto:tu-email@ejemplo.com', '_blank')}
             >
               <FiMail className="h-5 w-5" />
             </Button>

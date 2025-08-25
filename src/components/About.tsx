@@ -4,7 +4,7 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { FiBriefcase, FiCalendar, FiMapPin, FiCode, FiEdit3, FiZap } from "react-icons/fi"
 import { Card, CardContent } from "@/components/ui/card"
-import { useGsapScrollAnimation, useGsapStaggerAnimation, useGsapCardAnimation } from "@/hooks/use-gsap-scroll"
+import { useGsapScrollAnimation, useGsapCardAnimation } from "@/hooks/use-gsap-scroll"
 
 export function About() {
   const [isClient, setIsClient] = useState(false)

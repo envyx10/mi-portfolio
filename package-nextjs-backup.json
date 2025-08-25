@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/node": "^8.3.4",
     "@astrojs/react": "^3.6.2",
     "@astrojs/tailwind": "^5.1.2",
     "@emailjs/browser": "^4.4.1",
@@ -50,6 +51,7 @@
     "cmdk": "1.0.4",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "8.5.1",
+    "geist": "^1.4.2",
     "gsap": "^3.13.0",
     "input-otp": "1.4.1",
     "lucide-react": "^0.454.0",

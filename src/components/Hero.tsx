@@ -5,9 +5,8 @@ import {
   FiArrowRight,
 } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
-import { TechSlider } from "@/components/tech-slider";
+import { TechSlider } from "@/components/TechSlider";
 import { useGsapInitialAnimation } from "@/hooks/use-gsap-initial";
-import Image from "next/image";
 
 export function Hero() {
   const leftContentRef = useGsapInitialAnimation(0.1); // Pequeño delay después del header
@@ -80,11 +79,9 @@ export function Hero() {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur-2xl opacity-30 scale-110"></div>
               <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-white/10 bg-gradient-to-br from-purple-900/20 to-blue-900/20">
-                <Image
+                <img
                   src="/yo.jpg"
                   alt="Profile"
-                  width={200}
-                  height={200}
                   className="w-full h-full object-cover"
                 />
               </div>
