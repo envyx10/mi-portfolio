@@ -5,28 +5,25 @@ import { ProjectCard } from '../react/ProjectCard';
 // Datos del servidor - se ejecutan en build time
 const projects = [
   {
-    title: "E-commerce Platform",
-    description: "Plataforma de comercio electrónico completa con React, Next.js y Stripe",
-    image: "/placeholder.svg?height=300&width=500",
-    tech: ["React", "Next.js", "Stripe", "Tailwind", "TypeScript", "MongoDB", "Node.js"],
-    github: "#",
-    demo: "#",
+    title: "Pixela",
+    description: "Plataforma de series y películas de reseñas y valoraciones desarrollada para mi TFG en desarrollo de aplicaciones web",
+    image: "/1.png",
+    tech: ["React", "Next.js", "Tailwind", "TypeScript","Laravel", "MariaDB"],
+    github: "https://github.com/envyx10/Pixela",
   },
   {
-    title: "Task Management App", 
-    description: "Aplicación de gestión de tareas con drag & drop y colaboración en tiempo real",
-    image: "/placeholder.svg?height=300&width=500",
-    tech: ["React", "TypeScript", "Socket.io", "MongoDB", "Express", "Redis"],
-    github: "#",
-    demo: "#",
+    title: "Freepik",
+    description: "Desarrollo de aplicación interna para Freepik en mi periodo de prácticas como Frontend Engineer",
+    image: "/2.png",
+    tech: ["React", "TypeScript", "NextJS", "Tailwind"],
+    website: "https://www.freepik.es/",
   },
   {
-    title: "Weather Dashboard",
-    description: "Dashboard del clima con visualizaciones interactivas y pronósticos",
-    image: "/placeholder.svg?height=300&width=500", 
-    tech: ["React", "D3.js", "API Integration", "CSS3", "Chart.js"],
-    github: "#",
-    demo: "#",
+    title: "Pixela Figma Design",
+    description: "Diseño completo del proyecto Pixela en Figma, incluyendo prototipos interactivos y sistema de diseño",
+    image: "/3.png",
+    tech: ["Figma", "UI/UX"],
+    website: "https://www.figma.com/design/CPQe3LpPHQXKW1AWTYJhOG/PROYECTO-PIXELA.IO?node-id=0-1&p=f&t=xpIvV40gZcN5Tr4q-0"
   },
 ];
 ---
@@ -37,9 +34,11 @@ const projects = [
     <ProjectsTitle client:visible />
 
     <!-- Grid de proyectos con animaciones (React) -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6 place-items-stretch">
       {projects.map((project, index) => (
-        <ProjectCard project={project} index={index} client:visible />
+        <div class="flex h-full">
+          <ProjectCard project={project} index={index} client:visible />
+        </div>
       ))}
     </div>
   </div>

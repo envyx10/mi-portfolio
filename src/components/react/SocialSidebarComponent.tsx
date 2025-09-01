@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { FiGithub, FiLinkedin, FiMail, FiTwitter } from "react-icons/fi";
+import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import { gsap } from "gsap";
 
 export function SocialSidebar() {
@@ -39,12 +39,6 @@ export function SocialSidebar() {
       icon: <FiMail className="h-5 w-5" />,
       href: "mailto:tu-email@ejemplo.com",
       color: "hover:text-purple-400",
-    },
-    {
-      name: "Twitter",
-      icon: <FiTwitter className="h-5 w-5" />,
-      href: "https://twitter.com/tu-usuario",
-      color: "hover:text-cyan-400",
     },
   ];
 

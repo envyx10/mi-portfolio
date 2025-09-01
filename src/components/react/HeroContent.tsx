@@ -61,8 +61,11 @@ export function HeroContent() {
           variant="outline"
           size="lg"
           className="border-white/20 bg-white/5 hover:bg-white/10 hover:text-white text-white px-8"
+          asChild
         >
-          Descargar CV
+          <a href="/CV_PabloGilDiaz.pdf" download="CV_PabloGilDiaz.pdf">
+            Descargar CV
+          </a>
         </Button>
       </div>
     </div>
