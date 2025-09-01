@@ -1,11 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Header } from '../components/Header';
-import { Hero } from '../components/Hero';
-import { About } from '../components/About';
-import { Projects } from '../components/Projects';
-import { Footer } from '../components/Footer';
-import { SocialSidebar } from '../components/SocialSidebar';
+import Header from '../components/sections/Header.astro';
+import Hero from '../components/sections/Hero.astro';
+import About from '../components/sections/About.astro';
+import Projects from '../components/sections/Projects.astro';
+import Footer from '../components/sections/Footer.astro';
+import SocialSidebar from '../components/sections/SocialSidebar.astro';
 ---
 
 <Layout>
@@ -16,14 +16,14 @@ import { SocialSidebar } from '../components/SocialSidebar';
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-black to-transparent"></div>
 
       <!-- Social Sidebar -->
-      <SocialSidebar client:load />
+      <SocialSidebar />
 
       <div class="relative z-10">
-        <Header client:load />
-        <Hero client:load />
-        <About client:load />
-        <Projects client:load />
-        <Footer client:load />
+        <Header />
+        <Hero />
+        <About />
+        <Projects />
+        <Footer />
       </div>
     </div>
   </div>

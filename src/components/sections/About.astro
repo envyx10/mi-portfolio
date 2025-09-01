@@ -1,0 +1,87 @@
+---
+import { AboutTitle } from '../react/AboutTitle';
+import { ExperienceGrid } from '../react/ExperienceGrid';
+import { SkillsGrid } from '../react/SkillsGrid';
+
+// Datos del servidor - se ejecutan en build time
+// NO puedo usar iconos React aquí, debo pasarlos como string y renderizarlos en el cliente
+const experience = [
+  {
+    iconType: "FiBriefcase",
+    company: "Freepik",
+    position: "Frontend Engineer Intern",
+    period: "mar. 2025 - jun. 2025 · 4 meses",
+    location: "Málaga, Andalucía, España · Híbrido",
+    description: "Desarrollo de dashboards técnicos con React, Next.js y Tailwind CSS. Creación de sistemas de comparación y filtrado, refactorización de componentes legacy y propuestas de nuevas funcionalidades.",
+  },
+  {
+    iconType: "FiBriefcase",
+    company: "VS Gamers",
+    position: "Técnico informático",
+    period: "oct. 2017 - feb. 2023 · 5 años 5 meses",
+    location: "Málaga y alrededores, España",
+    description: "Resolución de problemas de hardware informático, mantenimiento de sistemas y soporte técnico especializado para equipos gaming y multimedia.",
+  },
+  {
+    iconType: "FiBriefcase",
+    company: "ATLAS INFORMÁTICA S.L.",
+    position: "Técnico informático",
+    period: "ene. 2017 - feb. 2023 · 6 años 2 meses",
+    location: "Málaga y alrededores, España",
+    description: "Mantenimiento informático integral, resolución de problemas de hardware y software, y gestión de infraestructura tecnológica empresarial.",
+  },
+  {
+    iconType: "FiBriefcase",
+    company: "OZONE GAMING",
+    position: "Diseñador gráfico creativo",
+    period: "dic. 2014 - dic. 2016 · 2 años 1 mes",
+    location: "Málaga y alrededores, España · Presencial",
+    description: "Diseño de productos y materiales gráficos utilizando Adobe Photoshop y herramientas de diseño digital para proyectos creativos y comerciales.",
+  },
+];
+
+const skills = [
+  {
+    iconType: "FiCode",
+    title: "Desarrollo Frontend",
+    description: "React, Next.js, TypeScript, Tailwind CSS",
+  },
+  {
+    iconType: "FiZap",
+    title: "Performance",
+    description: "Optimización y mejores prácticas de rendimiento",
+  },
+  {
+    iconType: "FiEdit3",
+    title: "UI/UX Design",
+    description: "Diseño de interfaces modernas y funcionales",
+  },
+];
+---
+
+<section id="about" class="min-h-screen flex items-center justify-center py-20 px-4">
+  <div class="max-w-6xl mx-auto">
+    <!-- Título de experiencia con animación (React) -->
+    <AboutTitle 
+      title="Mi Experiencia"
+      description="Con experiencia en desarrollo frontend en Freepik y un sólido background técnico en informática y diseño gráfico. Especializado en React, Next.js y TypeScript, con enfoque en crear interfaces funcionales y experiencias de usuario excepcionales."
+      client:visible 
+    />
+
+    <!-- Grid de experiencia con animaciones (React) -->
+    <ExperienceGrid experiences={experience} client:visible />
+
+    <!-- Skills Section -->
+    <div class="mt-20">
+      <!-- Título de skills con animación (React) -->
+      <AboutTitle 
+        title="Habilidades"
+        description="Las tecnologías y áreas de expertise en las que me especializo para crear soluciones digitales innovadoras."
+        client:visible 
+      />
+
+      <!-- Grid de skills con animaciones (React) -->
+      <SkillsGrid skills={skills} client:visible />
+    </div>
+  </div>
+</section>

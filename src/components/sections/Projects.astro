@@ -1,0 +1,46 @@
+---
+import { ProjectsTitle } from '../react/ProjectsTitle';
+import { ProjectCard } from '../react/ProjectCard';
+
+// Datos del servidor - se ejecutan en build time
+const projects = [
+  {
+    title: "E-commerce Platform",
+    description: "Plataforma de comercio electrónico completa con React, Next.js y Stripe",
+    image: "/placeholder.svg?height=300&width=500",
+    tech: ["React", "Next.js", "Stripe", "Tailwind", "TypeScript", "MongoDB", "Node.js"],
+    github: "#",
+    demo: "#",
+  },
+  {
+    title: "Task Management App", 
+    description: "Aplicación de gestión de tareas con drag & drop y colaboración en tiempo real",
+    image: "/placeholder.svg?height=300&width=500",
+    tech: ["React", "TypeScript", "Socket.io", "MongoDB", "Express", "Redis"],
+    github: "#",
+    demo: "#",
+  },
+  {
+    title: "Weather Dashboard",
+    description: "Dashboard del clima con visualizaciones interactivas y pronósticos",
+    image: "/placeholder.svg?height=300&width=500", 
+    tech: ["React", "D3.js", "API Integration", "CSS3", "Chart.js"],
+    github: "#",
+    demo: "#",
+  },
+];
+---
+
+<section id="projects" class="py-20 px-4">
+  <div class="max-w-6xl mx-auto">
+    <!-- Título con animación (React) -->
+    <ProjectsTitle client:visible />
+
+    <!-- Grid de proyectos con animaciones (React) -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map((project, index) => (
+        <ProjectCard project={project} index={index} client:visible />
+      ))}
+    </div>
+  </div>
+</section>
