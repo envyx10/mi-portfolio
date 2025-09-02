@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState } from "react";
-import { gsap } from "gsap";
 import { 
   SiTypescript, 
   SiJavascript, 
@@ -60,39 +59,6 @@ export function TechSlider() {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    if (!isVisible) return;
-
-    // Animación para el título
-    if (titleRef.current) {
-      gsap.fromTo(
-        titleRef.current,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out"
-        }
-      );
-    }
-
-    // Animación para el slider
-    if (sliderRef.current) {
-      gsap.fromTo(
-        sliderRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          delay: 0.3,
-          ease: "power3.out"
-        }
-      );
-    }
-  }, [isVisible]);
-
   // Organizamos las tecnologías en grupos para mejor visualización
   const techGroups = [
     {
@@ -132,7 +98,7 @@ export function TechSlider() {
   return (
     <section className="w-full mt-16">
       {/* Título del slider */}
-      <div ref={titleRef} className="text-center mb-12 opacity-0">
+      <div ref={titleRef} className="text-center mb-12">
         <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent mb-4">
           Mi Stack Tecnológico
         </h3>
@@ -142,9 +108,9 @@ export function TechSlider() {
       </div>
 
       {/* Grid de grupos de tecnologías */}
-      <div ref={sliderRef} className="opacity-0">
+      <div ref={sliderRef} className="">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {techGroups.map((group, groupIndex) => (
+          {techGroups.map((group) => (
             <div key={group.title} className="space-y-4">
               {/* Título del grupo */}
               <div className="text-center">
@@ -155,7 +121,7 @@ export function TechSlider() {
               
               {/* Tecnologías del grupo */}
               <div className="space-y-3">
-                {group.techs.map((tech, index) => {
+                {group.techs.map((tech) => {
                   const { IconComponent } = tech;
                   
                   return (

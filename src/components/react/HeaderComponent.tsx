@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
-import { gsap } from "gsap";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,17 +10,9 @@ export function Header() {
 
   useEffect(() => {
     if (headerRef.current) {
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, y: -30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          delay: 0,
-          ease: "power3.out"
-        }
-      );
+      setTimeout(() => {
+        headerRef.current?.classList.remove('opacity-0', '-translate-y-[30px]');
+      }, 100);
     }
   }, []);
 
@@ -70,7 +61,7 @@ export function Header() {
   ];
 
   return (
-    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 px-4 py-6 opacity-0 -translate-y-[30px]">
+    <header ref={headerRef} className="fixed top-0 left-0 right-0 z-50 px-4 py-6 opacity-0 -translate-y-[30px] transition-all duration-1200 ease-out">
       <nav
         className={`max-w-6xl mx-auto transition-all duration-300 ${
           isScrolled

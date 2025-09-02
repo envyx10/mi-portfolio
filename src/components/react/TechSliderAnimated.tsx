@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState } from "react";
-import { gsap } from "gsap";
 import { 
   SiTypescript, 
   SiJavascript, 
@@ -59,39 +58,6 @@ export function TechSlider() {
 
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
-    // Animación para el título
-    if (titleRef.current) {
-      gsap.fromTo(
-        titleRef.current,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out"
-        }
-      );
-    }
-
-    // Animación para el slider
-    if (sliderRef.current) {
-      gsap.fromTo(
-        sliderRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          delay: 0.3,
-          ease: "power3.out"
-        }
-      );
-    }
-  }, [isVisible]);
 
   // Creamos múltiples copias para un scroll verdaderamente infinito
   const infiniteTechnologies = [

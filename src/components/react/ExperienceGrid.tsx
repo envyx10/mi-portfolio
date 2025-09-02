@@ -2,10 +2,6 @@ import type React from "react";
 import { useState, useEffect, useRef } from "react";
 import { FiBriefcase, FiCalendar, FiMapPin } from "react-icons/fi";
 import { Card, CardContent } from "@/components/ui/card";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface Experience {
   iconType: string;
@@ -26,30 +22,6 @@ export function ExperienceGrid({ experiences }: ExperienceGridProps) {
 
   useEffect(() => {
     setIsClient(true);
-  }, []);
-
-  useEffect(() => {
-    if (gridRef.current) {
-      const cards = gridRef.current.querySelectorAll('.experience-card');
-      
-      gsap.fromTo(
-        cards,
-        { opacity: 0, y: 100 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: gridRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    }
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {

@@ -1,26 +1,9 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
-import { gsap } from "gsap";
 
 export function HeroContent() {
   const leftContentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (leftContentRef.current) {
-      gsap.fromTo(
-        leftContentRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          delay: 0.1,
-          ease: "power3.out"
-        }
-      );
-    }
-  }, []);
 
   const handleProjectsClick = () => {
     document.getElementById("projects")?.scrollIntoView({
@@ -30,7 +13,7 @@ export function HeroContent() {
   };
 
   return (
-    <div ref={leftContentRef} className="space-y-8 opacity-0 translate-y-[30px] text-center max-w-4xl">
+    <div ref={leftContentRef} className="space-y-8 text-center max-w-4xl">
       {/* Profile Image */}
       <div className="flex justify-center mb-8">
         <div className="relative">

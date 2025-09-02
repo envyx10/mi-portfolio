@@ -1,23 +1,15 @@
 import { useRef, useEffect } from "react";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
-import { gsap } from "gsap";
 
 export function SocialSidebar() {
   const sidebarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (sidebarRef.current) {
-      gsap.fromTo(
-        sidebarRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          delay: 0,
-          ease: "power3.out"
-        }
-      );
+      // Aplicar animación con CSS
+      setTimeout(() => {
+        sidebarRef.current?.classList.remove('opacity-0', 'translate-y-[30px]');
+      }, 100);
     }
   }, []);
 
@@ -44,7 +36,7 @@ export function SocialSidebar() {
 
   return (
     <div className="fixed left-[5%] xl:left-[8%] 2xl:left-[12%] top-[28%] z-50 hidden lg:block">
-      <div ref={sidebarRef} className="flex flex-col gap-6 opacity-0 translate-y-[30px]">
+      <div ref={sidebarRef} className="flex flex-col gap-6 opacity-0 translate-y-[30px] transition-all duration-1000 ease-out">
         {socialLinks.map((link, index) => (
           <a
             key={index}

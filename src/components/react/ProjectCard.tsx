@@ -1,9 +1,5 @@
-import { useRef, useEffect, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
 import { FiGithub, FiExternalLink, FiGlobe } from "react-icons/fi";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface Project {
   title: string;
@@ -15,49 +11,8 @@ interface Project {
   website?: string;
 }
 
-interface ProjectCardProps {
-  project: Project;
-  index: number;
-}
-
-export function ProjectCard({ project, index }: ProjectCardProps) {
+export function ProjectCard({ project }: { project: Project }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    if (cardRef.current) {
-      gsap.fromTo(
-        cardRef.current,
-        { opacity: 0, y: 100 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          delay: index * 0.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: cardRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    }
-  }, [index]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (cardRef.current) {
-      const rect = cardRef.current.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      setMousePos({ x, y });
-    }
-  };
-
-  const handleMouseEnter = () => setIsHovered(true);
-  const handleMouseLeave = () => setIsHovered(false);
 
   const renderTechTags = (technologies: string[], maxVisible = 3) => {
     const visibleTech = technologies.slice(0, maxVisible);
@@ -70,21 +25,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <div
       ref={cardRef}
-      className={`relative bg-black/40 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden group transition-all duration-300 hover:-translate-y-2 w-full h-full flex flex-col cursor-pointer ${
-        isHovered ? 'border-purple-400/60' : ''
-      }`}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      className="relative bg-black/40 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden group transition-all duration-300 hover:-translate-y-2 w-full h-full flex flex-col cursor-pointer hover:border-purple-400/60"
     >
-      {isHovered && (
-        <div 
-          className="absolute inset-0 rounded-xl opacity-30 pointer-events-none transition-opacity duration-200"
-          style={{
-            background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(147, 51, 234, 0.3), transparent 60%)`
-          }}
-        />
-      )}
       <div className="relative z-10 h-full flex flex-col">
         <div className="relative overflow-hidden h-64 md:h-72 lg:h-80">
           <img
