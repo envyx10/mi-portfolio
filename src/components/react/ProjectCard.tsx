@@ -70,7 +70,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <div
       ref={cardRef}
-      className={`relative bg-black/40 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden group transition-all duration-300 hover:-translate-y-2 w-full h-full flex flex-col ${
+      className={`relative bg-black/40 backdrop-blur-sm border border-white/20 rounded-xl overflow-hidden group transition-all duration-300 hover:-translate-y-2 w-full h-full flex flex-col cursor-pointer ${
         isHovered ? 'border-purple-400/60' : ''
       }`}
       onMouseMove={handleMouseMove}
@@ -116,8 +116,15 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               </span>
             ))}
             {remainingCount > 0 && (
-              <span className="px-2 py-1 text-xs bg-gray-500/20 text-gray-400 rounded-full border border-gray-500/30">
+              <span 
+                className="px-2 py-1 text-xs bg-gray-500/20 text-gray-400 rounded-full border border-gray-500/30 hover:bg-gray-500/30 transition-colors group/tooltip relative"
+                title={`Otras tecnologías: ${project.tech.slice(visibleTech.length).join(', ')}`}
+              >
                 +{remainingCount} más
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white text-xs rounded-lg opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 whitespace-nowrap z-50 border border-white/20">
+                  {project.tech.slice(visibleTech.length).join(', ')}
+                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/90"></div>
+                </div>
               </span>
             )}
           </div>

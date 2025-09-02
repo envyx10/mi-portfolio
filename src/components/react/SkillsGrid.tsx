@@ -1,6 +1,6 @@
 import type React from "react";
 import { useState, useEffect, useRef } from "react";
-import { FiCode, FiEdit3, FiZap } from "react-icons/fi";
+import { FiCode, FiEdit3, FiZap, FiServer, FiTool, FiLayers } from "react-icons/fi";
 import { Card, CardContent } from "@/components/ui/card";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -77,6 +77,12 @@ export function SkillsGrid({ skills }: SkillsGridProps) {
         return <FiZap className="h-8 w-8" />;
       case "FiEdit3":
         return <FiEdit3 className="h-8 w-8" />;
+      case "FiServer":
+        return <FiServer className="h-8 w-8" />;
+      case "FiTool":
+        return <FiTool className="h-8 w-8" />;
+      case "FiLayers":
+        return <FiLayers className="h-8 w-8" />;
       default:
         return <FiCode className="h-8 w-8" />;
     }
