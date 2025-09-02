@@ -74,8 +74,8 @@ const skills = [
 ];
 ---
 
-<section id="about" class="min-h-screen flex items-center justify-center py-20 px-4">
-  <div class="max-w-6xl mx-auto">
+<section id="about" class="min-h-screen flex items-center justify-center py-16 sm:py-20 px-3 sm:px-4 md:px-6">
+  <div class="max-w-7xl mx-auto w-full">
     <!-- Título de experiencia con animación (React) -->
     <AboutTitle 
       title="Mi Experiencia"
@@ -84,10 +84,12 @@ const skills = [
     />
 
     <!-- Grid de experiencia con animaciones (React) -->
-    <ExperienceGrid experiences={experience} client:visible />
+    <div class="mb-16 sm:mb-20">
+      <ExperienceGrid experiences={experience} client:visible />
+    </div>
 
     <!-- Skills Section -->
-    <div class="mt-20">
+    <div class="mt-16 sm:mt-20">
       <!-- Título de skills con animación (React) -->
       <AboutTitle 
         title="Habilidades"

@@ -61,7 +61,7 @@ export function SkillsGrid({ skills }: SkillsGridProps) {
   };
 
   return (
-    <div ref={gridRef} className="grid md:grid-cols-3 gap-8">
+    <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
       {skills.map((skill, index) => (
         <div
           key={index}
@@ -73,10 +73,10 @@ export function SkillsGrid({ skills }: SkillsGridProps) {
           <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 card-gradient-effect"></div>
 
           <Card className="relative bg-black/40 border-transparent backdrop-blur-sm hover:bg-black/30 transition-all duration-300 h-full rounded-lg overflow-hidden">
-            <CardContent className="p-8 text-center relative z-10">
-              <div className="text-purple-400 mb-4 flex justify-center">{renderIcon(skill.iconType)}</div>
-              <h3 className="text-xl font-semibold text-white mb-3">{skill.title}</h3>
-              <p className="text-gray-400 leading-relaxed">{skill.description}</p>
+            <CardContent className="p-6 sm:p-7 md:p-8 text-center relative z-10">
+              <div className="text-purple-400 mb-3 sm:mb-4 flex justify-center">{renderIcon(skill.iconType)}</div>
+              <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">{skill.title}</h3>
+              <p className="text-gray-400 leading-relaxed text-sm sm:text-base">{skill.description}</p>
             </CardContent>
           </Card>
         </div>

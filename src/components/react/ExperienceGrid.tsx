@@ -54,7 +54,7 @@ export function ExperienceGrid({ experiences }: ExperienceGridProps) {
   };
 
   return (
-    <div ref={gridRef} className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+    <div ref={gridRef} className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
       {experiences.map((job, index) => (
         <div
           key={index}
@@ -66,20 +66,20 @@ export function ExperienceGrid({ experiences }: ExperienceGridProps) {
           <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 card-gradient-effect"></div>
 
           <Card className="relative bg-black/40 border-transparent backdrop-blur-sm hover:bg-black/30 transition-all duration-300 h-full rounded-lg">
-            <CardContent className="p-6">
-              <div className="text-purple-400 mb-4 flex justify-center">{renderIcon(job.iconType)}</div>
-              <div className="text-center space-y-3">
-                <h3 className="text-lg font-bold text-white">{job.company}</h3>
-                <h4 className="text-md font-semibold text-purple-300">{job.position}</h4>
-                <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
-                  <FiCalendar className="h-4 w-4" />
-                  <span>{job.period}</span>
+            <CardContent className="p-5 sm:p-6">
+              <div className="text-purple-400 mb-3 sm:mb-4 flex justify-center">{renderIcon(job.iconType)}</div>
+              <div className="text-center space-y-2 sm:space-y-3">
+                <h3 className="text-base sm:text-lg font-bold text-white">{job.company}</h3>
+                <h4 className="text-sm sm:text-md font-semibold text-purple-300">{job.position}</h4>
+                <div className="flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-400">
+                  <FiCalendar className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                  <span className="leading-tight">{job.period}</span>
                 </div>
-                <div className="flex items-center justify-center gap-2 text-sm text-gray-400">
-                  <FiMapPin className="h-4 w-4" />
-                  <span>{job.location}</span>
+                <div className="flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-400">
+                  <FiMapPin className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
+                  <span className="leading-tight">{job.location}</span>
                 </div>
-                <p className="text-gray-400 leading-relaxed text-sm">{job.description}</p>
+                <p className="text-gray-400 leading-relaxed text-xs sm:text-sm">{job.description}</p>
               </div>
             </CardContent>
           </Card>

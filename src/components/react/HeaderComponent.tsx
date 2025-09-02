@@ -19,37 +19,37 @@ export function Header() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
+
       // Detectar sección activa con mejor lógica
       const sections = ["home", "about", "projects"];
       const scrollPosition = window.scrollY + 200;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
-      
+
       // Si estamos cerca del final de la página, activar projects
       if (scrollPosition + windowHeight >= documentHeight - 100) {
         setActiveSection("projects");
         return;
       }
-      
+
       let currentSection = "home"; // Default
-      
+
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
           const elementTop = window.scrollY + rect.top;
-          
+
           // Si el elemento está visible en el viewport superior
           if (scrollPosition >= elementTop - 300) {
             currentSection = section;
           }
         }
       }
-      
+
       setActiveSection(currentSection);
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -82,8 +82,8 @@ export function Header() {
                   key={item.name}
                   href={item.href}
                   className={`relative text-sm font-medium transition-all duration-300 flex items-center ${
-                    activeSection === item.id 
-                      ? "text-white" 
+                    activeSection === item.id
+                      ? "text-white"
                       : "text-gray-300 hover:text-white"
                   }`}
                 >
@@ -121,8 +121,8 @@ export function Header() {
                   key={item.name}
                   href={item.href}
                   className={`relative text-sm font-medium py-2 transition-all duration-300 ${
-                    activeSection === item.id 
-                      ? "text-white" 
+                    activeSection === item.id
+                      ? "text-white"
                       : "text-gray-300 hover:text-white"
                   }`}
                   onClick={() => setIsMenuOpen(false)}

@@ -50,6 +50,7 @@ export function TechSlider() {
   const sliderRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [currentGroup, setCurrentGroup] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -96,45 +97,46 @@ export function TechSlider() {
   }
 
   return (
-    <section className="w-full mt-16">
+    <section className="w-full mt-12 sm:mt-16">
       {/* Título del slider */}
-      <div ref={titleRef} className="text-center mb-12">
-        <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent mb-4">
+      <div ref={titleRef} className="text-center mb-8 sm:mb-12 px-4">
+        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent mb-3 sm:mb-4">
           Mi Stack Tecnológico
         </h3>
-        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
+        <p className="text-gray-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto">
           Tecnologías organizadas por especialización y experiencia
         </p>
       </div>
 
-      {/* Grid de grupos de tecnologías */}
-      <div ref={sliderRef} className="">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Grid de grupos de tecnologías - Desktop / Carrusel Mobile */}
+      <div ref={sliderRef} className="px-3 sm:px-4">
+        {/* Desktop: Grid normal */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {techGroups.map((group) => (
-            <div key={group.title} className="space-y-4">
+            <div key={group.title} className="space-y-3 sm:space-y-4">
               {/* Título del grupo */}
               <div className="text-center">
-                <h4 className={`text-lg font-semibold bg-gradient-to-r ${group.gradient} bg-clip-text text-transparent`}>
+                <h4 className={`text-base sm:text-lg font-semibold bg-gradient-to-r ${group.gradient} bg-clip-text text-transparent`}>
                   {group.title}
                 </h4>
               </div>
               
-              {/* Tecnologías del grupo */}
-              <div className="space-y-3">
+              {/* Tecnologías del grupo - Desktop */}
+              <div className="space-y-2 sm:space-y-3">
                 {group.techs.map((tech) => {
                   const { IconComponent } = tech;
                   
                   return (
                     <div 
                       key={tech.name}
-                      className="flex items-center gap-3 p-3 rounded-lg bg-black/20 backdrop-blur-sm border border-white/10 hover:border-white/20 hover:bg-black/30 transition-all duration-300 group cursor-pointer"
+                      className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg bg-black/20 backdrop-blur-sm border border-white/10 hover:border-white/20 hover:bg-black/30 transition-all duration-300 group cursor-pointer"
                     >
                       <div className="flex-shrink-0">
                         <IconComponent 
-                          className={`w-6 h-6 group-hover:scale-110 transition-transform duration-300 ${getOfficialColorClass(tech.name)}`}
+                          className={`w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform duration-300 ${getOfficialColorClass(tech.name)}`}
                         />
                       </div>
-                      <span className="text-white font-medium text-sm group-hover:text-purple-200 transition-colors duration-300">
+                      <span className="text-white font-medium text-xs sm:text-sm group-hover:text-purple-200 transition-colors duration-300">
                         {tech.name}
                       </span>
                     </div>
@@ -143,6 +145,84 @@ export function TechSlider() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Mobile: Carrusel horizontal */}
+        <div className="sm:hidden">
+          {/* Grupo actual */}
+          <div className="mb-6">
+            <div className="text-center mb-4">
+              <h4 className={`text-lg font-semibold bg-gradient-to-r ${techGroups[currentGroup]?.gradient} bg-clip-text text-transparent`}>
+                {techGroups[currentGroup]?.title}
+              </h4>
+            </div>
+            
+            {/* Grid compacto de tecnologías */}
+            <div className="grid grid-cols-2 gap-3">
+              {techGroups[currentGroup]?.techs.map((tech) => {
+                const { IconComponent } = tech;
+                
+                return (
+                  <div 
+                    key={tech.name}
+                    className="flex flex-col items-center gap-2 p-3 rounded-lg bg-black/20 backdrop-blur-sm border border-white/10 hover:border-white/20 hover:bg-black/30 transition-all duration-300 group cursor-pointer min-h-[80px]"
+                  >
+                    <div className="flex-shrink-0">
+                      <IconComponent 
+                        className={`w-8 h-8 group-hover:scale-110 transition-transform duration-300 ${getOfficialColorClass(tech.name)}`}
+                      />
+                    </div>
+                    <span className="text-white font-medium text-xs text-center leading-tight group-hover:text-purple-200 transition-colors duration-300">
+                      {tech.name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Indicadores del carrusel */}
+          <div className="flex justify-center gap-2">
+            {techGroups.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentGroup(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  currentGroup === index
+                    ? 'bg-purple-400 w-6'
+                    : 'bg-gray-600 hover:bg-gray-500'
+                }`}
+                aria-label={`Ver grupo ${_.title}`}
+              />
+            ))}
+          </div>
+
+          {/* Navegación por flechas */}
+          <div className="flex justify-between items-center mt-4">
+            <button
+              onClick={() => setCurrentGroup(prev => prev > 0 ? prev - 1 : techGroups.length - 1)}
+              className="p-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10 hover:border-white/20 hover:bg-black/30 transition-all duration-300"
+              aria-label="Grupo anterior"
+            >
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            <span className="text-sm text-gray-400">
+              {currentGroup + 1} de {techGroups.length}
+            </span>
+
+            <button
+              onClick={() => setCurrentGroup(prev => prev < techGroups.length - 1 ? prev + 1 : 0)}
+              className="p-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10 hover:border-white/20 hover:bg-black/30 transition-all duration-300"
+              aria-label="Grupo siguiente"
+            >
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </section>
