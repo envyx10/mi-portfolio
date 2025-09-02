@@ -1,5 +1,5 @@
 ---
-import '../styles/globals.css';
+import "../styles/globals.css";
 
 export interface Props {
   title?: string;
@@ -8,39 +8,48 @@ export interface Props {
 const { title = "Endev · Portfolio" } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="description" content="Portfolio de desarrollador frontend especializado en React, JavaScript y TypeScript" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/x-icon" href="/favicon.svg" />
-  <link rel="apple-touch-icon" href="/favicon.svg" />
-  <meta name="theme-color" content="#8b5cf6" />
-  <meta name="msapplication-TileColor" content="#8b5cf6" />
-  <title>{title}</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Portfolio de desarrollador frontend especializado en React, JavaScript y TypeScript"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <meta name="theme-color" content="#8b5cf6" />
+    <meta name="msapplication-TileColor" content="#8b5cf6" />
+    <title>{title}</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet" />
-</head>
-<body class="font-sans antialiased" style="--font-geist: 'Geist', sans-serif;">
-  <slot />
-</body>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="font-sans antialiased"
+    style="--font-geist: 'Geist', sans-serif;"
+  >
+    <slot />
+  </body>
 </html>
 
 <style is:global>
   :root {
-    --font-geist: 'Geist', sans-serif;
+    --font-geist: "Geist", sans-serif;
   }
-  
+
   html {
     font-family: var(--font-geist), system-ui, sans-serif;
   }
-  
+
   body {
     font-family: var(--font-geist), system-ui, sans-serif;
   }
