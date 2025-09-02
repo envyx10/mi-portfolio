@@ -24,20 +24,27 @@ interface Technology {
 }
 
 const technologies: Technology[] = [
-  { name: "HTML5", IconComponent: SiHtml5, color: "#E34F26" },
-  { name: "CSS3", IconComponent: SiCss3, color: "#1572B6" },
-  { name: "JavaScript", IconComponent: SiJavascript, color: "#F7DF1E" },
-  { name: "TypeScript", IconComponent: SiTypescript, color: "#3178C6" },
+  // Frontend Core (más importantes para tu perfil)
   { name: "React", IconComponent: SiReact, color: "#61DAFB" },
   { name: "Next.js", IconComponent: SiNextdotjs, color: "#ffffff" },
-  { name: "Node.js", IconComponent: SiNodedotjs, color: "#339933" },
+  { name: "TypeScript", IconComponent: SiTypescript, color: "#3178C6" },
+  { name: "JavaScript", IconComponent: SiJavascript, color: "#F7DF1E" },
+  
+  // Styling & Design
   { name: "Tailwind CSS", IconComponent: SiTailwindcss, color: "#06B6D4" },
+  { name: "CSS3", IconComponent: SiCss3, color: "#1572B6" },
+  { name: "HTML5", IconComponent: SiHtml5, color: "#E34F26" },
+  { name: "Figma", IconComponent: SiFigma, color: "#F24E1E" },
+  
+  // Backend & Database
+  { name: "Node.js", IconComponent: SiNodedotjs, color: "#339933" },
+  { name: "Laravel", IconComponent: SiLaravel, color: "#FF2D20" },
   { name: "MongoDB", IconComponent: SiMongodb, color: "#47A248" },
   { name: "MySQL", IconComponent: SiMysql, color: "#4479A1" },
-  { name: "Laravel", IconComponent: SiLaravel, color: "#FF2D20" },
-  { name: "Docker", IconComponent: SiDocker, color: "#2496ED" },
+  
+  // DevOps & Tools
   { name: "Git", IconComponent: SiGit, color: "#F05032" },
-  { name: "Figma", IconComponent: SiFigma, color: "#F24E1E" },
+  { name: "Docker", IconComponent: SiDocker, color: "#2496ED" },
 ];
 
 export function TechSlider() {

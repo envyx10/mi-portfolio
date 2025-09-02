@@ -1,6 +1,5 @@
 ---
 import { HeroContent } from '../react/HeroContent';
-import { HeroImage } from '../react/HeroImage';
 import { HeroArrow } from '../react/HeroArrow';
 import TechSlider from './TechSlider.astro';
 ---
@@ -18,12 +17,9 @@ import TechSlider from './TechSlider.astro';
   </div>
 
   <div class="max-w-6xl mx-auto w-full relative z-10">
-    <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
-      <!-- Left side - Text content con interactividad -->
+    <!-- Centered content without image -->
+    <div class="flex flex-col items-center justify-center text-center mb-20">
       <HeroContent client:load />
-
-      <!-- Right side - Profile image -->
-      <HeroImage client:load />
     </div>
 
     <!-- Tech slider -->
