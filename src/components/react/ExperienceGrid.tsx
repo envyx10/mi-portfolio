@@ -1,6 +1,6 @@
 import type React from "react";
 import { useState, useEffect, useRef } from "react";
-import { FiBriefcase, FiCalendar, FiMapPin } from "react-icons/fi";
+import { FiCalendar, FiMapPin } from "react-icons/fi";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface Experience {
@@ -26,7 +26,7 @@ export function ExperienceGrid({ experiences }: ExperienceGridProps) {
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isClient) return;
-    
+
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -38,20 +38,13 @@ export function ExperienceGrid({ experiences }: ExperienceGridProps) {
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!isClient) return;
-    
+
     const card = e.currentTarget;
     card.style.setProperty("--mouse-x", "50%");
     card.style.setProperty("--mouse-y", "50%");
   };
 
-  const renderIcon = (iconType: string) => {
-    switch (iconType) {
-      case "FiBriefcase":
-        return <FiBriefcase className="h-8 w-8" />;
-      default:
-        return <FiBriefcase className="h-8 w-8" />;
-    }
-  };
+
 
   return (
     <div ref={gridRef} className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
@@ -67,19 +60,18 @@ export function ExperienceGrid({ experiences }: ExperienceGridProps) {
 
           <Card className="relative bg-black/40 border-transparent backdrop-blur-sm hover:bg-black/30 transition-all duration-300 h-full rounded-lg">
             <CardContent className="p-5 sm:p-6">
-              <div className="text-purple-400 mb-3 sm:mb-4 flex justify-center">{renderIcon(job.iconType)}</div>
-              <div className="text-center space-y-2 sm:space-y-3">
-                <h3 className="text-base sm:text-lg font-bold text-white">{job.company}</h3>
-                <h4 className="text-sm sm:text-md font-semibold text-purple-300">{job.position}</h4>
-                <div className="flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-400">
-                  <FiCalendar className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
-                  <span className="leading-tight">{job.period}</span>
+              <div className="text-left space-y-2 sm:space-y-3">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1">{job.company}</h3>
+                <h4 className="text-base sm:text-lg font-semibold text-purple-300 mb-2">{job.position}</h4>
+                <div className="flex items-center justify-start gap-1 sm:gap-2 text-sm sm:text-base text-gray-400 mb-2">
+                  <FiCalendar className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 text-purple-400/70" />
+                  <span className="leading-tight font-light">{job.period}</span>
                 </div>
-                <div className="flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-400">
-                  <FiMapPin className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
-                  <span className="leading-tight">{job.location}</span>
+                <div className="flex items-center justify-start gap-1 sm:gap-2 text-sm sm:text-base text-gray-400 mb-4">
+                  <FiMapPin className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 text-purple-400/70" />
+                  <span className="leading-tight font-light">{job.location}</span>
                 </div>
-                <p className="text-gray-400 leading-relaxed text-xs sm:text-sm">{job.description}</p>
+                <p className="text-gray-200 leading-relaxed text-sm sm:text-base font-light">{job.description}</p>
               </div>
             </CardContent>
           </Card>

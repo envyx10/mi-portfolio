@@ -6,7 +6,7 @@ import TechSlider from './TechSlider.astro';
 
 <section
   id="home"
-  class="min-h-screen flex items-center justify-center px-3 sm:px-4 md:px-6 lg:px-8 pt-20 sm:pt-24 md:pt-32 relative overflow-hidden"
+  class="min-h-screen flex items-center justify-center px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 pt-28 sm:pt-32 md:pt-36 lg:pt-40 xl:pt-44 relative overflow-hidden"
 >
   <!-- Animated background gradients - Responsive sizes -->
   <div class="absolute inset-0 opacity-15">
@@ -18,12 +18,12 @@ import TechSlider from './TechSlider.astro';
 
   <div class="max-w-7xl mx-auto w-full relative z-10">
     <!-- Centered content -->
-    <div class="flex flex-col items-center justify-center text-center mb-12 sm:mb-16 md:mb-20">
+    <div class="flex flex-col items-center justify-center text-center mb-16 sm:mb-20 md:mb-24 lg:mb-28 xl:mb-32">
       <HeroContent client:load />
     </div>
 
     <!-- Tech slider -->
-    <div class="mb-12 sm:mb-16 md:mb-20 mt-8 sm:mt-12 md:mt-16">
+    <div class="mb-12 sm:mb-16 md:mb-20 lg:mb-24 xl:mb-28 mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-28">
       <TechSlider />
     </div>
 
