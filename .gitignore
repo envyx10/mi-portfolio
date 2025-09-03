@@ -9,6 +9,10 @@
 
 # production
 /build
+/dist/
+
+# astro
+.astro/
 
 # debug
 npm-debug.log*
