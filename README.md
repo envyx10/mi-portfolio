@@ -30,12 +30,6 @@ pnpm build
 # previsualizar build local
 pnpm preview
 ```
-
-## Favicon
-El proyecto utiliza el SVG `public/astro-icon.svg` (logo de Astro) como favicon. También existe `public/favicon.svg` y el generador `astro-favicons` está configurado para crear los distintos tamaños en el proceso de build.
-
-Si prefieres no generar favicons en build, copia manualmente los archivos deseados a `public/`.
-
 ## Despliegue rápido
 Recomiendo Vercel (configuración automática para proyectos Astro). Pasos generales:
 
