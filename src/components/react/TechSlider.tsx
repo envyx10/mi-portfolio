@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from "react";
+import type { Technology } from "@/types/components";
 import {
   SiTypescript,
   SiJavascript,
@@ -17,12 +18,6 @@ import {
   SiVercel,
   SiGithub,
 } from "react-icons/si";
-
-interface Technology {
-  name: string;
-  IconComponent: React.ComponentType<{ className?: string }>;
-  color: string;
-}
 
 const technologies: Technology[] = [
   // Frontend (orden: NextJs, React, TypeScript, JavaScript)

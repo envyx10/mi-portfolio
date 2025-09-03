@@ -1,10 +1,8 @@
 ---
-import { AboutTitle } from '../react/AboutTitle';
-import { ExperienceGrid } from '../react/ExperienceGrid';
-import { SkillsGrid } from '../react/SkillsGrid';
+import { AboutTitle } from "../react/AboutTitle";
+import { ExperienceGrid } from "../react/ExperienceGrid";
+import { SkillsGrid } from "../react/SkillsGrid";
 
-// Datos del servidor - se ejecutan en build time
-// NO puedo usar iconos React aquí, debo pasarlos como string y renderizarlos en el cliente
 const experience = [
   {
     iconType: "FiBriefcase",
@@ -12,7 +10,8 @@ const experience = [
     position: "Frontend Engineer Intern",
     period: "mar. 2025 - jun. 2025 · 4 meses",
     location: "Málaga, Andalucía, España · Híbrido",
-    description: "Desarrollo de dashboards técnicos con React, Next.js y Tailwind CSS. Creación de sistemas de comparación y filtrado, refactorización de componentes legacy y propuestas de nuevas funcionalidades.",
+    description:
+      "Desarrollo de dashboards técnicos con React, Next.js y Tailwind CSS. Creación de sistemas de comparación y filtrado, refactorización de componentes legacy y propuestas de nuevas funcionalidades.",
   },
   {
     iconType: "FiBriefcase",
@@ -20,7 +19,8 @@ const experience = [
     position: "Técnico informático",
     period: "oct. 2017 - feb. 2023 · 5 años 5 meses",
     location: "Málaga y alrededores, España",
-    description: "Resolución de problemas de hardware informático, mantenimiento de sistemas y soporte técnico especializado para equipos gaming y multimedia.",
+    description:
+      "Resolución de problemas de hardware informático, mantenimiento de sistemas y soporte técnico especializado para equipos gaming y multimedia.",
   },
   {
     iconType: "FiBriefcase",
@@ -28,7 +28,8 @@ const experience = [
     position: "Técnico informático",
     period: "ene. 2017 - feb. 2023 · 6 años 2 meses",
     location: "Málaga y alrededores, España",
-    description: "Mantenimiento informático integral, resolución de problemas de hardware y software, y gestión de infraestructura tecnológica empresarial.",
+    description:
+      "Mantenimiento informático integral, resolución de problemas de hardware y software, y gestión de infraestructura tecnológica empresarial.",
   },
   {
     iconType: "FiBriefcase",
@@ -36,7 +37,8 @@ const experience = [
     position: "Diseñador gráfico creativo",
     period: "dic. 2014 - dic. 2016 · 2 años 1 mes",
     location: "Málaga y alrededores, España · Presencial",
-    description: "Diseño de productos y materiales gráficos utilizando Adobe Photoshop y herramientas de diseño digital para proyectos creativos y comerciales.",
+    description:
+      "Diseño de productos y materiales gráficos utilizando Adobe Photoshop y herramientas de diseño digital para proyectos creativos y comerciales.",
   },
 ];
 
@@ -64,23 +66,28 @@ const skills = [
   {
     iconType: "FiTool",
     title: "Soporte Técnico",
-    description: "Mantenimiento de sistemas, resolución de hardware, montaje y configuración de equipos",
+    description:
+      "Mantenimiento de sistemas, resolución de hardware, montaje y configuración de equipos",
   },
   {
     iconType: "FiLayers",
     title: "Diseño Gráfico",
-    description: "Figma, Adobe Photoshop, diseño creativo y desarrollo de materiales visuales",
+    description:
+      "Figma, Adobe Photoshop, diseño creativo y desarrollo de materiales visuales",
   },
 ];
 ---
 
-<section id="about" class="min-h-screen flex items-center justify-center pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 pb-12 sm:pb-16 md:pb-20 px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8">
+<section
+  id="about"
+  class="min-h-screen flex items-center justify-center pt-16 sm:pt-20 md:pt-24 lg:pt-28 xl:pt-32 pb-12 sm:pb-16 md:pb-20 px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8"
+>
   <div class="max-w-7xl mx-auto w-full">
     <!-- Título de experiencia con animación (React) -->
-    <AboutTitle 
+    <AboutTitle
       title="Mi Experiencia"
-      description="Con experiencia en desarrollo frontend en Freepik y un sólido background técnico en informática y diseño gráfico. Especializado en React, Next.js y TypeScript, con enfoque en crear interfaces funcionales y experiencias de usuario excepcionales."
-      client:visible 
+      description="Junior Frontend Developer especializado en React, Next.js y TypeScript. Mi experiencia como Frontend Engineer Intern en Freepik me ha preparado para crear interfaces de usuario funcionales y orientadas al usuario. Mi formación previa en informática y diseño gráfico complementa mis habilidades, permitiéndome abordar los proyectos con una visión integral."
+      client:visible
     />
 
     <!-- Grid de experiencia con animaciones (React) -->
@@ -91,10 +98,10 @@ const skills = [
     <!-- Skills Section -->
     <div class="mt-8 sm:mt-12 md:mt-16">
       <!-- Título de skills con animación (React) -->
-      <AboutTitle 
+      <AboutTitle
         title="Habilidades"
-        description="Las tecnologías y áreas de expertise en las que me especializo para crear soluciones digitales innovadoras."
-        client:visible 
+        description="Las tecnologías y áreas que domino y en las que me estoy formando para construir soluciones digitales."
+        client:visible
       />
 
       <!-- Grid de skills con animaciones (React) -->

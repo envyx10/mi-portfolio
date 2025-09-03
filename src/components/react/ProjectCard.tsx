@@ -1,15 +1,6 @@
 import { useRef } from "react";
 import { FiGithub, FiExternalLink, FiGlobe } from "react-icons/fi";
-
-interface Project {
-  title: string;
-  description: string;
-  image: string;
-  tech: string[];
-  github?: string;
-  demo?: string;
-  website?: string;
-}
+import type { Project } from "@/types/components";
 
 export function ProjectCard({ project }: { project: Project }) {
   const cardRef = useRef<HTMLDivElement>(null);
