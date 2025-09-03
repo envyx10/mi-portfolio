@@ -34,7 +34,7 @@ export function SkillsGrid({ skills }: SkillsGridProps) {
       {skills.map((skill, index) => (
         <BaseCard key={index} cardType="skill">
           <div className="text-left relative z-10">
-            <div className="text-purple-400 mb-4 sm:mb-5 md:mb-6 flex justify-left">
+            <div className="text-purple-400 mb-4 sm:mb-5 md:mb-6 flex justify-start">
               {renderIcon(skill.iconType)}
             </div>
             <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4">{skill.title}</h3>

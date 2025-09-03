@@ -30,11 +30,7 @@ export interface Project {
   title: string;
   description: string;
   image: string;
-  tech: string[]; // Array de tecnologías usadas
-  technologies?: string[]; // Alias para compatibilidad
-  github?: string;
-  githubUrl?: string; // Alias para compatibilidad
-  demo?: string;
-  liveUrl?: string; // Alias para compatibilidad
-  website?: string;
+  technologies: string[]; // Array de tecnologías usadas
+  githubUrl?: string;
+  liveUrl?: string;
 }
