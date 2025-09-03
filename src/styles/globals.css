@@ -175,3 +175,16 @@ body {
 .card-gradient-effect {
   background: radial-gradient(circle 250px at var(--mouse-x) var(--mouse-y), rgba(147, 51, 234, 0.15), rgba(168, 85, 247, 0.08) 50%, transparent 80%);
 }
+
+/* Smooth scrolling global */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* altura aproximada del header fijo */
+}
+
+/* Mejor control en móviles donde header puede ser más alto */
+@media (max-width: 640px) {
+  html {
+    scroll-padding-top: 72px;
+  }
+}
