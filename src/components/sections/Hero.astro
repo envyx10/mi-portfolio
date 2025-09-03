@@ -1,12 +1,11 @@
 ---
 import { HeroContent } from '../react/HeroContent';
 import { HeroArrow } from '../react/HeroArrow';
-import TechSlider from './TechSlider.astro';
 ---
 
 <section
   id="home"
-  class="min-h-screen flex items-center justify-center px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 pt-28 sm:pt-32 md:pt-36 lg:pt-40 xl:pt-44 relative overflow-hidden"
+  class="h-screen flex items-center justify-center px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 relative overflow-hidden"
 >
   <!-- Animated background gradients - Responsive sizes -->
   <div class="absolute inset-0 opacity-15">
@@ -16,19 +15,14 @@ import TechSlider from './TechSlider.astro';
     <div class="absolute bottom-1/3 right-1/3 w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-indigo-600/50 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-6000"></div>
   </div>
 
-  <div class="max-w-7xl mx-auto w-full relative z-10">
+  <div class="max-w-7xl mx-auto w-full relative z-10 flex flex-col items-center justify-center h-full">
     <!-- Centered content -->
-    <div class="flex flex-col items-center justify-center text-center mb-16 sm:mb-20 md:mb-24 lg:mb-28 xl:mb-32">
+    <div class="flex flex-col items-center justify-center text-center flex-1">
       <HeroContent client:load />
     </div>
 
-    <!-- Tech slider -->
-    <div class="mb-12 sm:mb-16 md:mb-20 lg:mb-24 xl:mb-28 mt-12 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-28">
-      <TechSlider />
-    </div>
-
     <!-- Flecha animada - Hidden on small screens -->
-    <div class="hidden sm:block">
+    <div class="hidden sm:block absolute bottom-8">
       <HeroArrow client:load />
     </div>
   </div>
