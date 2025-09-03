@@ -20,12 +20,37 @@ export function ProjectCard({ project }: { project: Project }) {
     >
       <div className="relative z-10 h-full flex flex-col">
         <div className="relative overflow-hidden h-40 sm:h-48 md:h-56 lg:h-64">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+          {((project.liveUrl && project.liveUrl !== "#") || (project.websiteUrl && project.websiteUrl !== "#") || (project.githubUrl && project.githubUrl !== "#")) ? (
+            <a
+              href={
+                project.liveUrl && project.liveUrl !== "#"
+                  ? project.liveUrl
+                  : project.websiteUrl && project.websiteUrl !== "#"
+                  ? project.websiteUrl
+                  : project.githubUrl
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Abrir ${project.title} - sitio`}
+              className="absolute inset-0 block"
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
+            </a>
+          ) : (
+            <>
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            </>
+          )}
         </div>
       
       <div className="p-4 sm:p-5 md:p-6 lg:p-7 xl:p-8 flex-1 flex flex-col">
