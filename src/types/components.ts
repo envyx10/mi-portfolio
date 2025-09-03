@@ -1,4 +1,4 @@
-// Tipos compartidos para componentes
+// Shared component types
 export interface Technology {
   name: string;
   IconComponent: React.ComponentType<{ className?: string }>;
