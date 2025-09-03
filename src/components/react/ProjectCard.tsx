@@ -1,15 +1,6 @@
 import { useRef } from "react";
-import { FiGithub, FiExternalLink, FiGlobe } from "react-icons/fi";
-
-interface Project {
-  title: string;
-  description: string;
-  image: string;
-  tech: string[];
-  github?: string;
-  demo?: string;
-  website?: string;
-}
+import { FiGithub, FiExternalLink } from "react-icons/fi";
+import type { Project } from "@/types/components";
 
 export function ProjectCard({ project }: { project: Project }) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -20,7 +11,7 @@ export function ProjectCard({ project }: { project: Project }) {
     return { visibleTech, remainingCount };
   };
 
-  const { visibleTech, remainingCount } = renderTechTags(project.tech);
+  const { visibleTech, remainingCount } = renderTechTags(project.technologies || []);
 
   return (
     <div
@@ -60,11 +51,11 @@ export function ProjectCard({ project }: { project: Project }) {
             {remainingCount > 0 && (
               <span
                 className="px-2 sm:px-2.5 py-1 sm:py-1.5 text-xs sm:text-sm bg-gray-500/20 text-gray-300 rounded-full border border-gray-500/40 hover:bg-gray-500/30 hover:text-gray-200 transition-all font-medium group/tooltip relative"
-                title={`Otras tecnologías: ${project.tech.slice(visibleTech.length).join(', ')}`}
+                title={`Otras tecnologías: ${(project.technologies || []).slice(visibleTech.length).join(', ')}`}
               >
                 +{remainingCount} más
                 <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 sm:px-3 py-1 sm:py-2 bg-black/90 text-white text-xs rounded-lg opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 whitespace-nowrap z-50 border border-white/20">
-                  {project.tech.slice(visibleTech.length).join(', ')}
+                  {(project.technologies || []).slice(visibleTech.length).join(', ')}
                   <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-black/90"></div>
                 </div>
               </span>
@@ -73,9 +64,9 @@ export function ProjectCard({ project }: { project: Project }) {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-1.5 sm:gap-2 md:gap-3">
-          {project.github && (
+          {project.githubUrl && (
             <a
-              href={project.github}
+              href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 backdrop-blur-sm bg-white/5 border border-white/20 text-white rounded-lg hover:bg-white/10 hover:border-white/30 transition-all duration-300 text-xs sm:text-sm font-medium group/github w-full sm:w-auto"
@@ -84,27 +75,15 @@ export function ProjectCard({ project }: { project: Project }) {
               Código
             </a>
           )}
-          {project.demo && project.demo !== "#" && (
+          {project.liveUrl && project.liveUrl !== "#" && (
             <a
-              href={project.demo}
+              href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 backdrop-blur-sm bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-400/30 text-white rounded-lg hover:from-purple-500/30 hover:to-blue-500/30 hover:border-purple-400/50 transition-all duration-300 text-xs sm:text-sm font-medium group/demo w-full sm:w-auto"
             >
               <FiExternalLink className="h-3 w-3 sm:h-4 sm:w-4 group-hover/demo:scale-110 transition-transform duration-200" />
               Demo
-            </a>
-          )}
-          {project.website && (
-            <a
-              href={project.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 backdrop-blur-sm bg-white/5 border border-white/10 text-white rounded-lg hover:bg-white/10 hover:border-white/20 transition-all duration-300 group/website w-full sm:w-auto"
-              aria-label="Visitar sitio web"
-            >
-              <FiGlobe className="h-3 w-3 sm:h-4 sm:w-4 group-hover/website:scale-110 transition-transform duration-200" />
-              <span className="text-xs sm:text-sm font-medium">Web</span>
             </a>
           )}
         </div>

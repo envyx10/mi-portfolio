@@ -8,22 +8,22 @@ const projects = [
     title: "Pixela",
     description: "Plataforma de series y películas de reseñas y valoraciones desarrollada para mi TFG en desarrollo de aplicaciones web",
     image: "/1.png",
-    tech: ["React", "Next.js", "Tailwind", "TypeScript","Laravel", "MariaDB"],
-    github: "https://github.com/envyx10/Pixela",
+    technologies: ["React", "Next.js", "Tailwind", "TypeScript","Laravel", "MariaDB"],
+    githubUrl: "https://github.com/envyx10/Pixela",
   },
   {
     title: "Freepik",
     description: "Desarrollo de aplicación interna para Freepik en mi periodo de prácticas como Frontend Engineer",
     image: "/2.png",
-    tech: ["React", "TypeScript", "NextJS", "Tailwind"],
-    website: "https://www.freepik.es/",
+    technologies: ["React", "TypeScript", "NextJS", "Tailwind"],
+    liveUrl: "https://www.freepik.es/",
   },
   {
     title: "Pixela Figma Design",
     description: "Diseño completo del proyecto Pixela en Figma, incluyendo prototipos interactivos y sistema de diseño",
     image: "/3.png",
-    tech: ["Figma", "UI/UX"],
-    website: "https://www.figma.com/design/CPQe3LpPHQXKW1AWTYJhOG/PROYECTO-PIXELA.IO?node-id=0-1&p=f&t=xpIvV40gZcN5Tr4q-0"
+    technologies: ["Figma", "UI/UX"],
+    liveUrl: "https://www.figma.com/design/CPQe3LpPHQXKW1AWTYJhOG/PROYECTO-PIXELA.IO?node-id=0-1&p=f&t=xpIvV40gZcN5Tr4q-0"
   },
 ];
 ---
@@ -32,7 +32,11 @@ const projects = [
   <div class="max-w-7xl mx-auto w-full">
     <!-- Título con animación (React) -->
     <div class="mb-8 sm:mb-12 md:mb-16">
-      <ProjectsTitle client:visible />
+      <ProjectsTitle 
+        client:visible 
+        title="Mis Proyectos" 
+        description="Una selección de proyectos que demuestran mis habilidades en desarrollo frontend, desde aplicaciones web completas hasta componentes interactivos."
+      />
     </div>
 
     <!-- Grid de proyectos con animaciones (React) - Responsive -->
