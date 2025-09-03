@@ -12,8 +12,10 @@ import {
   SiDocker,
   SiMysql,
   SiLaravel,
-  SiNodedotjs,
-  SiMongodb
+  SiPhp,
+  SiPostgresql,
+  SiVercel,
+  SiGithub,
 } from "react-icons/si";
 
 interface Technology {
@@ -23,26 +25,28 @@ interface Technology {
 }
 
 const technologies: Technology[] = [
-  // Frontend Core (más importantes para tu perfil)
+  // Frontend (orden: NextJs, React, TypeScript, JavaScript)
+  { name: "Next.js", IconComponent: SiNextdotjs, color: "#000000" },
   { name: "React", IconComponent: SiReact, color: "#61DAFB" },
-  { name: "Next.js", IconComponent: SiNextdotjs, color: "#ffffff" },
   { name: "TypeScript", IconComponent: SiTypescript, color: "#3178C6" },
   { name: "JavaScript", IconComponent: SiJavascript, color: "#F7DF1E" },
 
-  // Styling & Design
-  { name: "Tailwind CSS", IconComponent: SiTailwindcss, color: "#06B6D4" },
-  { name: "CSS3", IconComponent: SiCss3, color: "#1572B6" },
-  { name: "HTML5", IconComponent: SiHtml5, color: "#E34F26" },
-  { name: "Figma", IconComponent: SiFigma, color: "#F24E1E" },
-
-  // Backend & Database
-  { name: "Node.js", IconComponent: SiNodedotjs, color: "#339933" },
+  // Backend (orden: Laravel, PHP, Supabase, MySQL)
   { name: "Laravel", IconComponent: SiLaravel, color: "#FF2D20" },
-  { name: "MongoDB", IconComponent: SiMongodb, color: "#47A248" },
+  { name: "PHP", IconComponent: SiPhp, color: "#777BB4" },
+  { name: "Supabase", IconComponent: SiPostgresql, color: "#3ECF8E" },
   { name: "MySQL", IconComponent: SiMysql, color: "#4479A1" },
 
-  // DevOps & Tools
+  // Design (orden: HTML, CSS3, Tailwind, Figma)
+  { name: "HTML", IconComponent: SiHtml5, color: "#E34F26" },
+  { name: "CSS3", IconComponent: SiCss3, color: "#1572B6" },
+  { name: "Tailwind", IconComponent: SiTailwindcss, color: "#06B6D4" },
+  { name: "Figma", IconComponent: SiFigma, color: "#F24E1E" },
+
+  // Tools (Vercel, AWS, Git, GitHub, Docker)
+  { name: "Vercel", IconComponent: SiVercel, color: "#000000" },
   { name: "Git", IconComponent: SiGit, color: "#F05032" },
+  { name: "GitHub", IconComponent: SiGithub, color: "#181717" },
   { name: "Docker", IconComponent: SiDocker, color: "#2496ED" },
 ];
 
@@ -64,22 +68,22 @@ export function TechSlider() {
   const techGroups = [
     {
       title: "Frontend",
-      techs: technologies.slice(0, 4), // React, Next.js, TypeScript, JavaScript
+      techs: technologies.slice(0, 4), // Next.js, React, TypeScript, JavaScript
       gradient: "from-blue-400 to-purple-500"
     },
     {
-      title: "Styling",
-      techs: technologies.slice(4, 8), // Tailwind, CSS3, HTML5, Figma
-      gradient: "from-purple-400 to-pink-500"
-    },
-    {
       title: "Backend",
-      techs: technologies.slice(8, 12), // Node.js, Laravel, MongoDB, MySQL
+      techs: technologies.slice(4, 8), // Laravel, PHP, Supabase, MySQL
       gradient: "from-green-400 to-blue-500"
     },
     {
+      title: "Design",
+      techs: technologies.slice(8, 12), // HTML, CSS3, Tailwind, Figma
+      gradient: "from-purple-400 to-pink-500"
+    },
+    {
       title: "Tools",
-      techs: technologies.slice(12, 14), // Git, Docker
+      techs: technologies.slice(12, 16), // Vercel, Git, GitHub, Docker
       gradient: "from-orange-400 to-red-500"
     }
   ];
@@ -233,26 +237,29 @@ export function TechSlider() {
 function getOfficialColorClass(name: string): string {
   const colorMap: Record<string, string> = {
     // Frontend
-    'React': 'text-cyan-400', // #61DAFB
-    'Next.js': 'text-white', // #000000 (logo negro, usamos blanco para contraste)
-    'TypeScript': 'text-blue-600', // #3178C6
-    'JavaScript': 'text-yellow-400', // #F7DF1E
+  'Next.js': 'text-white', // black logo -> white for contrast
+  'React': 'text-cyan-400', // #61DAFB
+  'TypeScript': 'text-blue-600', // #3178C6
+  'JavaScript': 'text-yellow-400', // #F7DF1E
 
-    // Styling & Design
-    'Tailwind CSS': 'text-teal-400', // #06B6D4
-    'CSS3': 'text-blue-500', // #1572B6
-    'HTML5': 'text-orange-500', // #E34F26
-    'Figma': 'text-purple-500', // #F24E1E (ajustado para mejor contraste)
+  // Backend
+  'Laravel': 'text-red-500', // #FF2D20
+  'PHP': 'text-violet-500', // #777BB4 (approx)
+  'Supabase': 'text-emerald-400', // #3ECF8E
+  'MySQL': 'text-blue-600', // #4479A1
 
-    // Backend & Database
-    'Node.js': 'text-green-500', // #339933
-    'Laravel': 'text-red-500', // #FF2D20
-    'MongoDB': 'text-green-600', // #47A248
-    'MySQL': 'text-blue-600', // #4479A1
+  // Design
+  'HTML': 'text-orange-500', // #E34F26
+  'CSS3': 'text-blue-500', // #1572B6
+  'Tailwind': 'text-teal-400', // #06B6D4
+  'Figma': 'text-pink-400', // #F24E1E adjusted
 
-    // DevOps & Tools
-    'Git': 'text-orange-600', // #F05032
-    'Docker': 'text-blue-500', // #2496ED
+  // Tools
+  'Vercel': 'text-white',
+  'AWS': 'text-yellow-400',
+  'Git': 'text-orange-600',
+  'GitHub': 'text-gray-200',
+  'Docker': 'text-blue-500',
   };
 
   return colorMap[name] || 'text-white';
