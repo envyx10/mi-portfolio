@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { FiGithub, FiExternalLink, FiGlobe } from "react-icons/fi";
 import type { Project } from "@/types/components";
 
 export function ProjectCard({ project }: { project: Project }) {
@@ -84,6 +84,18 @@ export function ProjectCard({ project }: { project: Project }) {
             >
               <FiExternalLink className="h-3 w-3 sm:h-4 sm:w-4 group-hover/demo:scale-110 transition-transform duration-200" />
               Demo
+            </a>
+          )}
+          {project.websiteUrl && (
+            <a
+              href={project.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-1.5 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 backdrop-blur-sm bg-white/5 border border-white/10 text-white rounded-lg hover:bg-white/10 hover:border-white/20 transition-all duration-300 group/website w-full sm:w-auto"
+              aria-label="Visitar sitio web"
+            >
+              <FiGlobe className="h-3 w-3 sm:h-4 sm:w-4 group-hover/website:scale-110 transition-transform duration-200" />
+              <span className="text-xs sm:text-sm font-medium">Web</span>
             </a>
           )}
         </div>
