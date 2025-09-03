@@ -108,7 +108,7 @@ export function TechSlider() {
           Mi Stack Tecnológico
         </h3>
         <p className="text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
-          Tecnologías organizadas por especialización y experiencia
+          Las tecnologías que me ayudan a construir interfaces de usuario modernas y funcionales. En constante aprendizaje de nuevas herramientas.
         </p>
       </div>
 
@@ -119,7 +119,7 @@ export function TechSlider() {
           {techGroups.map((group) => (
             <div key={group.title} className="space-y-3 sm:space-y-4">
               {/* Título del grupo */}
-              <div className="text-center">
+              <div className="text-left">
                 <h4 className={`text-base sm:text-lg font-semibold bg-gradient-to-r ${group.gradient} bg-clip-text text-transparent`}>
                   {group.title}
                 </h4>
