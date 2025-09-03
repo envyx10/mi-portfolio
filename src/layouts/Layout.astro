@@ -16,14 +16,13 @@ const { title = "Endev · Portfolio" } = Astro.props;
       name="description"
       content="Portfolio de desarrollador frontend especializado en React, JavaScript y TypeScript"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/x-icon" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
-    <meta name="theme-color" content="#BC52EE" />
-    <meta name="msapplication-TileColor" content="#BC52EE" />
-    <title>{title}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/astro-icon.svg" />
+  <!-- fallback for browsers that prefer PNG ico -->
+  <link rel="icon" href="/astro-icon.svg" sizes="any" />
+  <meta name="theme-color" content="#ff5d01" />
+  <meta name="msapplication-TileColor" content="#ff5d01" />
+  <title>{title}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
