@@ -1,0 +1,1 @@
+import{j as r}from"./jsx-runtime.CyXy1Ci3.js";import{r as o}from"./index.CaZlGE7t.js";import{f as t}from"./index.CXC272Ii.js";import"./iconBase.Ce3pp6dx.js";function n(){const e=o.useRef(null);return r.jsx("div",{className:"text-center",children:r.jsx("div",{ref:e,className:"animate-bounce",children:r.jsx(t,{className:"h-6 w-6 mx-auto text-gray-400"})})})}export{n as HeroArrow};
