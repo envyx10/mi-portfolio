@@ -23,6 +23,7 @@ export interface Experience {
   period: string;
   location: string;
   description: string;
+  websiteUrl?: string; 
 }
 
 export interface Project {
@@ -30,7 +31,8 @@ export interface Project {
   title: string;
   description: string;
   image: string;
-  technologies: string[]; // Array de tecnologías usadas
+  technologies: string[]; 
   githubUrl?: string;
   liveUrl?: string;
+  websiteUrl?: string; 
 }
