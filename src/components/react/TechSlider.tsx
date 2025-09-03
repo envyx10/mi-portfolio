@@ -96,13 +96,15 @@ export function TechSlider() {
   }
 
   return (
-    <section className="w-full mt-6 sm:mt-8">
+    <section className="w-full">
       {/* Título del slider */}
-      <div ref={titleRef} className="text-center mb-6 sm:mb-8 md:mb-12 px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8">
-        <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent mb-2 sm:mb-3 md:mb-4">
-          Mi Stack Tecnológico
-        </h3>
-        <p className="text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
+      <div ref={titleRef} className="text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 md:mb-6">
+          <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            Mi Stack Tecnológico
+          </span>
+        </h2>
+        <p className="text-sm sm:text-base md:text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
           Las tecnologías que me ayudan a construir interfaces de usuario modernas y funcionales. En constante aprendizaje de nuevas herramientas.
         </p>
       </div>
@@ -113,9 +115,8 @@ export function TechSlider() {
         <div className="hidden lg:grid lg:grid-cols-4 gap-4 md:gap-6">
           {techGroups.map((group) => (
             <div key={group.title} className="space-y-3 sm:space-y-4">
-              {/* Título del grupo */}
               <div className="text-left">
-                <h4 className={`text-base sm:text-lg font-semibold bg-gradient-to-r ${group.gradient} bg-clip-text text-transparent`}>
+                <h4 className="text-base sm:text-lg font-semibold text-white">
                   {group.title}
                 </h4>
               </div>
@@ -151,7 +152,7 @@ export function TechSlider() {
           {/* Grupo actual */}
           <div className="mb-6">
             <div className="text-center mb-4">
-              <h4 className={`text-lg font-semibold bg-gradient-to-r ${techGroups[currentGroup]?.gradient} bg-clip-text text-transparent`}>
+              <h4 className="text-lg font-semibold text-white">
                 {techGroups[currentGroup]?.title}
               </h4>
             </div>
