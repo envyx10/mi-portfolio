@@ -11,7 +11,7 @@ export function ExperienceGrid({ experiences }: ExperienceGridProps) {
   const gridRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div ref={gridRef} className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto lg:grid-rows-2 lg:auto-rows-fr">
+    <div ref={gridRef} className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
       {experiences.map((job, index) => (
         <BaseCard key={index} cardType="experience">
           <div className="text-left h-full flex flex-col">
