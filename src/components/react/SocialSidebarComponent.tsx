@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 
 export function SocialSidebar() {
@@ -28,10 +28,38 @@ export function SocialSidebar() {
     {
       name: "Email",
       icon: <FiMail className="h-6 w-6" />,
-      href: "mailto:pablogil.dev@gmail.com",
+      href: "mailto:pabloinfodesign95@gmail.com",
       color: "hover:text-purple-400 hover:scale-110",
     },
   ];
+
+  const openMail = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    const email = "pabloinfodesign95@gmail.com";
+    const subject = encodeURIComponent("Contacto desde portfolio");
+    const body = encodeURIComponent("Hola Pablo,%0D%0AMe gustaría contactarte sobre...");
+    const mailto = `mailto:${email}?subject=${subject}&body=${body}`;
+    const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`;
+
+    try {
+      const a = document.createElement("a");
+      a.href = mailto;
+      a.style.display = "none";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (err) {
+      // ignore
+    }
+
+    setTimeout(() => {
+      try {
+        window.open(gmail, "_blank");
+      } catch (err) {
+        // ignore
+      }
+    }, 500);
+  }, []);
 
   return (
     <div className="fixed left-[2%] sm:left-[3%] md:left-[4%] xl:left-[6%] 2xl:left-[8%] top-1/2 -translate-y-1/2 z-50 hidden md:block">
@@ -42,23 +70,39 @@ export function SocialSidebar() {
         {/* Contenedor de iconos sociales */}
         <div className="flex flex-col items-center gap-4 sm:gap-5 md:gap-6 py-3 sm:py-4">
           {socialLinks.map((link, index) => (
-            <a
-              key={index}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`text-gray-400 ${link.color} transition-all duration-300 transform relative group`}
-              title={link.name}
-            >
-              <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center">
-                {link.icon}
-              </div>
+            link.name === "Email" ? (
+              <button
+                key={index}
+                onClick={openMail}
+                className={`text-gray-400 ${link.color} transition-all duration-300 transform relative group p-0 bg-transparent border-0`}
+                title={link.name}
+              >
+                <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center">
+                  {link.icon}
+                </div>
 
-              {/* Tooltip mejorado pero sutil - Responsive position */}
-              <span className="absolute left-10 sm:left-12 md:left-14 top-1/2 -translate-y-1/2 bg-black/90 backdrop-blur-sm text-white text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap pointer-events-none border border-white/10 z-50">
-                {link.name}
-              </span>
-            </a>
+                <span className="absolute left-10 sm:left-12 md:left-14 top-1/2 -translate-y-1/2 bg-black/90 backdrop-blur-sm text-white text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap pointer-events-none border border-white/10 z-50">
+                  {link.name}
+                </span>
+              </button>
+            ) : (
+              <a
+                key={index}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`text-gray-400 ${link.color} transition-all duration-300 transform relative group`}
+                title={link.name}
+              >
+                <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex items-center justify-center">
+                  {link.icon}
+                </div>
+
+                <span className="absolute left-10 sm:left-12 md:left-14 top-1/2 -translate-y-1/2 bg-black/90 backdrop-blur-sm text-white text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap pointer-events-none border border-white/10 z-50">
+                  {link.name}
+                </span>
+              </a>
+            )
           ))}
         </div>
 
