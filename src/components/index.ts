@@ -10,7 +10,7 @@ export { ProjectCard } from './react/ProjectCard';
 export { HeroContent } from './react/HeroContent';
 export { HeroImage } from './react/HeroImage';
 export { HeroArrow } from './react/HeroArrow';
-export { Header } from './react/HeaderComponent';
+export { Header } from './react/Header';
 export { SocialSidebar } from './react/SocialSidebarComponent';
 
 // Re-export types for convenience

@@ -1,0 +1,7 @@
+export const SCROLL_OFFSET = 200;
+export const HEADER_SCROLL_THRESHOLD = 50;
+export const ACTIVE_SECTION_OFFSET = 300;
+export const BOTTOM_THRESHOLD = 100;
+export const ANIMATION_DELAY_MS = 100;
+export const EMAIL_FALLBACK_DELAY_MS = 500;
+export const TRANSITION_DURATION_MS = 1000;
