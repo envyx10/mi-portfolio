@@ -46,6 +46,16 @@
   animation-delay: 6s;
 }
 
+/* Spinning ring for hero image */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 14s linear infinite;
+}
+
 /* Screen reader only utility (para a11y) */
 .sr-only {
   position: absolute;
