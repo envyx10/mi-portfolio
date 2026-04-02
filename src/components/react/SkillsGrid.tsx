@@ -46,14 +46,14 @@ export function SkillsGrid({ skills }: SkillsGridProps) {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
       {skills.map((skill, index) => {
         const styles = ACCENT_STYLES[skill.accent] || ACCENT_STYLES.blue;
 
         return (
           <div
             key={index}
-            className={`group relative p-5 sm:p-6 rounded-xl border border-zinc-800/60 bg-zinc-900/20 hover:bg-zinc-900/40 transition-all duration-300 ${styles.border}`}
+            className={`group relative p-4 rounded-xl border border-zinc-800/60 bg-zinc-900/20 hover:bg-zinc-900/40 transition-all duration-300 ${styles.border}`}
           >
             {/* Hover glow */}
             <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${styles.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
@@ -68,7 +68,7 @@ export function SkillsGrid({ skills }: SkillsGridProps) {
               </div>
 
               {/* Description */}
-              <p className="text-zinc-500 text-sm leading-relaxed mb-4 flex-1">
+              <p className="text-zinc-500 text-[13px] leading-relaxed mb-3 flex-1">
                 {skill.description}
               </p>
 
