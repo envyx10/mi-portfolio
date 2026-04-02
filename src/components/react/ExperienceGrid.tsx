@@ -20,7 +20,7 @@ export function ExperienceGrid({ experiences }: ExperienceGridProps) {
         {/* Timeline line */}
         <div className="absolute left-[7px] top-3 bottom-3 w-px bg-gradient-to-b from-zinc-700 via-zinc-800 to-transparent" />
 
-        <div className="space-y-8">
+        <div className="space-y-6">
           {visible.map((job, index) => (
             <div key={index} className="relative pl-8 group">
               {/* Timeline dot */}
