@@ -11,7 +11,10 @@ export default defineConfig({
   ],
   vite: {
     optimizeDeps: {
-      exclude: [],
+      include: ['react-icons/si', 'react-icons/fi'],
+    },
+    ssr: {
+      noExternal: ['react-icons'],
     },
   },
 }); 
