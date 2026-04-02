@@ -1,6 +1,9 @@
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import { SiGitlab } from "react-icons/si";
 
+export const CONTACT_EMAIL = "pabloinfodesign95@gmail.com";
+export const CV_PATH = "/CV_PabloGilDiaz.pdf";
+
 export const SOCIAL_LINKS = [
   {
     name: "GitHub",
@@ -26,7 +29,7 @@ export const SOCIAL_LINKS = [
   {
     name: "Email",
     icon: FiMail,
-    href: "mailto:pabloinfodesign95@gmail.com",
+    href: `mailto:${CONTACT_EMAIL}`,
     hoverColor: "hover:text-purple-400",
     ariaLabel: "Enviar correo electrónico",
   },
@@ -38,6 +41,3 @@ export const NAV_ITEMS = [
   { name: "Proyectos", href: "#projects", id: "projects" },
   { name: "Contacto", href: "#contact", id: "contact" },
 ] as const;
-
-export const CONTACT_EMAIL = "pabloinfodesign95@gmail.com";
-export const CV_PATH = "/CV_PabloGilDiaz.pdf";

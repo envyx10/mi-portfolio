@@ -1,6 +1,6 @@
 ---
-import { ProjectsTitle } from '../react/ProjectsTitle';
-import { ProjectCard } from '../react/ProjectCard';
+import { SectionTitle } from '@/components/react/SectionTitle';
+import { ProjectCard } from '@/components/react/ProjectCard';
 import { PROJECTS } from '@/constants/portfolio-data';
 ---
 
@@ -8,9 +8,9 @@ import { PROJECTS } from '@/constants/portfolio-data';
   <div class="max-w-[80%] mx-auto w-full">
     <!-- Título con animación (React) -->
     <div class="mb-8 sm:mb-12 md:mb-16">
-      <ProjectsTitle 
-        client:visible 
-        title="Mis Proyectos" 
+      <SectionTitle
+        client:visible
+        title="Mis Proyectos"
         description="Aquí tienes una selección de proyectos que demuestran mis habilidades en desarrollo frontend, mostrando mi capacidad para construir aplicaciones web completas y funcionales."
       />
     </div>

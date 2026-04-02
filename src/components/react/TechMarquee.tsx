@@ -1,5 +1,4 @@
-import { TECHNOLOGIES } from "@/constants/technologies";
-import { getTechColorClass } from "@/constants/technologies";
+import { TECHNOLOGIES, getTechColorClass } from "@/constants/technologies";
 import type { Technology } from "@/types/components";
 
 function MarqueeRow({ techs, reverse = false }: { techs: Technology[]; reverse?: boolean }) {

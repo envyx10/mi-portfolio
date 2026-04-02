@@ -1,17 +1,28 @@
-import { FiCode, FiEdit3, FiZap, FiServer, FiLayers } from "react-icons/fi";
+import { FiCode, FiZap, FiServer, FiLayers } from "react-icons/fi";
 import type { Skill } from "@/types/components";
 
 interface SkillsGridProps {
   skills: Skill[];
 }
 
-const ACCENT_STYLES: Record<string, { icon: string; tag: string; glow: string; border: string }> = {
-  blue: {
-    icon: "text-blue-400",
-    tag: "bg-blue-500/[0.08] text-blue-400/80 border-blue-500/[0.08]",
-    glow: "from-blue-500/[0.05] to-transparent",
-    border: "group-hover:border-blue-500/20",
-  },
+type AccentStyle = { icon: string; tag: string; glow: string; border: string };
+
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  FiCode,
+  FiZap,
+  FiServer,
+  FiLayers,
+};
+
+const DEFAULT_ACCENT: AccentStyle = {
+  icon: "text-blue-400",
+  tag: "bg-blue-500/[0.08] text-blue-400/80 border-blue-500/[0.08]",
+  glow: "from-blue-500/[0.05] to-transparent",
+  border: "group-hover:border-blue-500/20",
+};
+
+const ACCENT_STYLES: Record<string, AccentStyle> = {
+  blue: DEFAULT_ACCENT,
   purple: {
     icon: "text-purple-400",
     tag: "bg-purple-500/[0.08] text-purple-400/80 border-purple-500/[0.08]",
@@ -33,22 +44,11 @@ const ACCENT_STYLES: Record<string, { icon: string; tag: string; glow: string; b
 };
 
 export function SkillsGrid({ skills }: SkillsGridProps) {
-  const renderIcon = (iconType: string, accentClass: string) => {
-    const cls = `h-5 w-5 ${accentClass}`;
-    switch (iconType) {
-      case "FiCode": return <FiCode className={cls} />;
-      case "FiZap": return <FiZap className={cls} />;
-      case "FiEdit3": return <FiEdit3 className={cls} />;
-      case "FiServer": return <FiServer className={cls} />;
-      case "FiLayers": return <FiLayers className={cls} />;
-      default: return <FiCode className={cls} />;
-    }
-  };
-
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
       {skills.map((skill, index) => {
-        const styles = ACCENT_STYLES[skill.accent] || ACCENT_STYLES.blue;
+        const styles = ACCENT_STYLES[skill.accent] ?? DEFAULT_ACCENT;
+        const Icon = ICON_MAP[skill.iconType] ?? FiCode;
 
         return (
           <div
@@ -61,7 +61,7 @@ export function SkillsGrid({ skills }: SkillsGridProps) {
             <div className="relative z-10 flex flex-col h-full">
               {/* Icon + Title */}
               <div className="flex items-center gap-3 mb-3">
-                {renderIcon(skill.iconType, styles.icon)}
+                <Icon className={`h-5 w-5 ${styles.icon}`} />
                 <h3 className="text-[15px] font-semibold text-zinc-200 group-hover:text-white transition-colors">
                   {skill.title}
                 </h3>

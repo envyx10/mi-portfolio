@@ -1,7 +1,7 @@
 ---
-import '../styles/globals.css';
+import '@/styles/globals.css';
 
-export interface Props {
+interface Props {
   title?: string;
 }
 
@@ -16,13 +16,11 @@ const { title = "Endev · Portfolio" } = Astro.props;
       name="description"
       content="Portfolio de desarrollador frontend especializado en React, JavaScript y TypeScript"
     />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/svg+xml" href="/astro-icon.svg" />
-  <!-- fallback for browsers that prefer PNG ico -->
-  <link rel="icon" href="/astro-icon.svg" sizes="any" />
-  <meta name="theme-color" content="#0a0a0b" />
-  <meta name="msapplication-TileColor" content="#0a0a0b" />
-  <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#0a0a0b" />
+    <meta name="msapplication-TileColor" content="#0a0a0b" />
+    <title>{title}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -32,10 +30,7 @@ const { title = "Endev · Portfolio" } = Astro.props;
       rel="stylesheet"
     />
   </head>
-  <body
-    class="font-sans antialiased"
-    style="--font-geist: 'Geist', sans-serif;"
-  >
+  <body class="font-sans antialiased">
     <slot />
   </body>
 </html>
@@ -43,13 +38,5 @@ const { title = "Endev · Portfolio" } = Astro.props;
 <style is:global>
   :root {
     --font-geist: "Geist", sans-serif;
-  }
-
-  html {
-    font-family: var(--font-geist), system-ui, sans-serif;
-  }
-
-  body {
-    font-family: var(--font-geist), system-ui, sans-serif;
   }
 </style>

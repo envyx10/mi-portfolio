@@ -1,24 +1,27 @@
 import { useState } from "react";
 import { FiCopy, FiCheck } from "react-icons/fi";
-
-const EMAIL = "pabloinfodesign95@gmail.com";
+import { CONTACT_EMAIL } from "@/constants/navigation";
 
 export function CopyEmail() {
   const [copied, setCopied] = useState(false);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(EMAIL);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.prompt("Copia el email manualmente:", CONTACT_EMAIL);
+    }
   };
 
   return (
     <div className="inline-flex items-center gap-2">
       <a
-        href={`mailto:${EMAIL}`}
+        href={`mailto:${CONTACT_EMAIL}`}
         className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black text-sm font-medium hover:bg-zinc-200 transition-all duration-300 hover:scale-[1.02]"
       >
-        {EMAIL}
+        {CONTACT_EMAIL}
       </a>
       <button
         onClick={handleCopy}

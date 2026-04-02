@@ -37,7 +37,6 @@ export const SKILLS: Skill[] = [
 
 export const EXPERIENCES: Experience[] = [
   {
-    iconType: "FiBriefcase",
     company: "Bettergy",
     position: "Fullstack Developer",
     period: "feb. 2026 - actualidad",
@@ -47,7 +46,6 @@ export const EXPERIENCES: Experience[] = [
     websiteUrl: "https://www.bettergy.es",
   },
   {
-    iconType: "FiBriefcase",
     company: "Freepik",
     position: "Frontend Engineer Intern",
     period: "mar. 2025 - jun. 2025 · 4 meses",
@@ -57,7 +55,6 @@ export const EXPERIENCES: Experience[] = [
     websiteUrl: "https://www.freepik.com",
   },
   {
-    iconType: "FiBriefcase",
     company: "VS Gamers",
     position: "Técnico informático",
     period: "oct. 2017 - feb. 2023 · 5 años 5 meses",
@@ -67,7 +64,6 @@ export const EXPERIENCES: Experience[] = [
     websiteUrl: "https://www.vsgamers.es",
   },
   {
-    iconType: "FiBriefcase",
     company: "ATLAS INFORMÁTICA S.L.",
     position: "Técnico informático",
     period: "ene. 2017 - feb. 2023 · 6 años 2 meses",
@@ -77,7 +73,6 @@ export const EXPERIENCES: Experience[] = [
     websiteUrl: "https://www.atlasinformatica.com",
   },
   {
-    iconType: "FiBriefcase",
     company: "OZONE GAMING",
     position: "Diseñador gráfico creativo",
     period: "dic. 2014 - dic. 2016 · 2 años 1 mes",

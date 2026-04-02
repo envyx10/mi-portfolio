@@ -1,6 +1,8 @@
-import { FiArrowRight, FiDownload, FiLinkedin, FiGithub } from "react-icons/fi";
-import { SiGitlab } from "react-icons/si";
+import { FiArrowRight, FiDownload } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
+import { SOCIAL_LINKS, CV_PATH } from "@/constants/navigation";
+
+const HERO_SOCIAL_LINKS = SOCIAL_LINKS.filter(link => link.name !== "Email");
 
 export function HeroContent() {
   const handleProjectsClick = () => {
@@ -49,7 +51,7 @@ export function HeroContent() {
           className="border-zinc-800 bg-transparent hover:bg-white/[0.06] hover:border-zinc-600 text-zinc-400 hover:text-white px-7 text-sm transition-all duration-200 rounded-full h-12 w-full sm:w-auto"
           asChild
         >
-          <a href="/CV_PabloGilDiaz.pdf" download="CV_PabloGilDiaz.pdf">
+          <a href={CV_PATH} download="CV_PabloGilDiaz.pdf">
             <FiDownload className="mr-2 h-4 w-4" />
             Descargar CV
           </a>
@@ -58,33 +60,18 @@ export function HeroContent() {
 
       {/* Social */}
       <div className="flex items-center gap-1.5">
-        <a
-          href="https://www.linkedin.com/in/envyx10/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group p-2.5 rounded-full text-zinc-600 hover:text-blue-400 hover:bg-white/[0.05] transition-all duration-200"
-          aria-label="LinkedIn"
-        >
-          <FiLinkedin className="h-[18px] w-[18px]" />
-        </a>
-        <a
-          href="https://github.com/envyx10"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group p-2.5 rounded-full text-zinc-600 hover:text-white hover:bg-white/[0.05] transition-all duration-200"
-          aria-label="GitHub"
-        >
-          <FiGithub className="h-[18px] w-[18px]" />
-        </a>
-        <a
-          href="https://gitlab.com/envyx10"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group p-2.5 rounded-full text-zinc-600 hover:text-orange-400 hover:bg-white/[0.05] transition-all duration-200"
-          aria-label="GitLab"
-        >
-          <SiGitlab className="h-[18px] w-[18px]" />
-        </a>
+        {HERO_SOCIAL_LINKS.map(link => (
+          <a
+            key={link.name}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`group p-2.5 rounded-full text-zinc-600 ${link.hoverColor} hover:bg-white/[0.05] transition-all duration-200`}
+            aria-label={link.ariaLabel}
+          >
+            <link.icon className="h-[18px] w-[18px]" />
+          </a>
+        ))}
       </div>
     </div>
   );

@@ -19,7 +19,6 @@ export interface Skill {
 }
 
 export interface Experience {
-  iconType: string;
   company: string;
   position: string;
   period: string;

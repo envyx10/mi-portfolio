@@ -10,10 +10,3 @@ export function getProjectPrimaryUrl(project: Project): string | null {
 export function hasValidUrl(url: string | undefined): boolean {
   return Boolean(url && url !== "#");
 }
-
-export function scrollToSection(sectionId: string): void {
-  document.getElementById(sectionId)?.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-}
