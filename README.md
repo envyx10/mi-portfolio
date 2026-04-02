@@ -1,65 +1,140 @@
-# Portfolio 
+<div align="center">
 
-Este repositorio contiene mi portfolio personal: una web estática para mostrar proyectos, experiencia y formas de contacto. Está construida con Astro, React y Tailwind, y pensada para publicarse fácilmente en plataformas como Vercel o Netlify.
+# endev.portfolio
 
-El objetivo es ofrecer una landing rápida y accesible donde presentar trabajos, enlaces a repos y un CV descargable.
+**Portfolio personal de Pablo Gil Diaz** - Fullstack Developer
 
-## Contenido
-- `src/` - código fuente (páginas, componentes, estilos)
-- `public/` - activos estáticos (imágenes, favicon, svg)
-- `dist/` - salida de build (generada, no se debe versionar)
-- `components.json` - configuración del generador shadcn/ui (tooling)
-- `astro.config.mjs` - configuración de Astro
-- `package.json` - comandos y dependencias
+Construido con Astro, React y Tailwind CSS.
 
-## Requisitos
-- Node.js 18+ (recomendado)
-- pnpm (v7+ recomendado)
+[![Astro](https://img.shields.io/badge/Astro-5.17-BC52EE?logo=astro&logoColor=white)](https://astro.build)
+[![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black)](https://react.dev)
+[![Tailwind](https://img.shields.io/badge/Tailwind-3.4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://typescriptlang.org)
+[![Deploy](https://img.shields.io/badge/Vercel-deployed-000?logo=vercel)](https://vercel.com)
 
-## Comandos locales (PowerShell)
-```powershell
-# instalar dependencias
-pnpm install
-
-# modo desarrollo (dev server)
-pnpm dev
-
-# construir sitio estático
-pnpm build
-
-# previsualizar build local
-pnpm preview
-```
-## Despliegue rápido
-Recomiendo Vercel (configuración automática para proyectos Astro). Pasos generales:
-
-- Conecta el repositorio en Vercel.
-- Selecciona la rama `main` o `develop` que quieres desplegar.
-- Build command: `pnpm build`
-- Output directory: `dist`
-
-Alternativas:
-- Netlify: build command `pnpm build`, publish directory `dist`
-- GitHub Pages: usar una acción que construya y publique `dist/` (no es la opción más cómoda para Astro)
-
-## Notas sobre dependencias y seguridad
-- Se han aplicado overrides de `pnpm` para actualizar `devalue` y se añadió `esbuild` en `devDependencies` para evitar una vulnerabilidad transitoria. Si usas `pnpm`, mantén actualizado `pnpm-lock.yaml` y corre `pnpm audit` periódicamente.
-
-## Sobre `components.json`
-El archivo `components.json` es una configuración del generador `shadcn/ui`. No es necesario para ejecutar el sitio, pero sí útil si vas a usar su CLI para generar/actualizar componentes. Si no usas ese flujo, puedes mantenerlo como referencia o eliminarlo.
-
-## Contribuir
-Si quieres publicar o contribuir:
-1. Crea una rama desde `develop` (o `main`) con un nombre descriptivo.
-2. Haz cambios y prueba localmente con `pnpm dev`.
-3. Abre un PR describiendo los cambios.
-
-## Problemas comunes
-- Puerto en uso al iniciar `pnpm dev`: cierra el proceso que usa el puerto o ejecuta `pnpm dev -- --port 4322`.
-- Errores relacionados con `esbuild` o `vite`: asegúrate de tener versiones actualizadas en `package.json` y ejecuta `pnpm install`.
-
-## Licencia
-Este repositorio incluye un archivo `LICENSE` en la raíz. Revisa ese archivo para más detalles.
+</div>
 
 ---
 
+## Vista previa
+
+> Dark theme / Animaciones fluidas / Responsive / Single Page
+
+| Hero | Tech Marquee | Projects |
+|------|-------------|----------|
+| Gradient orbs animados, CTA y enlaces sociales | Scroll infinito bidireccional con 22 tecnologias | Grid responsive con hover zoom y tags de color |
+
+---
+
+## Stack
+
+| Capa | Tecnologias |
+|------|------------|
+| **Framework** | Astro 5 (SSG) + React 18 (islands) |
+| **Estilos** | Tailwind CSS 3 + tailwindcss-animate |
+| **Lenguaje** | TypeScript 5 |
+| **UI** | shadcn/ui (CVA + Radix) |
+| **Iconos** | react-icons |
+| **Deploy** | Vercel |
+
+---
+
+## Secciones
+
+- **Header** - Navegacion fija con deteccion de scroll, backdrop blur, menu hamburguesa en movil
+- **Hero** - Badge de estado, CTAs (ver proyectos / descargar CV), enlaces sociales (GitHub, GitLab, LinkedIn)
+- **Tech Stack** - Marquee animado con 22 tecnologias en dos filas con direcciones opuestas
+- **About** - Timeline de experiencia expandible (5 posiciones) + grid de skills con 4 categorias
+- **Projects** - Cards con imagen, tags de tecnologias y enlaces a repo/demo
+- **Footer** - Email con copy-to-clipboard, redes sociales, copyright dinamico
+
+---
+
+## Estructura del proyecto
+
+```
+src/
+├── components/
+│   ├── react/            # Componentes interactivos (React islands)
+│   ├── sections/         # Secciones de la pagina (Astro)
+│   └── ui/               # Componentes base (shadcn/ui)
+├── constants/            # Datos del portfolio, navegacion, tecnologias
+├── hooks/                # useActiveSection (scroll tracking)
+├── layouts/              # Layout base HTML
+├── lib/                  # Utilidades
+├── pages/                # index.astro (entry point)
+├── styles/               # globals.css + animations.css
+└── types/                # Interfaces TypeScript
+```
+
+Los datos del portfolio (experiencia, proyectos, skills) estan centralizados en `src/constants/portfolio-data.ts` para facilitar su edicion.
+
+---
+
+## Inicio rapido
+
+```bash
+# Clonar
+git clone https://github.com/envyx10/mi-portfolio.git
+cd mi-portfolio
+
+# Instalar dependencias
+npm install
+
+# Desarrollo
+npm run dev
+
+# Build
+npm run build
+
+# Preview del build
+npm run preview
+```
+
+El servidor de desarrollo arranca en `http://localhost:4321`.
+
+---
+
+## Scripts
+
+| Comando | Descripcion |
+|---------|------------|
+| `npm run dev` | Servidor de desarrollo con HMR |
+| `npm run build` | Type-check + build estatico a `dist/` |
+| `npm run preview` | Previsualizar el build local |
+| `npm run check` | Verificar tipos con Astro check |
+| `npm run clean` | Limpiar `.astro` y `dist` |
+
+---
+
+## Despliegue
+
+### Vercel (recomendado)
+
+1. Conecta el repositorio en [vercel.com](https://vercel.com)
+2. Astro se detecta automaticamente - sin configuracion extra necesaria
+3. Push a `main` para desplegar
+
+### Alternativas
+
+- **Netlify** - Build: `npm run build` / Publish: `dist`
+- **Cloudflare Pages** - Build: `npm run build` / Output: `dist`
+
+---
+
+## Personalizar contenido
+
+Para adaptar el portfolio con tu informacion, edita estos archivos:
+
+| Archivo | Que contiene |
+|---------|-------------|
+| `src/constants/portfolio-data.ts` | Experiencia laboral, proyectos y skills |
+| `src/constants/technologies.ts` | Tecnologias del marquee (icono + color) |
+| `src/constants/navigation.ts` | Links de navegacion y redes sociales |
+| `public/` | CV en PDF, imagenes de proyectos, favicon |
+
+---
+
+## Licencia
+
+Revisa el archivo [LICENSE](./LICENSE) para mas detalles.
