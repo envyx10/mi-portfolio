@@ -36,6 +36,7 @@ export const NAV_ITEMS = [
   { name: "Inicio", href: "#home", id: "home" },
   { name: "Sobre mí", href: "#about", id: "about" },
   { name: "Proyectos", href: "#projects", id: "projects" },
+  { name: "Contacto", href: "#contact", id: "contact" },
 ] as const;
 
 export const CONTACT_EMAIL = "pabloinfodesign95@gmail.com";

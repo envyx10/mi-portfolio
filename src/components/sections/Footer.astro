@@ -1,8 +1,9 @@
 ---
+import { CopyEmail } from '../react/CopyEmail';
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="relative py-16 sm:py-20 px-4 sm:px-6">
+<footer id="contact" class="relative py-16 sm:py-20 px-4 sm:px-6">
   <!-- Top separator -->
   <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-zinc-800/50 to-transparent"></div>
 
@@ -19,12 +20,7 @@ const currentYear = new Date().getFullYear();
       <p class="text-zinc-600 text-sm sm:text-base max-w-md mx-auto mb-8">
         Si tienes un proyecto en mente o simplemente quieres conectar, no dudes en escribirme.
       </p>
-      <a
-        href="mailto:pabloinfodesign95@gmail.com"
-        class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black text-sm font-medium hover:bg-zinc-200 transition-all duration-300 hover:scale-[1.02]"
-      >
-        pabloinfodesign95@gmail.com
-      </a>
+      <CopyEmail client:visible />
     </div>
 
     <!-- Bottom bar -->
