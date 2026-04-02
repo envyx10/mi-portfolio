@@ -6,7 +6,7 @@ import {
   SiSvelte,
   SiTailwindcss,
   SiHtml5,
-  SiCss3,
+  SiCss,
   SiGit,
   SiFigma,
   SiDocker,
@@ -65,7 +65,7 @@ export const TECHNOLOGIES: Technology[] = [
   { name: "Tailwind", IconComponent: SiTailwindcss, color: "#06B6D4" },
   { name: "Astro", IconComponent: SiAstro, color: "#FF5D01" },
   { name: "HTML", IconComponent: SiHtml5, color: "#E34F26" },
-  { name: "CSS", IconComponent: SiCss3, color: "#1572B6" },
+  { name: "CSS", IconComponent: SiCss, color: "#1572B6" },
   { name: "Node.js", IconComponent: SiNodedotjs, color: "#339933" },
   // Row 2
   { name: "Python", IconComponent: SiPython, color: "#3776AB" },
