@@ -29,7 +29,7 @@ export function Header() {
       >
         <div className="flex items-center justify-between">
           <a href="#home" className="text-sm font-semibold text-zinc-200 tracking-tight hover:text-white transition-colors">
-            Pablo Gil
+            Envdev
           </a>
 
           {/* Desktop Navigation */}

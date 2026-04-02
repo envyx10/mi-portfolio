@@ -42,7 +42,7 @@ export const EXPERIENCES: Experience[] = [
     period: "feb. 2026 - actualidad",
     location: "Málaga, Andalucía, España",
     description:
-      "Desarrollo fullstack de productos digitales, combinando desarrollo frontend y backend para construir soluciones completas y escalables.",
+      "Desarrollo fullstack de plataformas digitales de gestión energética, contribuyendo a productos como EnergySequence para optimizar el consumo, la eficiencia y la descarbonización de empresas e industrias.",
     websiteUrl: "https://www.bettergy.es",
   },
   {
