@@ -79,16 +79,16 @@ git clone https://github.com/envyx10/mi-portfolio.git
 cd mi-portfolio
 
 # Instalar dependencias
-npm install
+bun install
 
 # Desarrollo
-npm run dev
+bun run dev
 
 # Build
-npm run build
+bun run build
 
 # Preview del build
-npm run preview
+bun run preview
 ```
 
 El servidor de desarrollo arranca en `http://localhost:4321`.
@@ -99,11 +99,11 @@ El servidor de desarrollo arranca en `http://localhost:4321`.
 
 | Comando | Descripcion |
 |---------|------------|
-| `npm run dev` | Servidor de desarrollo con HMR |
-| `npm run build` | Type-check + build estatico a `dist/` |
-| `npm run preview` | Previsualizar el build local |
-| `npm run check` | Verificar tipos con Astro check |
-| `npm run clean` | Limpiar `.astro` y `dist` |
+| `bun run dev` | Servidor de desarrollo con HMR |
+| `bun run build` | Type-check + build estatico a `dist/` |
+| `bun run preview` | Previsualizar el build local |
+| `bun run check` | Verificar tipos con Astro check |
+| `bun run clean` | Limpiar `.astro` y `dist` |
 
 ---
 
@@ -117,8 +117,8 @@ El servidor de desarrollo arranca en `http://localhost:4321`.
 
 ### Alternativas
 
-- **Netlify** - Build: `npm run build` / Publish: `dist`
-- **Cloudflare Pages** - Build: `npm run build` / Output: `dist`
+- **Netlify** - Build: `bun run build` / Publish: `dist`
+- **Cloudflare Pages** - Build: `bun run build` / Output: `dist`
 
 ---
 
