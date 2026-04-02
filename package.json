@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "astro dev",
+    "clean": "rimraf .astro dist",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
