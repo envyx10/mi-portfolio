@@ -26,12 +26,12 @@ export function TechSlider() {
   return (
     <section className="w-full">
       <div className="text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 md:mb-6">
-          <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 md:mb-6 tracking-tight">
+          <span className="bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
             Mi Stack Tecnológico
           </span>
         </h2>
-        <p className="text-sm sm:text-base md:text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-sm sm:text-base text-zinc-500 max-w-2xl mx-auto leading-relaxed">
           Las tecnologías que me ayudan a construir interfaces de usuario
           modernas y funcionales. En constante aprendizaje de nuevas
           herramientas.

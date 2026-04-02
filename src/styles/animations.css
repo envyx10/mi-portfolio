@@ -1,8 +1,8 @@
-/* Animación para header */
+/* Header fade in */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-30px);
+    transform: translateY(-20px);
   }
   to {
     opacity: 1;
@@ -11,10 +11,10 @@
 }
 
 .animate-fade-in {
-  animation: fadeIn 1.2s ease-out forwards;
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
-/* Animación blob para background */
+/* Background blob animation */
 @keyframes blob {
   0%, 100% {
     transform: translate(0, 0) scale(1);
@@ -46,6 +46,35 @@
   animation-delay: 6s;
 }
 
+/* Marquee animations */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 60s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 65s linear infinite;
+  will-change: transform;
+}
+
 /* Spinning ring for hero image */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
@@ -56,7 +85,7 @@
   animation: spin-slow 14s linear infinite;
 }
 
-/* Screen reader only utility (para a11y) */
+/* Screen reader only utility */
 .sr-only {
   position: absolute;
   width: 1px;

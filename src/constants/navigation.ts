@@ -1,4 +1,5 @@
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import { SiGitlab } from "react-icons/si";
 
 export const SOCIAL_LINKS = [
   {
@@ -7,6 +8,13 @@ export const SOCIAL_LINKS = [
     href: "https://github.com/envyx10",
     hoverColor: "hover:text-white",
     ariaLabel: "Visitar perfil de GitHub",
+  },
+  {
+    name: "GitLab",
+    icon: SiGitlab,
+    href: "https://gitlab.com/envyx10",
+    hoverColor: "hover:text-orange-400",
+    ariaLabel: "Visitar perfil de GitLab",
   },
   {
     name: "LinkedIn",

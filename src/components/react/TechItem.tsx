@@ -11,15 +11,15 @@ export function TechItem({ tech, variant = "desktop" }: TechItemProps) {
 
   if (variant === "mobile") {
     return (
-      <div className="flex flex-col items-center gap-2 p-3 rounded-lg bg-black/20 backdrop-blur-sm border border-white/10 hover:border-white/20 hover:bg-black/30 transition-all duration-300 group cursor-pointer min-h-[80px]">
+      <div className="flex flex-col items-center gap-2 p-3 rounded-lg bg-zinc-900/60 border border-zinc-800/60 hover:border-zinc-700 hover:bg-zinc-900 transition-all duration-200 group cursor-pointer min-h-[80px]">
         <div className="flex-shrink-0">
           <IconComponent
-            className={`w-8 h-8 group-hover:scale-110 transition-transform duration-300 ${getTechColorClass(
+            className={`w-8 h-8 group-hover:scale-110 transition-transform duration-200 ${getTechColorClass(
               name
             )}`}
           />
         </div>
-        <span className="text-white font-semibold text-sm text-center leading-tight group-hover:text-purple-200 transition-colors duration-300">
+        <span className="text-zinc-400 font-medium text-sm text-center leading-tight group-hover:text-zinc-200 transition-colors duration-200">
           {name}
         </span>
       </div>
@@ -27,15 +27,15 @@ export function TechItem({ tech, variant = "desktop" }: TechItemProps) {
   }
 
   return (
-    <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg bg-black/20 backdrop-blur-sm border border-white/10 hover:border-white/20 hover:bg-black/30 transition-all duration-300 group cursor-pointer">
+    <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg bg-zinc-900/60 border border-zinc-800/60 hover:border-zinc-700 hover:bg-zinc-900 transition-all duration-200 group cursor-pointer">
       <div className="flex-shrink-0">
         <IconComponent
-          className={`w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform duration-300 ${getTechColorClass(
+          className={`w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform duration-200 ${getTechColorClass(
             name
           )}`}
         />
       </div>
-      <span className="text-white font-semibold text-sm sm:text-base group-hover:text-purple-200 transition-colors duration-300 text-left">
+      <span className="text-zinc-400 font-medium text-sm sm:text-base group-hover:text-zinc-200 transition-colors duration-200 text-left">
         {name}
       </span>
     </div>

@@ -3,40 +3,49 @@ import type { Skill, Experience, Project } from "@/types/components";
 export const SKILLS: Skill[] = [
   {
     iconType: "FiCode",
-    title: "Desarrollo Frontend",
-    description: "TypeScript, React, Next.js, Tailwind CSS, Angular, Astro",
-  },
-  {
-    iconType: "FiZap",
-    title: "Performance",
-    description: "Optimización y mejores prácticas de rendimiento",
+    title: "Frontend Development",
+    description:
+      "Construyo interfaces reactivas y accesibles con atención al detalle. Componentización limpia, state management y rendimiento optimizado.",
+    tags: ["React", "Next.js", "Svelte", "TypeScript", "Tailwind CSS", "Astro"],
+    accent: "blue",
   },
   {
     iconType: "FiLayers",
-    title: "UI/UX & Diseño Gráfico",
+    title: "UI/UX & Diseño",
     description:
-      "Diseño de interfaces y experiencia de usuario + creación de materiales visuales (Figma, Adobe Photoshop)",
+      "Mi background en diseño gráfico me permite crear productos donde la funcionalidad y la estética van de la mano. Prototipado, sistemas de diseño y pixel-perfect.",
+    tags: ["Figma", "Photoshop", "Design Systems", "Prototyping"],
+    accent: "purple",
   },
   {
     iconType: "FiServer",
-    title: "Desarrollo Backend",
-    description: "PHP, Laravel, MySQL, MariaDB",
-  },
-  {
-    iconType: "FiTool",
-    title: "Soporte Técnico",
+    title: "Backend & Bases de Datos",
     description:
-      "Mantenimiento de sistemas, resolución de hardware, montaje y configuración de equipos",
+      "APIs robustas, arquitectura de datos y lógica de negocio. Desarrollo fullstack con enfoque en código mantenible y bien estructurado.",
+    tags: ["Python", "Django", "Laravel", "PHP", "MySQL", "MariaDB"],
+    accent: "emerald",
   },
   {
     iconType: "FiZap",
-    title: "Inteligencia Artificial",
+    title: "AI & Automatización",
     description:
-      "Aplicación práctica de técnicas de IA para automatización, generación de contenidos y mejora de flujos de trabajo",
+      "Integro herramientas de IA para acelerar flujos de trabajo, generar contenido y automatizar tareas repetitivas en el desarrollo.",
+    tags: ["Prompt Engineering", "AI Tools", "Automation"],
+    accent: "amber",
   },
 ] as const;
 
 export const EXPERIENCES: Experience[] = [
+  {
+    iconType: "FiBriefcase",
+    company: "Bettergy",
+    position: "Fullstack Developer",
+    period: "feb. 2026 - actualidad",
+    location: "Málaga, Andalucía, España",
+    description:
+      "Desarrollo fullstack de productos digitales, combinando desarrollo frontend y backend para construir soluciones completas y escalables.",
+    websiteUrl: "https://www.bettergy.es",
+  },
   {
     iconType: "FiBriefcase",
     company: "Freepik",
@@ -94,6 +103,7 @@ export const PROJECTS: Project[] = [
       "MariaDB",
     ],
     githubUrl: "https://github.com/envyx10/Pixela",
+    websiteUrl: "https://pixela-seven.vercel.app/",
   },
   {
     title: "Freepik",

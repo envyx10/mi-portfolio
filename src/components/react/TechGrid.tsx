@@ -7,7 +7,7 @@ export function TechGrid() {
       {TECHNOLOGY_CATEGORIES.map((category) => (
         <div key={category.title} className="space-y-3 sm:space-y-4">
           <div className="text-left">
-            <h4 className="text-base sm:text-lg font-semibold text-white">
+            <h4 className="text-base sm:text-lg font-semibold text-zinc-400 tracking-wide uppercase text-xs">
               {category.title}
             </h4>
           </div>

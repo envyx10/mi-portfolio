@@ -15,7 +15,7 @@ export function TechCarousel({ currentGroup, onGroupChange }: TechCarouselProps)
     <div className="lg:hidden">
       <div className="mb-6">
         <div className="text-center mb-4">
-          <h4 className="text-lg font-semibold text-white">
+          <h4 className="text-lg font-semibold text-zinc-200">
             {currentCategory.title}
           </h4>
         </div>
@@ -35,8 +35,8 @@ export function TechCarousel({ currentGroup, onGroupChange }: TechCarouselProps)
             onClick={() => onGroupChange(index)}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
               currentGroup === index
-                ? "bg-purple-400 w-6"
-                : "bg-gray-600 hover:bg-gray-500"
+                ? "bg-zinc-400 w-6"
+                : "bg-zinc-700 hover:bg-zinc-600"
             }`}
             aria-label={`Ver categoría ${_.title}`}
           />
@@ -53,11 +53,11 @@ export function TechCarousel({ currentGroup, onGroupChange }: TechCarouselProps)
                 : TECHNOLOGY_CATEGORIES.length - 1
             )
           }
-          className="p-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10 hover:border-white/20 hover:bg-black/30 transition-all duration-300"
+          className="p-2 rounded-md bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all duration-200"
           aria-label="Categoría anterior"
         >
           <svg
-            className="w-5 h-5 text-white"
+            className="w-5 h-5 text-zinc-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -71,7 +71,7 @@ export function TechCarousel({ currentGroup, onGroupChange }: TechCarouselProps)
           </svg>
         </button>
 
-        <span className="text-sm text-gray-400">
+        <span className="text-sm text-zinc-600">
           {currentGroup + 1} de {TECHNOLOGY_CATEGORIES.length}
         </span>
 
@@ -83,11 +83,11 @@ export function TechCarousel({ currentGroup, onGroupChange }: TechCarouselProps)
                 : 0
             )
           }
-          className="p-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/10 hover:border-white/20 hover:bg-black/30 transition-all duration-300"
+          className="p-2 rounded-md bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 transition-all duration-200"
           aria-label="Categoría siguiente"
         >
           <svg
-            className="w-5 h-5 text-white"
+            className="w-5 h-5 text-zinc-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

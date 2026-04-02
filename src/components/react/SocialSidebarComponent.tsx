@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import { SiGitlab } from "react-icons/si";
 
 export function SocialSidebar() {
   const sidebarRef = useRef<HTMLDivElement>(null);
@@ -18,6 +19,12 @@ export function SocialSidebar() {
       icon: <FiGithub className="h-6 w-6" />,
       href: "https://github.com/envyx10",
       color: "hover:text-white hover:scale-110",
+    },
+    {
+      name: "GitLab",
+      icon: <SiGitlab className="h-6 w-6" />,
+      href: "https://gitlab.com/envyx10",
+      color: "hover:text-orange-400 hover:scale-110",
     },
     {
       name: "LinkedIn",

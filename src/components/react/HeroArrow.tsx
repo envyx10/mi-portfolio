@@ -1,14 +1,17 @@
-import { useRef } from "react";
 import { FiArrowDown } from "react-icons/fi";
 
 export function HeroArrow() {
-  const arrowRef = useRef<HTMLDivElement>(null);
+  const handleClick = () => {
+    document.getElementById("about")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
-    <div className="text-center">
-      <div ref={arrowRef} className="animate-bounce">
-        <FiArrowDown className="h-6 w-6 mx-auto text-gray-400" />
-      </div>
-    </div>
+    <button
+      onClick={handleClick}
+      className="animate-bounce cursor-pointer p-2 rounded-full hover:bg-white/[0.04] transition-colors"
+      aria-label="Ir a experiencia y habilidades"
+    >
+      <FiArrowDown className="h-5 w-5 text-zinc-600" />
+    </button>
   );
 }

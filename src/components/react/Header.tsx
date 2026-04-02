@@ -20,55 +20,48 @@ export function Header() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 py-6 animate-fade-in">
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 py-4 animate-fade-in">
       <nav
-        className={`max-w-6xl mx-auto transition-all duration-300 ${
+        className={`max-w-3xl mx-auto transition-all duration-500 rounded-full px-6 py-2.5 ${
           isScrolled
-            ? "backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl px-6 py-4"
-            : "backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl px-6 py-4"
+            ? "backdrop-blur-2xl bg-white/[0.07] border border-white/[0.08] shadow-lg shadow-black/20"
+            : "backdrop-blur-sm bg-transparent border border-transparent"
         }`}
       >
         <div className="flex items-center justify-between">
-          <div className="text-xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-            Portfolio
-          </div>
+          <a href="#home" className="text-sm font-semibold text-zinc-200 tracking-tight hover:text-white transition-colors">
+            Pablo Gil
+          </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center justify-center flex-1">
-            <div className="flex items-center space-x-8">
-              {NAV_ITEMS.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={`relative text-sm font-medium transition-all duration-300 flex items-center ${
-                    activeSection === item.id
-                      ? "text-white"
-                      : "text-gray-300 hover:text-white"
-                  }`}
-                >
-                  <div className="w-2 flex justify-center mr-2">
-                    {activeSection === item.id && (
-                      <div className="w-1.5 h-1.5 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full animate-pulse" />
-                    )}
-                  </div>
-                  {item.name}
-                </a>
-              ))}
-            </div>
+          <div className="hidden md:flex items-center gap-1">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className={`relative text-[13px] font-medium px-3.5 py-1.5 rounded-full transition-all duration-300 ${
+                  activeSection === item.id
+                    ? "text-white bg-white/[0.08]"
+                    : "text-zinc-500 hover:text-zinc-200"
+                }`}
+              >
+                {item.name}
+              </a>
+            ))}
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center">
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden text-white hover:bg-white/10"
+              className="md:hidden text-white hover:bg-white/10 h-8 w-8"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
             >
               {isMenuOpen ? (
-                <FiX className="h-5 w-5" />
+                <FiX className="h-4 w-4" />
               ) : (
-                <FiMenu className="h-5 w-5" />
+                <FiMenu className="h-4 w-4" />
               )}
             </Button>
           </div>
@@ -76,25 +69,20 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pt-4 border-t border-white/10">
-            <div className="flex flex-col space-y-3">
+          <div className="md:hidden mt-3 pt-3 border-t border-white/[0.06]">
+            <div className="flex flex-col gap-1">
               {NAV_ITEMS.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className={`relative text-sm font-medium py-2 transition-all duration-300 ${
+                  className={`text-sm font-medium py-2 px-3 rounded-lg transition-all duration-300 ${
                     activeSection === item.id
-                      ? "text-white"
-                      : "text-gray-300 hover:text-white"
+                      ? "text-white bg-white/[0.06]"
+                      : "text-zinc-500 hover:text-white hover:bg-white/[0.03]"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <div className="flex items-center gap-3">
-                    {activeSection === item.id && (
-                      <div className="w-1.5 h-1.5 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full animate-pulse" />
-                    )}
-                    {item.name}
-                  </div>
+                  {item.name}
                 </a>
               ))}
             </div>

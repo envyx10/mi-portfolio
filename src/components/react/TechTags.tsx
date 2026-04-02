@@ -14,7 +14,7 @@ export function TechTags({ technologies }: TechTagsProps) {
       {visibleTech.map((tech, index) => (
         <span
           key={`${tech}-${index}`}
-          className="px-2 sm:px-2.5 py-1 sm:py-1.5 text-xs sm:text-sm bg-purple-500/20 text-purple-200 rounded-full border border-purple-500/40 hover:bg-purple-500/30 hover:text-purple-100 transition-all font-medium"
+          className="px-2 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs bg-zinc-900 text-zinc-500 rounded border border-zinc-800/60 hover:border-zinc-700 hover:text-zinc-300 transition-colors font-mono"
         >
           {tech}
         </span>
@@ -22,7 +22,7 @@ export function TechTags({ technologies }: TechTagsProps) {
 
       {remainingCount > 0 && (
         <span
-          className="px-2 sm:px-2.5 py-1 sm:py-1.5 text-xs sm:text-sm bg-gray-500/20 text-gray-300 rounded-full border border-gray-500/40 hover:bg-gray-500/30 hover:text-gray-200 transition-all font-medium group/tooltip relative"
+          className="px-2 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs bg-zinc-900 text-zinc-600 rounded border border-zinc-800/60 hover:border-zinc-700 hover:text-zinc-400 transition-colors font-mono group/tooltip relative"
           title={`Otras tecnologías: ${hiddenTechs.join(", ")}`}
         >
           +{remainingCount} más

@@ -14,6 +14,8 @@ export interface Skill {
   iconType: string;
   title: string;
   description: string;
+  tags: string[];
+  accent: string;
 }
 
 export interface Experience {
