@@ -16,7 +16,17 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <img
           src={project.image}
           alt={`Captura de pantalla de ${project.title}`}
-          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+          className="block w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+          decoding="async"
+          onError={(e) => {
+            // show a local placeholder if the provided image fails to load
+            const target = e.currentTarget as HTMLImageElement;
+            if (!target.dataset.fallback) {
+              target.dataset.fallback = "1";
+              target.src = "/card1_px.jpeg";
+            }
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
       </>
@@ -51,9 +61,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
             <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-2 sm:mb-3 group-hover:text-purple-300 transition-colors">
               {project.title}
             </h3>
-            <p className="text-zinc-500 text-sm sm:text-base leading-relaxed font-light text-left">
-              {project.description}
-            </p>
+            <div className="text-zinc-500 text-sm sm:text-base leading-relaxed font-light text-left">
+              {String(project.description)
+                .split(/\n\n+/)
+                .map((paragraph, idx) => (
+                  <p key={idx} className={idx === 0 ? "mb-2" : "mb-2"}>
+                    {paragraph}
+                  </p>
+                ))}
+            </div>
           </div>
 
           <div className="mb-4 sm:mb-5 md:mb-6">

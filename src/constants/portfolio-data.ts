@@ -117,4 +117,11 @@ export const PROJECTS: Project[] = [
     websiteUrl:
       "https://www.figma.com/design/CPQe3LpPHQXKW1AWTYJhOG/PROYECTO-PIXELA.IO?node-id=0-1&p=f&t=xpIvV40gZcN5Tr4q-0",
   },
+  {
+    title: "DesignHub",
+    description: "Lanzamiento: Design Hub — herramienta de paletas y recursos de branding creada para mi flujo de trabajo.",
+    image: "/card4_designhub.jpeg",
+    technologies: ["Astro", "Svelte", "TypeScript", "JavaScript"],
+    websiteUrl: "https://designhub-psi.vercel.app/es/",
+  },
 ] as const;
