@@ -1,5 +1,7 @@
 ---
-import { CV_PATH, SOCIAL_LINKS } from '@/constants/navigation';
+import ExternalLink from '@/components/ExternalLink.astro';
+import { CV_FILENAME, CV_PATH, SOCIAL_LINKS } from '@/constants/navigation';
+import { PROFILE } from '@/constants/portfolio-data';
 import { TECHNOLOGIES } from '@/constants/technologies';
 
 const ticker = TECHNOLOGIES.join(' / ') + ' /';
@@ -10,31 +12,31 @@ const ticker = TECHNOLOGIES.join(' / ') + ' /';
 
   <div class="top">
     <dl class="facts mono">
-      <dt class="muted">Rol</dt><dd>Fullstack Developer</dd>
-      <dt class="muted">Actual</dt><dd>Bettergy</dd>
-      <dt class="muted">Antes</dt><dd>Freepik</dd>
-      <dt class="muted">Origen</dt><dd>Diseño gráfico</dd>
-      <dt class="muted">Base</dt><dd>Málaga, España</dd>
+      <dt class="muted">Rol</dt><dd>{PROFILE.role}</dd>
+      <dt class="muted">Actual</dt><dd>{PROFILE.company}</dd>
+      <dt class="muted">Antes</dt><dd>{PROFILE.previousCompany}</dd>
+      <dt class="muted">Origen</dt><dd>{PROFILE.background}</dd>
+      <dt class="muted">Base</dt><dd>{PROFILE.city}, {PROFILE.country}</dd>
     </dl>
 
     <div class="card">
-      <div class="card__bar mono"><span>(01) Intro</span><span>● Fullstack Developer en Bettergy</span></div>
+      <div class="card__bar mono"><span>(01) Intro</span><span>● {PROFILE.role} en {PROFILE.company}</span></div>
       <h1 class="card__title">Creando experiencias <span class="tape">digitales<span class="acc">.</span></span></h1>
-      <p class="card__text">Hola, soy Pablo. Fullstack developer con background en diseño gráfico y web.</p>
+      <p class="card__text">{PROFILE.intro}</p>
       <div class="card__cta mono">
         <a href="#projects" class="cta cta--acc">Ver proyectos <span>↓</span></a>
-        <a href={CV_PATH} download="CV_PabloGilDiaz.pdf" class="cta">Descargar CV <span>↓</span></a>
+        <a href={CV_PATH} download={CV_FILENAME} class="cta">Descargar CV <span>↓</span></a>
       </div>
     </div>
   </div>
 
   <div class="socials mono">
     {SOCIAL_LINKS.map((l) => (
-      <a href={l.href} target="_blank" rel="noopener noreferrer" aria-label={l.ariaLabel}>{l.name} ↗</a>
+      <ExternalLink href={l.href} label={l.label}>{l.name} ↗</ExternalLink>
     ))}
   </div>
 
-  <div class="name cond" aria-hidden="true">Pablo Gil Díaz</div>
+  <div class="name cond" aria-hidden="true">{PROFILE.name}</div>
 </section>
 
 <div class="ticker mono">

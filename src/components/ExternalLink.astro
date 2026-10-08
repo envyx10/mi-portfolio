@@ -1,0 +1,16 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = Omit<HTMLAttributes<'a'>, 'target' | 'rel'> & {
+  href: string;
+  /** Nombre accesible; si falta, se usa el texto visible. */
+  label?: string;
+};
+
+const NEW_TAB = ' (se abre en otra pestaña)';
+const { label, ...attrs } = Astro.props;
+---
+
+<a {...attrs} target="_blank" rel="noopener noreferrer" aria-label={label ? label + NEW_TAB : undefined}>
+  <slot />{!label && <span class="sr-only">{NEW_TAB}</span>}
+</a>

@@ -1,5 +1,23 @@
 import type { Skill, Experience, Project } from "@/types/components";
 
+export const PROFILE = {
+  name: "Pablo Gil Díaz",
+  initials: "PGD",
+  role: "Fullstack Developer",
+  company: "Bettergy",
+  previousCompany: "Freepik",
+  background: "Diseño gráfico",
+  city: "Málaga",
+  country: "España",
+  countryCode: "ES",
+  intro: "Hola, soy Pablo. Fullstack developer con background en diseño gráfico y web.",
+  about:
+    "Fullstack Developer con formación en diseño gráfico. Mi experiencia como Frontend Engineer en Freepik y actualmente en Bettergy, desarrollando plataformas de gestión energética, me permite crear productos digitales funcionales y estéticamente cuidados.",
+} as const;
+
+export const PROJECTS_INTRO =
+  "Aquí tienes una selección de proyectos que demuestran mis habilidades en desarrollo frontend, mostrando mi capacidad para construir aplicaciones web completas y funcionales.";
+
 export const SKILLS: Skill[] = [
   {
     title: "Frontend Development",

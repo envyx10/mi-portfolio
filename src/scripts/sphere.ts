@@ -32,6 +32,9 @@ void main(){
 }`;
 
 export function mountSphere(canvas: HTMLCanvasElement) {
+  // Idempotent: never stack a second renderer, listeners or observers on the same canvas
+  if (canvas.dataset.mounted) return;
+  canvas.dataset.mounted = 'true';
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
   let renderer: THREE.WebGLRenderer;
   try {

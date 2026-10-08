@@ -1,5 +1,9 @@
 ---
-import { CONTACT_EMAIL, CV_PATH, SOCIAL_LINKS } from '@/constants/navigation';
+import ExternalLink from '@/components/ExternalLink.astro';
+import { CONTACT_EMAIL, CV_FILENAME, CV_PATH, NAV_ITEMS, SOCIAL_LINKS } from '@/constants/navigation';
+import { PROFILE } from '@/constants/portfolio-data';
+
+const index = [{ href: '#home', label: 'Inicio' }, ...NAV_ITEMS.filter((i) => i.href !== '#contact')];
 
 const year = new Date().getFullYear();
 ---
@@ -7,8 +11,8 @@ const year = new Date().getFullYear();
 <footer id="contact" class="footer noise">
   <div class="bar mono">
     <span>(05) Contacto</span>
-    <span class="muted">Málaga, ES — <span data-clock>--:--</span></span>
-    <span class="muted">Fullstack Developer en Bettergy</span>
+    <span class="muted">{PROFILE.city}, {PROFILE.countryCode} — <span data-clock>--:--</span></span>
+    <span class="muted">{PROFILE.role} en {PROFILE.company}</span>
   </div>
 
   <div class="cta">
@@ -35,28 +39,26 @@ const year = new Date().getFullYear();
       <p class="mono muted">Perfiles</p>
       <ul>
         {SOCIAL_LINKS.map((l) => (
-          <li><a href={l.href} target="_blank" rel="noopener noreferrer" aria-label={l.ariaLabel}>{l.name} <span class="arrow">↗</span></a></li>
+          <li><ExternalLink href={l.href} label={l.label}>{l.name} <span class="arrow">↗</span></ExternalLink></li>
         ))}
       </ul>
     </div>
     <div class="col">
       <p class="mono muted">Índice</p>
       <ul>
-        <li><a href="#home">Inicio</a></li>
-        <li><a href="#about">Sobre mí</a></li>
-        <li><a href="#projects">Proyectos</a></li>
+        {index.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
       </ul>
     </div>
     <div class="col">
       <p class="mono muted">Currículum</p>
-      <a class="btn cv" href={CV_PATH} download="CV_PabloGilDiaz.pdf">Descargar CV <span>↓</span></a>
+      <a class="btn cv" href={CV_PATH} download={CV_FILENAME}>Descargar CV <span>↓</span></a>
     </div>
   </div>
 
-  <div class="name cond" aria-hidden="true">Pablo Gil Díaz<span class="acc">.</span></div>
+  <div class="name cond" aria-hidden="true">{PROFILE.name}<span class="acc">.</span></div>
 
   <div class="legal mono">
-    <span>© {year} Pablo Gil Díaz</span>
+    <span>© {year} {PROFILE.name}</span>
     <span class="muted">Astro + Three.js</span>
     <a href="#home">Volver arriba ↑</a>
   </div>

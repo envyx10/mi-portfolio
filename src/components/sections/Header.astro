@@ -1,15 +1,16 @@
 ---
+import { NAV_ITEMS } from '@/constants/navigation';
+import { PROFILE } from '@/constants/portfolio-data';
+
 const year = String(new Date().getFullYear()).slice(-2);
 ---
 
 <header id="home" class="header mono">
-  <a href="#home" class="cell strong">PGD/{year}<span class="long"> — Pablo Gil Díaz</span></a>
-  <span class="cell">Fullstack Developer</span>
-  <span class="cell muted">Málaga, ES — <span data-clock>--:--</span></span>
+  <a href="#home" class="cell strong">{PROFILE.initials}/{year}<span class="long"> — {PROFILE.name}</span></a>
+  <span class="cell">{PROFILE.role}</span>
+  <span class="cell muted">{PROFILE.city}, {PROFILE.countryCode} — <span data-clock>--:--</span></span>
   <nav aria-label="Principal" class="nav">
-    <a href="#about">Info<sup>(02)</sup></a>
-    <a href="#projects">Index<sup>(04)</sup></a>
-    <a href="#contact">Contacto<sup>(05)</sup></a>
+    {NAV_ITEMS.map((item) => <a href={item.href}>{item.short}<sup>({item.num})</sup></a>)}
   </nav>
 </header>
 

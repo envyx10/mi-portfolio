@@ -1,5 +1,6 @@
 ---
-import { EXPERIENCES, SKILLS } from '@/constants/portfolio-data';
+import ExternalLink from '@/components/ExternalLink.astro';
+import { EXPERIENCES, PROFILE, SKILLS } from '@/constants/portfolio-data';
 
 // Gantt timeline: decimal years from "YYYY-MM"
 const ym = (s: string) => {
@@ -28,11 +29,7 @@ const jobs = EXPERIENCES.map((job) => {
     </div>
     <div class="intro__main">
       <h2 class="cond">Experiencia<br />&amp; Habilidades</h2>
-      <p>
-        Fullstack Developer con formación en diseño gráfico. Mi experiencia como Frontend Engineer en Freepik y
-        actualmente en Bettergy, desarrollando plataformas de gestión energética, me permite crear productos digitales
-        funcionales y estéticamente cuidados.
-      </p>
+      <p>{PROFILE.about}</p>
     </div>
   </div>
 
@@ -47,14 +44,14 @@ const jobs = EXPERIENCES.map((job) => {
       <div class="row">
         <div class="c-name">
           {job.websiteUrl
-            ? <a href={job.websiteUrl} target="_blank" rel="noopener noreferrer" class="job__name">{job.company} ↗<span class="sr-only"> (se abre en otra pestaña)</span></a>
+            ? <ExternalLink href={job.websiteUrl} class="job__name">{job.company} ↗</ExternalLink>
             : <span class="job__name">{job.company}</span>}
           <span class="mono job__role">{job.position}</span>
         </div>
         <div class="c-bar track">
           <div class:list={['bar', { 'bar--now': job.current }]} style={`left:${job.left};width:${job.width}`}></div>
         </div>
-        <span class="c-period mono">{job.period}<br />{job.location.split(/[,·]/)[0]}</span>
+        <span class="c-period mono">{job.period}<br />{job.location}</span>
       </div>
       <p class="job__desc">{job.description}</p>
     </article>
@@ -149,7 +146,7 @@ const jobs = EXPERIENCES.map((job) => {
     flex: 1 1 360px;
   }
   .c-period {
-    flex: 0 1 200px;
+    flex: 0 1 280px;
   }
   .row--head {
     padding: 10px var(--pad);

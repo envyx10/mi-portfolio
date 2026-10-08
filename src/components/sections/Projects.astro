@@ -1,16 +1,21 @@
 ---
-import { PROJECTS } from '@/constants/portfolio-data';
+import ExternalLink from '@/components/ExternalLink.astro';
+import { PROJECTS, PROJECTS_INTRO } from '@/constants/portfolio-data';
 
 const host = (url: string) => new URL(url).host.replace(/^www\./, '');
+const pad = (n: number) => String(n).padStart(2, '0');
+
 const projects = PROJECTS.map((p, i) => {
-  const main = p.websiteUrl ?? p.githubUrl ?? '#';
-  const isFigma = main.includes('figma.com');
+  // Main link: the live site if there is one, otherwise the repo (or nothing)
+  const mainUrl = p.websiteUrl ?? p.githubUrl;
+  const mainLabel = !p.websiteUrl ? 'Ver código ↗' : p.websiteUrl.includes('figma.com') ? 'Ver en Figma ↗' : 'Ver web ↗';
   return {
     ...p,
-    idx: String(i + 1).padStart(2, '0'),
-    main,
-    url: host(main),
-    mainLabel: isFigma ? 'Ver en Figma ↗' : 'Ver web ↗',
+    idx: pad(i + 1),
+    mainUrl,
+    mainLabel,
+    displayUrl: mainUrl ? host(mainUrl) : 'sin enlace público',
+    codeUrl: p.websiteUrl ? p.githubUrl : undefined, // avoid a second button pointing to the same repo
   };
 });
 ---
@@ -19,46 +24,74 @@ const projects = PROJECTS.map((p, i) => {
   <div class="head">
     <h2 class="cond">Proyectos<sup class="mono acc">({PROJECTS.length})</sup></h2>
     <span class="mono muted">(04) Index — pasa el ratón por un proyecto</span>
+    <p class="head__intro">{PROJECTS_INTRO}</p>
   </div>
 
   <div class="body" data-projects>
     <div class="list">
-      {projects.map((p, i) => (
-        <button type="button" class:list={['item', { 'is-active': i === 0 }]} data-i={i} aria-pressed={i === 0 ? 'true' : 'false'}>
-          <span class="item__idx mono">{p.idx}</span>
-          <span class="item__name cond">{p.title}</span>
-          <span class="item__kind mono">{p.kind}</span>
-        </button>
-      ))}
+      <div role="tablist" aria-label="Proyectos" aria-orientation="vertical">
+        {projects.map((p, i) => (
+          <button
+            type="button"
+            role="tab"
+            id={`project-tab-${i}`}
+            aria-controls={`project-panel-${i}`}
+            aria-selected={i === 0 ? 'true' : 'false'}
+            tabindex={i === 0 ? 0 : -1}
+            class:list={['item', { 'is-active': i === 0 }]}
+          >
+            <span class="item__idx mono">{p.idx}</span>
+            <span class="item__name cond">{p.title}</span>
+            <span class="item__kind mono">{p.kind}</span>
+          </button>
+        ))}
+      </div>
       <div class="list__foot mono muted">
-        <span><span data-counter>01</span> / {String(projects.length).padStart(2, '0')}</span>
-        <span>Astro · React · Svelte · Laravel · Figma</span>
+        <span><span data-counter>01</span> / {pad(projects.length)}</span>
+        <span>↑ ↓ para navegar</span>
       </div>
     </div>
 
     <div class="stage">
       {projects.map((p, i) => (
-        <div class:list={['preview', { 'is-active': i === 0 }]} data-i={i}>
+        <div
+          role="tabpanel"
+          id={`project-panel-${i}`}
+          aria-labelledby={`project-tab-${i}`}
+          class:list={['preview', { 'is-active': i === 0 }]}
+        >
           <div class="preview__head">
             <span class="mono acc">{p.idx}</span>
             <h3 class="cond">{p.title}</h3>
             <span class="mono muted">{p.kind}</span>
           </div>
-          <a class="frame" href={p.main} target="_blank" rel="noopener noreferrer" aria-label={`Abrir ${p.title} (se abre en otra pestaña)`}>
-            <div class="frame__bar mono">
-              <span class="dots"><i></i><i></i><i class="dot-acc"></i></span>
-              <span class="frame__url">{p.url}</span>
-              <span>↗</span>
+          {p.mainUrl ? (
+            <ExternalLink class="frame" href={p.mainUrl} label={`Abrir ${p.title}`}>
+              <div class="frame__bar mono">
+                <span class="dots"><i></i><i></i><i class="dot-acc"></i></span>
+                <span class="frame__url">{p.displayUrl}</span>
+                <span>↗</span>
+              </div>
+              <div class="frame__img">
+                <img src={p.image} alt={`Captura de ${p.title}`} width="1920" height="1080" loading="lazy" />
+              </div>
+            </ExternalLink>
+          ) : (
+            <div class="frame">
+              <div class="frame__bar mono">
+                <span class="dots"><i></i><i></i><i class="dot-acc"></i></span>
+                <span class="frame__url">{p.displayUrl}</span>
+              </div>
+              <div class="frame__img">
+                <img src={p.image} alt={`Captura de ${p.title}`} width="1920" height="1080" loading="lazy" />
+              </div>
             </div>
-            <div class="frame__img">
-              <img src={p.image} alt={`Captura de ${p.title}`} width="1920" height="1080" loading="lazy" />
-            </div>
-          </a>
+          )}
           <div class="preview__info">
             <p>{p.description}</p>
             <div class="preview__links">
-              <a class="btn btn--acc" href={p.main} target="_blank" rel="noopener noreferrer">{p.mainLabel}<span class="sr-only"> (se abre en otra pestaña)</span></a>
-              {p.githubUrl && <a class="btn" href={p.githubUrl} target="_blank" rel="noopener noreferrer">Código ↗<span class="sr-only"> (se abre en otra pestaña)</span></a>}
+              {p.mainUrl && <ExternalLink class="btn btn--acc" href={p.mainUrl}>{p.mainLabel}</ExternalLink>}
+              {p.codeUrl && <ExternalLink class="btn" href={p.codeUrl}>Código ↗</ExternalLink>}
             </div>
           </div>
           <div class="chips">{p.technologies.map((t) => <span>{t}</span>)}</div>
@@ -69,20 +102,29 @@ const projects = PROJECTS.map((p, i) => {
 </section>
 
 <script>
+  // Vertical tabs (WAI-ARIA APG): hover/focus/click select, arrows/Home/End move between tabs
   document.querySelectorAll<HTMLElement>('[data-projects]').forEach((root) => {
-    const items = root.querySelectorAll<HTMLButtonElement>('.item');
-    const previews = root.querySelectorAll<HTMLElement>('.preview');
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const panels = root.querySelectorAll<HTMLElement>('[role="tabpanel"]');
     const counter = root.querySelector('[data-counter]');
     const select = (i: number) => {
-      items.forEach((el, j) => {
+      tabs.forEach((el, j) => {
         el.classList.toggle('is-active', i === j);
-        el.setAttribute('aria-pressed', String(i === j));
+        el.setAttribute('aria-selected', String(i === j));
+        el.tabIndex = i === j ? 0 : -1;
       });
-      previews.forEach((el, j) => el.classList.toggle('is-active', i === j));
+      panels.forEach((el, j) => el.classList.toggle('is-active', i === j));
       if (counter) counter.textContent = String(i + 1).padStart(2, '0');
     };
-    items.forEach((el, i) => {
+    tabs.forEach((el, i) => {
       for (const ev of ['mouseenter', 'focus', 'click']) el.addEventListener(ev, () => select(i));
+      el.addEventListener('keydown', (e) => {
+        const last = tabs.length - 1;
+        const next = { ArrowDown: i + 1, ArrowRight: i + 1, ArrowUp: i - 1, ArrowLeft: i - 1, Home: 0, End: last }[e.key];
+        if (next === undefined) return;
+        e.preventDefault();
+        tabs[(next + tabs.length) % tabs.length]?.focus();
+      });
     });
   });
 </script>
@@ -106,6 +148,14 @@ const projects = PROJECTS.map((p, i) => {
     margin: 0;
     font-size: clamp(64px, 9vw, 150px);
     line-height: 0.82;
+  }
+  .head__intro {
+    flex-basis: 100%;
+    max-width: 640px;
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--soft);
   }
   .head sup {
     font-size: 14px;
