@@ -188,6 +188,41 @@ const year = new Date().getFullYear();
     background: var(--bone);
     color: var(--ink);
   }
+  @media (max-width: 720px) {
+    .bar > span:last-child {
+      display: none;
+    }
+    .bar {
+      grid-template-columns: 1fr 1fr;
+    }
+    .mail__link {
+      grid-template-columns: 1fr;
+      padding: 18px 16px 20px;
+    }
+    .mail__addr {
+      font-size: 5.6vw;
+      overflow-wrap: normal;
+    }
+    .mail__arrow {
+      display: none;
+    }
+    .mail__copy {
+      padding: 0 16px;
+    }
+    .cols {
+      grid-template-columns: 1fr 1fr;
+    }
+    .col:nth-child(2) {
+      border-right: 0;
+    }
+    .col:last-child {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--line);
+    }
+    .col ul {
+      font-size: 22px;
+    }
+  }
   .cols {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));

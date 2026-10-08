@@ -60,7 +60,9 @@ export function mountSphere(canvas: HTMLCanvasElement) {
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
-    points.position.set(w > 900 ? -0.2 : 0, w > 900 ? 0.2 : 0.5, 0);
+    points.position.set(w > 900 ? -0.2 : 0, w > 900 ? 0.2 : 0, 0);
+    // ponytail: shrink on narrow canvases so the sphere never clips horizontally
+    points.scale.setScalar(Math.min(1, camera.aspect / 1.1));
   };
   new ResizeObserver(resize).observe(canvas);
   resize();

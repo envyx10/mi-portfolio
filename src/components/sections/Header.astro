@@ -3,7 +3,7 @@ const year = String(new Date().getFullYear()).slice(-2);
 ---
 
 <header id="home" class="header mono">
-  <a href="#home" class="cell strong">PGD/{year} — Pablo Gil Díaz</a>
+  <a href="#home" class="cell strong">PGD/{year}<span class="long"> — Pablo Gil Díaz</span></a>
   <span class="cell">Fullstack Developer</span>
   <span class="cell muted">Málaga, ES — <span data-clock>--:--</span></span>
   <nav aria-label="Principal" class="nav">
@@ -45,5 +45,25 @@ const year = String(new Date().getFullYear()).slice(-2);
   }
   .nav a {
     padding: 12px 0;
+  }
+  @media (max-width: 720px) {
+    .header {
+      grid-template-columns: 1fr auto;
+    }
+    .cell:not(.strong) {
+      display: none;
+    }
+    .cell {
+      border-right: 0;
+      align-self: center;
+    }
+    .nav {
+      gap: 0 12px;
+      flex-wrap: nowrap;
+    }
+    .nav sup,
+    .long {
+      display: none;
+    }
   }
 </style>

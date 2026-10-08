@@ -39,6 +39,11 @@ const projects = PROJECTS.map((p, i) => {
     <div class="stage">
       {projects.map((p, i) => (
         <div class:list={['preview', { 'is-active': i === 0 }]} data-i={i}>
+          <div class="preview__head">
+            <span class="mono acc">{p.idx}</span>
+            <h3 class="cond">{p.title}</h3>
+            <span class="mono muted">{p.kind}</span>
+          </div>
           <a class="frame" href={p.main} target="_blank" rel="noopener noreferrer" aria-label={`Abrir ${p.title}`}>
             <div class="frame__bar mono">
               <span class="dots"><i></i><i></i><i class="dot-acc"></i></span>
@@ -246,5 +251,38 @@ const projects = PROJECTS.map((p, i) => {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+  }
+  .preview__head {
+    display: none;
+  }
+  @media (max-width: 720px) {
+    .list {
+      display: none;
+    }
+    .stage {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+      padding-top: 32px;
+    }
+    .preview {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+    .preview__head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .preview__head h3 {
+      flex: 1;
+      margin: 0;
+      font-size: 48px;
+      line-height: 0.86;
+    }
+    .head .mono {
+      display: none;
+    }
   }
 </style>

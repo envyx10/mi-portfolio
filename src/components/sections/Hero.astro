@@ -164,9 +164,31 @@ const ticker = TECHNOLOGIES.map((t) => t.name).join(' / ') + ' /';
     color: var(--bone);
   }
   @media (max-width: 720px) {
+    .hero {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      padding-top: min(108vw, 62svh);
+    }
+    canvas {
+      height: calc(min(108vw, 62svh) + 12vw);
+    }
     .facts,
     .socials {
       display: none;
+    }
+    .name {
+      position: relative;
+      order: 1;
+      bottom: auto;
+      font-size: 17.6vw;
+    }
+    .top {
+      order: 2;
+      padding: 20px var(--pad) 28px;
+    }
+    .card {
+      width: 100%;
     }
   }
   .ticker {
