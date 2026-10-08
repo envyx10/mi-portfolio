@@ -2,8 +2,7 @@
 import { CV_PATH, SOCIAL_LINKS } from '@/constants/navigation';
 import { TECHNOLOGIES } from '@/constants/technologies';
 
-const socials = SOCIAL_LINKS.filter((l) => l.name !== 'Email');
-const ticker = TECHNOLOGIES.map((t) => t.name).join(' / ') + ' /';
+const ticker = TECHNOLOGIES.join(' / ') + ' /';
 ---
 
 <section class="hero noise">
@@ -30,7 +29,7 @@ const ticker = TECHNOLOGIES.map((t) => t.name).join(' / ') + ' /';
   </div>
 
   <div class="socials mono">
-    {socials.map((l) => (
+    {SOCIAL_LINKS.map((l) => (
       <a href={l.href} target="_blank" rel="noopener noreferrer" aria-label={l.ariaLabel}>{l.name} ↗</a>
     ))}
   </div>
@@ -205,6 +204,9 @@ const ticker = TECHNOLOGIES.map((t) => t.name).join(' / ') + ' /';
     display: inline-flex;
     animation: ticker 42s linear infinite;
     padding: 14px 0;
+  }
+  .ticker:hover .ticker__track {
+    animation-play-state: paused;
   }
   .ticker__track span {
     padding-right: 24px;

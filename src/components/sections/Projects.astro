@@ -44,7 +44,7 @@ const projects = PROJECTS.map((p, i) => {
             <h3 class="cond">{p.title}</h3>
             <span class="mono muted">{p.kind}</span>
           </div>
-          <a class="frame" href={p.main} target="_blank" rel="noopener noreferrer" aria-label={`Abrir ${p.title}`}>
+          <a class="frame" href={p.main} target="_blank" rel="noopener noreferrer" aria-label={`Abrir ${p.title} (se abre en otra pestaña)`}>
             <div class="frame__bar mono">
               <span class="dots"><i></i><i></i><i class="dot-acc"></i></span>
               <span class="frame__url">{p.url}</span>
@@ -57,8 +57,8 @@ const projects = PROJECTS.map((p, i) => {
           <div class="preview__info">
             <p>{p.description}</p>
             <div class="preview__links">
-              <a class="btn btn--acc" href={p.main} target="_blank" rel="noopener noreferrer">{p.mainLabel}</a>
-              {p.githubUrl && <a class="btn" href={p.githubUrl} target="_blank" rel="noopener noreferrer">Código ↗</a>}
+              <a class="btn btn--acc" href={p.main} target="_blank" rel="noopener noreferrer">{p.mainLabel}<span class="sr-only"> (se abre en otra pestaña)</span></a>
+              {p.githubUrl && <a class="btn" href={p.githubUrl} target="_blank" rel="noopener noreferrer">Código ↗<span class="sr-only"> (se abre en otra pestaña)</span></a>}
             </div>
           </div>
           <div class="chips">{p.technologies.map((t) => <span>{t}</span>)}</div>

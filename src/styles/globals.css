@@ -1,4 +1,21 @@
-@tailwind base;
+/* Minimal reset (replaces Tailwind preflight) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+img,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+button {
+  font: inherit;
+}
+h1, h2, h3, h4, p, ul, ol, dl, dd, figure {
+  margin: 0;
+}
 
 :root {
   --ink: #0b0b0b;
@@ -32,6 +49,40 @@ a {
 }
 a:hover {
   color: var(--acc);
+}
+
+/* ---------- a11y ---------- */
+:focus-visible {
+  outline: 3px solid var(--acc);
+  outline-offset: 3px;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 100;
+  padding: 12px 16px;
+  background: var(--acc);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.skip:focus {
+  top: 16px;
+  color: var(--ink);
 }
 
 /* ---------- shared ---------- */
@@ -113,4 +164,5 @@ a:hover .arrow {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .ticker__track { animation: none !important; }
+  .preview, .frame__img img { transition: none !important; }
 }

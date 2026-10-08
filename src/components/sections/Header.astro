@@ -44,7 +44,14 @@ const year = String(new Date().getFullYear()).slice(-2);
     align-items: center;
   }
   .nav a {
-    padding: 12px 0;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .nav sup {
+    align-self: flex-start;
+    margin-top: 12px;
+    font-size: 0.75em;
   }
   @media (max-width: 720px) {
     .header {

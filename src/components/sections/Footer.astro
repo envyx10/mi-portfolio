@@ -1,7 +1,6 @@
 ---
 import { CONTACT_EMAIL, CV_PATH, SOCIAL_LINKS } from '@/constants/navigation';
 
-const socials = SOCIAL_LINKS.filter((l) => l.name !== 'Email');
 const year = new Date().getFullYear();
 ---
 
@@ -26,6 +25,7 @@ const year = new Date().getFullYear();
           <span class="arrow mail__arrow">↗</span>
         </a>
         <button type="button" class="mail__copy mono" data-copy={CONTACT_EMAIL}>Copiar email</button>
+        <span class="sr-only" role="status" data-copy-status></span>
       </div>
     </div>
   </div>
@@ -34,7 +34,7 @@ const year = new Date().getFullYear();
     <div class="col">
       <p class="mono muted">Perfiles</p>
       <ul>
-        {socials.map((l) => (
+        {SOCIAL_LINKS.map((l) => (
           <li><a href={l.href} target="_blank" rel="noopener noreferrer" aria-label={l.ariaLabel}>{l.name} <span class="arrow">↗</span></a></li>
         ))}
       </ul>
@@ -68,6 +68,8 @@ const year = new Date().getFullYear();
       try {
         await navigator.clipboard.writeText(btn.dataset.copy!);
         btn.textContent = 'Copiado ✓';
+        const status = btn.parentElement?.querySelector('[data-copy-status]');
+        if (status) status.textContent = 'Email copiado al portapapeles';
         setTimeout(() => (btn.textContent = 'Copiar email'), 2000);
       } catch {
         window.prompt('Copia el email manualmente:', btn.dataset.copy);
@@ -250,8 +252,9 @@ const year = new Date().getFullYear();
   }
   .col li a {
     display: inline-flex;
+    align-items: center;
     gap: 8px;
-    padding: 6px 0;
+    min-height: 44px;
   }
   .cv {
     min-height: 52px;
@@ -275,5 +278,11 @@ const year = new Date().getFullYear();
     padding: 14px var(--pad);
     background: var(--ink);
     border-top: 1px solid var(--line);
+  }
+  .legal a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin: -14px 0;
   }
 </style>

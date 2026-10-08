@@ -2,36 +2,28 @@ import type { Skill, Experience, Project } from "@/types/components";
 
 export const SKILLS: Skill[] = [
   {
-    iconType: "FiCode",
     title: "Frontend Development",
     description:
       "Construyo interfaces reactivas y accesibles con atención al detalle. Componentización limpia, state management y rendimiento optimizado.",
     tags: ["React", "Next.js", "Svelte", "TypeScript", "Tailwind CSS", "Astro"],
-    accent: "blue",
   },
   {
-    iconType: "FiLayers",
     title: "UI/UX & Diseño",
     description:
       "Mi background en diseño gráfico me permite crear productos donde la funcionalidad y la estética van de la mano. Prototipado, sistemas de diseño y pixel-perfect.",
     tags: ["Figma", "Photoshop", "Design Systems", "Prototyping"],
-    accent: "purple",
   },
   {
-    iconType: "FiServer",
     title: "Backend & Bases de Datos",
     description:
       "APIs robustas, arquitectura de datos y lógica de negocio. Desarrollo fullstack con enfoque en código mantenible y bien estructurado.",
     tags: ["Python", "Django", "Laravel", "PHP", "MySQL", "MariaDB"],
-    accent: "emerald",
   },
   {
-    iconType: "FiZap",
     title: "AI & Automatización",
     description:
       "Integro herramientas de IA para acelerar flujos de trabajo, generar contenido y automatizar tareas repetitivas en el desarrollo.",
     tags: ["Prompt Engineering", "AI Tools", "Automation"],
-    accent: "amber",
   },
 ] as const;
 

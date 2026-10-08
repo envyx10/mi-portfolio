@@ -47,7 +47,7 @@ const jobs = EXPERIENCES.map((job) => {
       <div class="row">
         <div class="c-name">
           {job.websiteUrl
-            ? <a href={job.websiteUrl} target="_blank" rel="noopener noreferrer" class="job__name">{job.company} ↗</a>
+            ? <a href={job.websiteUrl} target="_blank" rel="noopener noreferrer" class="job__name">{job.company} ↗<span class="sr-only"> (se abre en otra pestaña)</span></a>
             : <span class="job__name">{job.company}</span>}
           <span class="mono job__role">{job.position}</span>
         </div>
@@ -69,8 +69,8 @@ const jobs = EXPERIENCES.map((job) => {
   </div>
 </section>
 
-<section class="skills">
-  <div class="skills__bar mono"><span>(03) Habilidades</span><span>Lo que hago</span></div>
+<section class="skills" aria-labelledby="skills-title">
+  <div class="skills__bar mono"><h2 id="skills-title">(03) Habilidades</h2><span>Lo que hago</span></div>
   <div class="skills__grid">
     {SKILLS.map((skill, i) => (
       <div class="skill">
@@ -111,6 +111,7 @@ const jobs = EXPERIENCES.map((job) => {
     gap: 24px;
   }
   .big-num {
+    color: #d93200; /* darker accent: 3:1 on paper (WCAG large text) */
     font-size: clamp(120px, 16vw, 250px);
     line-height: 0.74;
     font-weight: 900;
@@ -222,6 +223,9 @@ const jobs = EXPERIENCES.map((job) => {
     gap: 8px;
     padding: 12px var(--pad);
     border-bottom: 1px solid var(--ink);
+  }
+  .skills__bar h2 {
+    font: inherit;
   }
   .skills__grid {
     display: grid;
