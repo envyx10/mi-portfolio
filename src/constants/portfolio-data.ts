@@ -1,37 +1,47 @@
 import type { Skill, Experience, Project } from "@/types/components";
 
+export const PROFILE = {
+  name: "Pablo Gil Díaz",
+  initials: "PGD",
+  role: "Fullstack Developer",
+  company: "Bettergy",
+  previousCompany: "Freepik",
+  background: "Diseño gráfico",
+  city: "Málaga",
+  country: "España",
+  countryCode: "ES",
+  intro: "Hola, soy Pablo. Fullstack developer con background en diseño gráfico y web.",
+  about:
+    "Fullstack Developer con formación en diseño gráfico. Mi experiencia como Frontend Engineer en Freepik y actualmente en Bettergy, desarrollando plataformas de gestión energética, me permite crear productos digitales funcionales y estéticamente cuidados.",
+} as const;
+
+export const PROJECTS_INTRO =
+  "Aquí tienes una selección de proyectos que demuestran mis habilidades en desarrollo frontend, mostrando mi capacidad para construir aplicaciones web completas y funcionales.";
+
 export const SKILLS: Skill[] = [
   {
-    iconType: "FiCode",
     title: "Frontend Development",
     description:
       "Construyo interfaces reactivas y accesibles con atención al detalle. Componentización limpia, state management y rendimiento optimizado.",
     tags: ["React", "Next.js", "Svelte", "TypeScript", "Tailwind CSS", "Astro"],
-    accent: "blue",
   },
   {
-    iconType: "FiLayers",
     title: "UI/UX & Diseño",
     description:
       "Mi background en diseño gráfico me permite crear productos donde la funcionalidad y la estética van de la mano. Prototipado, sistemas de diseño y pixel-perfect.",
     tags: ["Figma", "Photoshop", "Design Systems", "Prototyping"],
-    accent: "purple",
   },
   {
-    iconType: "FiServer",
     title: "Backend & Bases de Datos",
     description:
       "APIs robustas, arquitectura de datos y lógica de negocio. Desarrollo fullstack con enfoque en código mantenible y bien estructurado.",
     tags: ["Python", "Django", "Laravel", "PHP", "MySQL", "MariaDB"],
-    accent: "emerald",
   },
   {
-    iconType: "FiZap",
     title: "AI & Automatización",
     description:
       "Integro herramientas de IA para acelerar flujos de trabajo, generar contenido y automatizar tareas repetitivas en el desarrollo.",
     tags: ["Prompt Engineering", "AI Tools", "Automation"],
-    accent: "amber",
   },
 ] as const;
 
@@ -39,53 +49,58 @@ export const EXPERIENCES: Experience[] = [
   {
     company: "Bettergy",
     position: "Fullstack Developer",
-    period: "feb. 2026 - actualidad",
     location: "Málaga, Andalucía, España",
     description:
       "Desarrollo fullstack de plataformas digitales de gestión energética, contribuyendo a productos como EnergySequence para optimizar el consumo, la eficiencia y la descarbonización de empresas e industrias.",
     websiteUrl: "https://www.bettergy.es",
+    from: "2026-02",
   },
   {
     company: "Freepik",
     position: "Frontend Engineer Intern",
-    period: "mar. 2025 - jun. 2025 · 4 meses",
     location: "Málaga, Andalucía, España · Híbrido",
     description:
       "Desarrollo de dashboards técnicos con React, Next.js y Tailwind CSS. Creación de sistemas de comparación y filtrado, refactorización de componentes legacy y propuestas de nuevas funcionalidades.",
     websiteUrl: "https://www.freepik.com",
+    from: "2025-03",
+    to: "2025-06",
   },
   {
     company: "VS Gamers",
     position: "Técnico informático",
-    period: "oct. 2017 - feb. 2023 · 5 años 5 meses",
     location: "Málaga y alrededores, España",
     description:
       "Resolución de problemas de hardware informático, mantenimiento de sistemas y soporte técnico especializado para equipos gaming y multimedia.",
     websiteUrl: "https://www.vsgamers.es",
+    from: "2017-10",
+    to: "2023-02",
   },
   {
     company: "ATLAS INFORMÁTICA S.L.",
     position: "Técnico informático",
-    period: "ene. 2017 - feb. 2023 · 6 años 2 meses",
     location: "Málaga y alrededores, España",
     description:
       "Mantenimiento informático integral, resolución de problemas de hardware y software, y gestión de infraestructura tecnológica empresarial.",
     websiteUrl: "https://www.atlasinformatica.com",
+    from: "2017-01",
+    to: "2023-02",
   },
   {
     company: "OZONE GAMING",
     position: "Diseñador gráfico creativo",
-    period: "dic. 2014 - dic. 2016 · 2 años 1 mes",
     location: "Málaga y alrededores, España · Presencial",
     description:
       "Diseño de productos y materiales gráficos utilizando Adobe Photoshop y herramientas de diseño digital para proyectos creativos y comerciales.",
     websiteUrl: "https://ozonegaming.com",
+    from: "2014-12",
+    to: "2016-12",
   },
 ] as const;
 
 export const PROJECTS: Project[] = [
   {
     title: "Pixela",
+    kind: "TFG",
     description:
       "Plataforma de series y películas de reseñas y valoraciones desarrollada para mi TFG en desarrollo de aplicaciones web",
     image: "/1.png",
@@ -102,6 +117,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Freepik",
+    kind: "Prácticas",
     description:
       "Desarrollo de aplicación interna para Freepik en mi periodo de prácticas como Frontend Engineer",
     image: "/2.png",
@@ -110,6 +126,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Pixela Figma Design",
+    kind: "Diseño",
     description:
       "Diseño completo del proyecto Pixela en Figma, incluyendo prototipos interactivos y sistema de diseño",
     image: "/3.png",
@@ -119,6 +136,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "DesignHub",
+    kind: "Herramienta",
     description: "Lanzamiento: Design Hub — herramienta de paletas y recursos de branding creada para mi flujo de trabajo.",
     image: "/card4_designhub.jpeg",
     technologies: ["Astro", "Svelte", "TypeScript", "JavaScript"],

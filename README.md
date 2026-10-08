@@ -4,11 +4,10 @@
 
 **Portfolio personal de Pablo Gil Diaz** - Fullstack Developer
 
-Construido con Astro, React y Tailwind CSS.
+Construido con Astro y Three.js.
 
-[![Astro](https://img.shields.io/badge/Astro-5.17-BC52EE?logo=astro&logoColor=white)](https://astro.build)
-[![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black)](https://react.dev)
-[![Tailwind](https://img.shields.io/badge/Tailwind-3.4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![Astro](https://img.shields.io/badge/Astro-5-BC52EE?logo=astro&logoColor=white)](https://astro.build)
+[![Three.js](https://img.shields.io/badge/Three.js-r186-000?logo=threedotjs&logoColor=white)](https://threejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://typescriptlang.org)
 [![Deploy](https://img.shields.io/badge/Vercel-deployed-000?logo=vercel)](https://vercel.com)
 
@@ -18,11 +17,11 @@ Construido con Astro, React y Tailwind CSS.
 
 ## Vista previa
 
-> Dark theme / Animaciones fluidas / Responsive / Single Page
+> Suizo × brutalista / WebGL / Responsive / Single Page / WCAG 2.1 AA
 
-| Hero | Tech Marquee | Projects |
-|------|-------------|----------|
-| Gradient orbs animados, CTA y enlaces sociales | Scroll infinito bidireccional con 22 tecnologias | Grid responsive con hover zoom y tags de color |
+| Hero | Trayectoria | Proyectos |
+|------|-------------|-----------|
+| Esfera de partículas deformada con simplex noise (GLSL) | Timeline tipo Gantt calculado desde las fechas | Índice interactivo con vista previa (tarjetas en móvil) |
 
 ---
 
@@ -30,23 +29,22 @@ Construido con Astro, React y Tailwind CSS.
 
 | Capa | Tecnologias |
 |------|------------|
-| **Framework** | Astro 5 (SSG) + React 18 (islands) |
-| **Estilos** | Tailwind CSS 3 + tailwindcss-animate |
+| **Framework** | Astro 5 (SSG), sin framework de UI |
+| **3D** | Three.js + shaders GLSL |
+| **Estilos** | CSS propio (scoped por componente + `globals.css`) |
+| **Tipografia** | Archivo (variable, condensada) + JetBrains Mono |
 | **Lenguaje** | TypeScript 5 |
-| **UI** | shadcn/ui (CVA + Radix) |
-| **Iconos** | react-icons |
 | **Deploy** | Vercel |
 
 ---
 
 ## Secciones
 
-- **Header** - Navegacion fija con deteccion de scroll, backdrop blur, menu hamburguesa en movil
-- **Hero** - Badge de estado, CTAs (ver proyectos / descargar CV), enlaces sociales (GitHub, GitLab, LinkedIn)
-- **Tech Stack** - Marquee animado con 22 tecnologias en dos filas con direcciones opuestas
-- **About** - Timeline de experiencia expandible (5 posiciones) + grid de skills con 4 categorias
-- **Projects** - Cards con imagen, tags de tecnologias y enlaces a repo/demo
-- **Footer** - Email con copy-to-clipboard, redes sociales, copyright dinamico
+- **Header** - Celdas monoespaciadas con hora local de Malaga y navegacion
+- **Hero** - Esfera WebGL, tarjeta de intro, nombre a todo el ancho y ticker del stack
+- **Sobre mi** - Intro, timeline de experiencia y habilidades en cartel naranja
+- **Proyectos** - Indice con vista previa en marco de navegador
+- **Footer** - CTA de contacto con copiar email, perfiles, CV y cierre con el nombre
 
 ---
 
@@ -54,20 +52,17 @@ Construido con Astro, React y Tailwind CSS.
 
 ```
 src/
-├── components/
-│   ├── react/            # Componentes interactivos (React islands)
-│   ├── sections/         # Secciones de la pagina (Astro)
-│   └── ui/               # Componentes base (shadcn/ui)
-├── constants/            # Datos del portfolio, navegacion, tecnologias
-├── hooks/                # useActiveSection (scroll tracking)
-├── layouts/              # Layout base HTML
-├── lib/                  # Utilidades
+├── components/           # ExternalLink + sections/ (secciones de la pagina, Astro + CSS scoped)
+├── constants/            # Datos del portfolio, navegacion y stack
+├── layouts/              # Layout base HTML (fuentes, favicon, ruido de fondo, reloj)
+├── lib/                  # period.ts (fechas del timeline) + tests
 ├── pages/                # index.astro (entry point)
-├── styles/               # globals.css + animations.css
+├── scripts/              # sphere.ts (Three.js)
+├── styles/               # globals.css (tokens, reset, utilidades)
 └── types/                # Interfaces TypeScript
 ```
 
-Los datos del portfolio (experiencia, proyectos, skills) estan centralizados en `src/constants/portfolio-data.ts` para facilitar su edicion.
+Los datos del portfolio (experiencia, proyectos, skills) estan centralizados en `src/constants/portfolio-data.ts`. Cada experiencia lleva `from`/`to` (`"YYYY-MM"`): de ahi salen el timeline y el texto del periodo. El perfil (nombre, rol, empresa...) esta en `PROFILE`.
 
 ---
 
@@ -103,6 +98,7 @@ El servidor de desarrollo arranca en `http://localhost:4321`.
 | `bun run build` | Type-check + build estatico a `dist/` |
 | `bun run preview` | Previsualizar el build local |
 | `bun run check` | Verificar tipos con Astro check |
+| `bun run test` | Tests unitarios (bun test) |
 | `bun run clean` | Limpiar `.astro` y `dist` |
 
 ---
@@ -129,7 +125,7 @@ Para adaptar el portfolio con tu informacion, edita estos archivos:
 | Archivo | Que contiene |
 |---------|-------------|
 | `src/constants/portfolio-data.ts` | Experiencia laboral, proyectos y skills |
-| `src/constants/technologies.ts` | Tecnologias del marquee (icono + color) |
+| `src/constants/technologies.ts` | Tecnologias del ticker |
 | `src/constants/navigation.ts` | Links de navegacion y redes sociales |
 | `public/` | CV en PDF, imagenes de proyectos, favicon |
 

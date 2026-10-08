@@ -1,43 +1,285 @@
 ---
-import { ExperienceGrid } from "@/components/react/ExperienceGrid";
-import { SkillsGrid } from "@/components/react/SkillsGrid";
-import { SKILLS, EXPERIENCES } from "@/constants/portfolio-data";
+import ExternalLink from '@/components/ExternalLink.astro';
+import { EXPERIENCES, PROFILE, SKILLS } from '@/constants/portfolio-data';
+import { formatPeriod, toDecimalYear } from '@/lib/period';
+
+// Gantt timeline in decimal years, from the first job to today
+const now = new Date();
+const timelineEnd = now.getFullYear() + (now.getMonth() + 1) / 12;
+const timelineStart = Math.min(...EXPERIENCES.map((e) => toDecimalYear(e.from)));
+const toPercent = (year: number) => `${(((year - timelineStart) / (timelineEnd - timelineStart)) * 100).toFixed(1)}%`;
+const yearTicks: number[] = [];
+for (let y = Math.ceil(timelineStart); y <= timelineEnd; y += 2) yearTicks.push(y);
+
+const jobs = EXPERIENCES.map((job) => {
+  const from = toDecimalYear(job.from);
+  const to = job.to ? toDecimalYear(job.to) + 1 / 12 : timelineEnd;
+  return {
+    ...job,
+    period: formatPeriod(job.from, job.to),
+    left: toPercent(from),
+    width: toPercent(timelineStart + (to - from)),
+    current: !job.to,
+  };
+});
 ---
 
-<section
-  id="about"
-  class="relative pt-6 pb-20 px-4 sm:px-6"
->
-  <div class="max-w-[80%] mx-auto w-full">
-
-    <!-- Section header -->
-    <div class="mb-8 sm:mb-10">
-      <p class="text-xs text-zinc-600 tracking-[0.25em] uppercase font-medium mb-3">Sobre mí</p>
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-4">
-        <span class="bg-gradient-to-r from-white via-zinc-200 to-zinc-500 bg-clip-text text-transparent">
-          Experiencia & Habilidades
-        </span>
-      </h2>
-      <p class="text-zinc-500 max-w-xl leading-relaxed text-sm">
-        Fullstack Developer con formación en diseño gráfico. Mi experiencia como Frontend Engineer en Freepik
-        y actualmente en Bettergy, desarrollando plataformas de gestión energética, me permite crear productos digitales funcionales y estéticamente cuidados.
-      </p>
+<section id="about" class="about">
+  <div class="intro">
+    <div class="intro__side">
+      <span class="mono">(02) Sobre mí</span>
+      <span class="big-num acc">02</span>
     </div>
-
-    <!-- Two-column layout -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-
-      <!-- Experience timeline -->
-      <div>
-        <h3 class="text-xs text-zinc-600 tracking-[0.25em] uppercase font-medium mb-5">Trayectoria</h3>
-        <ExperienceGrid experiences={EXPERIENCES} client:visible />
-      </div>
-
-      <!-- Skills -->
-      <div>
-        <h3 class="text-xs text-zinc-600 tracking-[0.25em] uppercase font-medium mb-5">Habilidades</h3>
-        <SkillsGrid skills={SKILLS} client:visible />
-      </div>
+    <div class="intro__main">
+      <h2 class="cond">Experiencia<br />&amp; Habilidades</h2>
+      <p>{PROFILE.about}</p>
     </div>
   </div>
+
+  <div class="row row--head mono">
+    <span class="c-name">Empresa / Rol</span>
+    <span class="c-bar">{Math.floor(timelineStart)} ——— {Math.floor(timelineEnd)}</span>
+    <span class="c-period">Periodo</span>
+  </div>
+
+  {jobs.map((job) => (
+    <article class="job">
+      <div class="row">
+        <div class="c-name">
+          {job.websiteUrl
+            ? <ExternalLink href={job.websiteUrl} class="job__name">{job.company} ↗</ExternalLink>
+            : <span class="job__name">{job.company}</span>}
+          <span class="mono job__role">{job.position}</span>
+        </div>
+        <div class="c-bar track">
+          <div class:list={['bar', { 'bar--now': job.current }]} style={`left:${job.left};width:${job.width}`}></div>
+        </div>
+        <span class="c-period mono">{job.period}<br />{job.location}</span>
+      </div>
+      <p class="job__desc">{job.description}</p>
+    </article>
+  ))}
+
+  <div class="row row--axis">
+    <span class="c-name"></span>
+    <div class="c-bar track">
+      {yearTicks.map((y) => <span style={`left:${toPercent(y)}`}>{y}</span>)}
+    </div>
+    <span class="c-period"></span>
+  </div>
 </section>
+
+<section class="skills" aria-labelledby="skills-title">
+  <div class="skills__bar mono"><h2 id="skills-title">(03) Habilidades</h2><span>Lo que hago</span></div>
+  <div class="skills__grid">
+    {SKILLS.map((skill, i) => (
+      <div class="skill">
+        <span class="skill__letter cond" aria-hidden="true">{String.fromCharCode(65 + i)}</span>
+        <h3 class="skill__title">{skill.title}</h3>
+        <p class="skill__text">{skill.description}</p>
+        <ol class="skill__list mono">
+          {skill.tags.map((tag, j) => (
+            <li><span>{tag}</span><span>{String(j + 1).padStart(2, '0')}</span></li>
+          ))}
+        </ol>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .about {
+    position: relative;
+    z-index: 3;
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .intro {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 40px;
+    padding: clamp(40px, 6vw, 96px) var(--pad) clamp(40px, 5vw, 72px);
+    border-bottom: 1px solid var(--ink);
+    background-image: linear-gradient(to right, rgba(11, 11, 11, 0.07) 1px, transparent 1px);
+    background-size: calc(100% / 12) 100%;
+  }
+  .intro__side {
+    flex: 1 1 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .big-num {
+    color: #d93200; /* darker accent: 3:1 on paper (WCAG large text) */
+    font-size: clamp(120px, 16vw, 250px);
+    line-height: 0.74;
+    font-weight: 900;
+    letter-spacing: -0.08em;
+  }
+  .intro__main {
+    flex: 3 1 640px;
+    min-width: 0;
+  }
+  .intro__main h2 {
+    margin: 0 0 28px;
+    font-size: clamp(56px, 8vw, 132px);
+    line-height: 0.84;
+  }
+  .intro__main p {
+    margin: 0;
+    columns: 2 300px;
+    column-gap: 32px;
+    font-size: 19px;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 16px;
+  }
+  .c-name {
+    flex: 0 1 300px;
+    min-width: 0;
+  }
+  .c-bar {
+    flex: 1 1 360px;
+  }
+  .c-period {
+    flex: 0 1 280px;
+  }
+  .row--head {
+    padding: 10px var(--pad);
+    border-bottom: 1px solid var(--ink);
+    font-size: 11px;
+    color: #4a4945;
+  }
+  .job {
+    padding: 18px var(--pad);
+    border-bottom: 1px solid var(--ink);
+    transition: background 0.15s;
+  }
+  .job:hover {
+    background: var(--acc);
+  }
+  .job:hover a {
+    color: var(--ink);
+  }
+  .job:hover .bar {
+    background: var(--ink);
+  }
+  .job__name {
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 900;
+    font-stretch: 70%;
+    text-transform: uppercase;
+  }
+  .job__role {
+    display: block;
+  }
+  .track {
+    position: relative;
+    height: 14px;
+  }
+  .bar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    min-width: 6px;
+    background: var(--ink);
+  }
+  .bar--now {
+    background: var(--acc);
+  }
+  .job__desc {
+    margin: 12px 0 0;
+    max-width: 860px;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+  .row--axis {
+    padding: 8px var(--pad) 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: #4a4945;
+  }
+  .row--axis .track span {
+    position: absolute;
+  }
+
+  .skills {
+    position: relative;
+    z-index: 3;
+    background: var(--acc);
+    color: var(--ink);
+  }
+  .skills__bar {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 12px var(--pad);
+    border-bottom: 1px solid var(--ink);
+  }
+  .skills__bar h2 {
+    font: inherit;
+  }
+  .skills__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  }
+  .skill {
+    padding: 20px var(--pad) 28px;
+    border-right: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-height: 640px;
+  }
+  .skill:last-child {
+    border-right: 0;
+  }
+  @media (max-width: 720px) {
+    .row--head {
+      display: none;
+    }
+    .skill {
+      min-height: 0;
+      border-right: 0;
+    }
+  }
+  .skill__letter {
+    font-size: clamp(180px, 17vw, 280px);
+    line-height: 0.78;
+  }
+  .skill__title {
+    margin: 0;
+    font-size: 36px;
+    line-height: 0.9;
+    font-weight: 900;
+    font-stretch: 68%;
+    text-transform: uppercase;
+  }
+  .skill__text {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+    font-weight: 500;
+  }
+  .skill__list {
+    margin: auto 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--ink);
+  }
+  .skill__list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--ink);
+  }
+</style>

@@ -1,39 +1,31 @@
-// Shared component types
-export interface Technology {
-  name: string;
-  IconComponent: React.ComponentType<{ className?: string }>;
-  color: string;
-}
+/** "YYYY-MM" */
+export type YearMonth = `${number}-${number}`;
 
-export interface TitleProps {
-  title: string;
-  description: string;
-}
+export type ProjectKind = "TFG" | "Prácticas" | "Diseño" | "Herramienta";
 
 export interface Skill {
-  iconType: string;
   title: string;
   description: string;
   tags: string[];
-  accent: string;
 }
 
 export interface Experience {
   company: string;
   position: string;
-  period: string;
   location: string;
   description: string;
   websiteUrl?: string; 
+  /** sin `to` = trabajo actual */
+  from: YearMonth;
+  to?: YearMonth;
 }
 
 export interface Project {
-  id?: number;
   title: string;
+  kind: ProjectKind;
   description: string;
   image: string;
   technologies: string[]; 
   githubUrl?: string;
-  liveUrl?: string;
   websiteUrl?: string; 
 }

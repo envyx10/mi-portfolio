@@ -1,3 +1,0 @@
-export const HEADER_SCROLL_THRESHOLD = 50;
-export const ACTIVE_SECTION_OFFSET = 300;
-export const BOTTOM_THRESHOLD = 100;
