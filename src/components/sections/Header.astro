@@ -1,5 +1,49 @@
 ---
-import { Header as HeaderComponent } from '@/components/react/Header';
+const year = String(new Date().getFullYear()).slice(-2);
 ---
 
-<HeaderComponent client:load />
+<header id="home" class="header mono">
+  <a href="#home" class="cell strong">PGD/{year} — Pablo Gil Díaz</a>
+  <span class="cell">Fullstack Developer</span>
+  <span class="cell muted">Málaga, ES — <span data-clock>--:--</span></span>
+  <nav aria-label="Principal" class="nav">
+    <a href="#about">Info<sup>(02)</sup></a>
+    <a href="#projects">Index<sup>(04)</sup></a>
+    <a href="#contact">Contacto<sup>(05)</sup></a>
+  </nav>
+</header>
+
+<script>
+  const fmt = new Intl.DateTimeFormat("es-ES", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Madrid" });
+  const tick = () => document.querySelectorAll("[data-clock]").forEach((el) => (el.textContent = fmt.format(new Date())));
+  tick();
+  setInterval(tick, 30_000);
+</script>
+
+<style>
+  .header {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    border-bottom: 1px solid var(--bone);
+    background: var(--ink);
+  }
+  .cell {
+    padding: 14px var(--pad);
+    border-right: 1px solid var(--bone);
+  }
+  .strong {
+    font-weight: 700;
+  }
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 18px;
+    padding: 0 var(--pad);
+    align-items: center;
+  }
+  .nav a {
+    padding: 12px 0;
+  }
+</style>

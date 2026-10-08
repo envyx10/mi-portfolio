@@ -25,11 +25,15 @@ export interface Experience {
   location: string;
   description: string;
   websiteUrl?: string; 
+  /** "YYYY-MM"; sin `to` = trabajo actual */
+  from: string;
+  to?: string;
 }
 
 export interface Project {
   id?: number;
   title: string;
+  kind: string;
   description: string;
   image: string;
   technologies: string[]; 

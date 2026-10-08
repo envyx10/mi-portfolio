@@ -1,27 +1,250 @@
 ---
-import { SectionTitle } from '@/components/react/SectionTitle';
-import { ProjectCard } from '@/components/react/ProjectCard';
 import { PROJECTS } from '@/constants/portfolio-data';
+
+const host = (url: string) => new URL(url).host.replace(/^www\./, '');
+const projects = PROJECTS.map((p, i) => {
+  const main = p.websiteUrl ?? p.githubUrl ?? '#';
+  const isFigma = main.includes('figma.com');
+  return {
+    ...p,
+    idx: String(i + 1).padStart(2, '0'),
+    main,
+    url: host(main),
+    mainLabel: isFigma ? 'Ver en Figma ↗' : 'Ver web ↗',
+  };
+});
 ---
 
-<section id="projects" class="relative pt-8 pb-28 sm:pb-32 px-4 sm:px-6">
-  <div class="max-w-[80%] mx-auto w-full">
-    <!-- Título con animación (React) -->
-    <div class="mb-8 sm:mb-12 md:mb-16">
-      <SectionTitle
-        client:visible
-        title="Mis Proyectos"
-        description="Aquí tienes una selección de proyectos que demuestran mis habilidades en desarrollo frontend, mostrando mi capacidad para construir aplicaciones web completas y funcionales."
-      />
+<section id="projects" class="projects noise">
+  <div class="head">
+    <h2 class="cond">Proyectos<sup class="mono acc">({PROJECTS.length})</sup></h2>
+    <span class="mono muted">(04) Index — pasa el ratón por un proyecto</span>
+  </div>
+
+  <div class="body" data-projects>
+    <div class="list">
+      {projects.map((p, i) => (
+        <button type="button" class:list={['item', { 'is-active': i === 0 }]} data-i={i} aria-pressed={i === 0 ? 'true' : 'false'}>
+          <span class="item__idx mono">{p.idx}</span>
+          <span class="item__name cond">{p.title}</span>
+          <span class="item__kind mono">{p.kind}</span>
+        </button>
+      ))}
+      <div class="list__foot mono muted">
+        <span><span data-counter>01</span> / {String(projects.length).padStart(2, '0')}</span>
+        <span>Astro · React · Svelte · Laravel · Figma</span>
+      </div>
     </div>
 
-    <!-- Grid de proyectos con animaciones (React) - Responsive -->
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8 place-items-stretch">
-      {PROJECTS.map((project) => (
-        <div class="flex h-full min-h-[350px] sm:min-h-[400px] md:min-h-[450px]">
-          <ProjectCard project={project} client:visible />
+    <div class="stage">
+      {projects.map((p, i) => (
+        <div class:list={['preview', { 'is-active': i === 0 }]} data-i={i}>
+          <a class="frame" href={p.main} target="_blank" rel="noopener noreferrer" aria-label={`Abrir ${p.title}`}>
+            <div class="frame__bar mono">
+              <span class="dots"><i></i><i></i><i class="dot-acc"></i></span>
+              <span class="frame__url">{p.url}</span>
+              <span>↗</span>
+            </div>
+            <div class="frame__img">
+              <img src={p.image} alt={`Captura de ${p.title}`} width="1920" height="1080" loading="lazy" />
+            </div>
+          </a>
+          <div class="preview__info">
+            <p>{p.description}</p>
+            <div class="preview__links">
+              <a class="btn btn--acc" href={p.main} target="_blank" rel="noopener noreferrer">{p.mainLabel}</a>
+              {p.githubUrl && <a class="btn" href={p.githubUrl} target="_blank" rel="noopener noreferrer">Código ↗</a>}
+            </div>
+          </div>
+          <div class="chips">{p.technologies.map((t) => <span>{t}</span>)}</div>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-projects]').forEach((root) => {
+    const items = root.querySelectorAll<HTMLButtonElement>('.item');
+    const previews = root.querySelectorAll<HTMLElement>('.preview');
+    const counter = root.querySelector('[data-counter]');
+    const select = (i: number) => {
+      items.forEach((el, j) => {
+        el.classList.toggle('is-active', i === j);
+        el.setAttribute('aria-pressed', String(i === j));
+      });
+      previews.forEach((el, j) => el.classList.toggle('is-active', i === j));
+      if (counter) counter.textContent = String(i + 1).padStart(2, '0');
+    };
+    items.forEach((el, i) => {
+      for (const ev of ['mouseenter', 'focus', 'click']) el.addEventListener(ev, () => select(i));
+    });
+  });
+</script>
+
+<style>
+  .projects {
+    position: relative;
+    z-index: 3;
+    color: var(--bone);
+  }
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    padding: clamp(40px, 6vw, 96px) var(--pad) 28px;
+    border-bottom: 1px solid var(--bone);
+  }
+  .head h2 {
+    margin: 0;
+    font-size: clamp(64px, 9vw, 150px);
+    line-height: 0.82;
+  }
+  .head sup {
+    font-size: 14px;
+    font-weight: 500;
+    font-stretch: 100%;
+    vertical-align: top;
+  }
+  .body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .list {
+    flex: 1 1 440px;
+    min-width: 0;
+    border-right: 1px solid var(--line);
+  }
+  .item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px var(--pad);
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    box-shadow: inset 6px 0 0 transparent;
+    color: #6a6762;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    transition: color 0.25s, box-shadow 0.25s;
+  }
+  .item.is-active {
+    color: var(--bone);
+    box-shadow: inset 6px 0 0 var(--acc);
+  }
+  .item__idx {
+    align-self: flex-start;
+    padding-top: 8px;
+    text-transform: none;
+  }
+  .item__name {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: clamp(44px, 5.6vw, 92px);
+    line-height: 0.86;
+  }
+  .item__kind {
+    font-size: 11px;
+  }
+  .list__foot {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px var(--pad);
+  }
+  .stage {
+    flex: 1.45 1 560px;
+    min-width: 0;
+    padding: 24px var(--pad) 40px;
+    display: grid;
+  }
+  .preview {
+    grid-area: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(14px);
+    transition: opacity 0.45s ease, transform 0.45s ease, visibility 0.45s;
+  }
+  .preview.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .frame {
+    display: block;
+    border: 1px solid var(--bone);
+    background: #161615;
+    transition: border-color 0.2s;
+  }
+  .frame:hover {
+    border-color: var(--acc);
+  }
+  .frame__bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--bone);
+    font-size: 11px;
+    text-transform: none;
+  }
+  .dots {
+    display: flex;
+    gap: 5px;
+  }
+  .dots i {
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--bone);
+    box-sizing: border-box;
+  }
+  .dots .dot-acc {
+    background: var(--acc);
+    border-color: var(--acc);
+  }
+  .frame__url {
+    flex: 1;
+    color: var(--muted);
+  }
+  .frame__img {
+    overflow: hidden;
+  }
+  .frame__img img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .frame:hover img {
+    transform: scale(1.04);
+  }
+  .preview__info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 32px;
+    align-items: flex-start;
+  }
+  .preview__info p {
+    flex: 1 1 320px;
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--soft);
+  }
+  .preview__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+</style>

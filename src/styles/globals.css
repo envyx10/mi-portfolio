@@ -1,76 +1,116 @@
-@import './animations.css';
-
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-body {
-  font-family: var(--font-geist), -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  font-variation-settings: normal;
+:root {
+  --ink: #0b0b0b;
+  --bone: #ece9e1;
+  --paper: #e9e8e3;
+  --muted: #9a968e;
+  --soft: #cfcbc2;
+  --line: #2e2d2a;
+  --acc: #ff3b00;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --sans: "Archivo", "Helvetica Neue", sans-serif;
+  --pad: 16px;
 }
 
-/* Subtle noise texture overlay */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 180px 180px;
-  opacity: 0.02;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #18181b; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #27272a; }
-
-@layer base {
-  :root {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --radius: 0.5rem;
-  }
-
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
 }
 
-@media (max-width: 640px) {
-  html {
-    scroll-padding-top: 72px;
-  }
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  color: var(--acc);
+}
+
+/* ---------- shared ---------- */
+.mono {
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.muted {
+  color: var(--muted);
+}
+.acc {
+  color: var(--acc);
+}
+.cond {
+  font-weight: 900;
+  font-stretch: 62%;
+  text-transform: uppercase;
+}
+.noise {
+  background-color: var(--ink);
+  background-image: var(--noise);
+  background-size: 128px 128px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 18px;
+  box-sizing: border-box;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1px solid var(--bone);
+  background: transparent;
+  color: var(--bone);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, filter 0.2s;
+}
+.btn:hover {
+  background: var(--bone);
+  color: var(--ink);
+}
+.btn--acc,
+.btn--acc:hover {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: var(--ink);
+}
+.btn--acc:hover {
+  filter: brightness(1.15);
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+.chips span {
+  padding: 6px 10px;
+  border: 1px solid #3a3936;
+}
+.arrow {
+  display: inline-block;
+  transition: transform 0.25s;
+}
+a:hover .arrow {
+  transform: translate(5px, -5px);
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ticker__track { animation: none !important; }
 }

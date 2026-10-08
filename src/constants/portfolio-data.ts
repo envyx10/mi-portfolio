@@ -44,6 +44,7 @@ export const EXPERIENCES: Experience[] = [
     description:
       "Desarrollo fullstack de plataformas digitales de gestión energética, contribuyendo a productos como EnergySequence para optimizar el consumo, la eficiencia y la descarbonización de empresas e industrias.",
     websiteUrl: "https://www.bettergy.es",
+    from: "2026-02",
   },
   {
     company: "Freepik",
@@ -53,6 +54,8 @@ export const EXPERIENCES: Experience[] = [
     description:
       "Desarrollo de dashboards técnicos con React, Next.js y Tailwind CSS. Creación de sistemas de comparación y filtrado, refactorización de componentes legacy y propuestas de nuevas funcionalidades.",
     websiteUrl: "https://www.freepik.com",
+    from: "2025-03",
+    to: "2025-06",
   },
   {
     company: "VS Gamers",
@@ -62,6 +65,8 @@ export const EXPERIENCES: Experience[] = [
     description:
       "Resolución de problemas de hardware informático, mantenimiento de sistemas y soporte técnico especializado para equipos gaming y multimedia.",
     websiteUrl: "https://www.vsgamers.es",
+    from: "2017-10",
+    to: "2023-02",
   },
   {
     company: "ATLAS INFORMÁTICA S.L.",
@@ -71,6 +76,8 @@ export const EXPERIENCES: Experience[] = [
     description:
       "Mantenimiento informático integral, resolución de problemas de hardware y software, y gestión de infraestructura tecnológica empresarial.",
     websiteUrl: "https://www.atlasinformatica.com",
+    from: "2017-01",
+    to: "2023-02",
   },
   {
     company: "OZONE GAMING",
@@ -80,12 +87,15 @@ export const EXPERIENCES: Experience[] = [
     description:
       "Diseño de productos y materiales gráficos utilizando Adobe Photoshop y herramientas de diseño digital para proyectos creativos y comerciales.",
     websiteUrl: "https://ozonegaming.com",
+    from: "2014-12",
+    to: "2016-12",
   },
 ] as const;
 
 export const PROJECTS: Project[] = [
   {
     title: "Pixela",
+    kind: "TFG",
     description:
       "Plataforma de series y películas de reseñas y valoraciones desarrollada para mi TFG en desarrollo de aplicaciones web",
     image: "/1.png",
@@ -102,6 +112,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Freepik",
+    kind: "Prácticas",
     description:
       "Desarrollo de aplicación interna para Freepik en mi periodo de prácticas como Frontend Engineer",
     image: "/2.png",
@@ -110,6 +121,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "Pixela Figma Design",
+    kind: "Diseño",
     description:
       "Diseño completo del proyecto Pixela en Figma, incluyendo prototipos interactivos y sistema de diseño",
     image: "/3.png",
@@ -119,6 +131,7 @@ export const PROJECTS: Project[] = [
   },
   {
     title: "DesignHub",
+    kind: "Herramienta",
     description: "Lanzamiento: Design Hub — herramienta de paletas y recursos de branding creada para mi flujo de trabajo.",
     image: "/card4_designhub.jpeg",
     technologies: ["Astro", "Svelte", "TypeScript", "JavaScript"],

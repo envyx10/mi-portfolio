@@ -5,7 +5,7 @@ interface Props {
   title?: string;
 }
 
-const { title = "Endev · Portfolio" } = Astro.props;
+const { title = "Pablo Gil Díaz · Portfolio" } = Astro.props;
 ---
 
 <!doctype html>
@@ -14,29 +14,37 @@ const { title = "Endev · Portfolio" } = Astro.props;
     <meta charset="UTF-8" />
     <meta
       name="description"
-      content="Portfolio de desarrollador frontend especializado en React, JavaScript y TypeScript"
+      content="Portfolio de Pablo Gil Díaz, Fullstack Developer con background en diseño gráfico y web."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="theme-color" content="#0a0a0b" />
-    <meta name="msapplication-TileColor" content="#0a0a0b" />
+    <meta name="theme-color" content="#0B0B0B" />
     <title>{title}</title>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Static noise tile for the dark sections (generated once, before first paint) -->
+    <script is:inline>
+      (() => {
+        const S = 256, c = document.createElement("canvas");
+        c.width = c.height = S;
+        const x = c.getContext("2d"), img = x.createImageData(S, S), d = img.data;
+        for (let i = 0; i < d.length; i += 4) {
+          const v = Math.max(0, Math.round(11 + (Math.random() - 0.5) * 23));
+          d[i] = d[i + 1] = d[i + 2] = v;
+          d[i + 3] = 255;
+        }
+        x.putImageData(img, 0, 0);
+        document.documentElement.style.setProperty("--noise", `url(${c.toDataURL()})`);
+      })();
+    </script>
   </head>
-  <body class="font-sans antialiased">
+  <body>
     <slot />
   </body>
 </html>
-
-<style is:global>
-  :root {
-    --font-geist: "Geist", sans-serif;
-  }
-</style>
