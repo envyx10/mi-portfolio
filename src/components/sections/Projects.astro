@@ -305,6 +305,12 @@ const projects = PROJECTS.map((p, i) => {
   .preview__head {
     display: none;
   }
+  @media (prefers-reduced-motion: reduce) {
+    .preview,
+    .frame__img img {
+      transition: none;
+    }
+  }
   @media (max-width: 720px) {
     .list {
       display: none;

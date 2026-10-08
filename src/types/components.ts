@@ -1,3 +1,8 @@
+/** "YYYY-MM" */
+export type YearMonth = `${number}-${number}`;
+
+export type ProjectKind = "TFG" | "Prácticas" | "Diseño" | "Herramienta";
+
 export interface Skill {
   title: string;
   description: string;
@@ -7,18 +12,17 @@ export interface Skill {
 export interface Experience {
   company: string;
   position: string;
-  period: string;
   location: string;
   description: string;
   websiteUrl?: string; 
-  /** "YYYY-MM"; sin `to` = trabajo actual */
-  from: string;
-  to?: string;
+  /** sin `to` = trabajo actual */
+  from: YearMonth;
+  to?: YearMonth;
 }
 
 export interface Project {
   title: string;
-  kind: string;
+  kind: ProjectKind;
   description: string;
   image: string;
   technologies: string[]; 

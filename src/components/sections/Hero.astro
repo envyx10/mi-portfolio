@@ -1,6 +1,6 @@
 ---
 import ExternalLink from '@/components/ExternalLink.astro';
-import { CV_FILENAME, CV_PATH, SOCIAL_LINKS } from '@/constants/navigation';
+import { CONTACT_EMAIL, CV_FILENAME, CV_PATH, SOCIAL_LINKS } from '@/constants/navigation';
 import { PROFILE } from '@/constants/portfolio-data';
 import { TECHNOLOGIES } from '@/constants/technologies';
 
@@ -34,9 +34,10 @@ const ticker = TECHNOLOGIES.join(' / ') + ' /';
     {SOCIAL_LINKS.map((l) => (
       <ExternalLink href={l.href} label={l.label}>{l.name} ↗</ExternalLink>
     ))}
+    <a href={`mailto:${CONTACT_EMAIL}`}>Email ↗</a>
   </div>
 
-  <div class="name cond" aria-hidden="true">{PROFILE.name}</div>
+  <div class="name bigname" aria-hidden="true">{PROFILE.name}</div>
 </section>
 
 <div class="ticker mono">
@@ -158,11 +159,6 @@ const ticker = TECHNOLOGIES.join(' / ') + ' /';
     bottom: -0.06em;
     z-index: 1;
     padding: 0 10px;
-    font-size: 17.4vw;
-    line-height: 0.8;
-    letter-spacing: -0.02em;
-    white-space: nowrap;
-    color: var(--bone);
   }
   @media (max-width: 720px) {
     .hero {
@@ -209,6 +205,11 @@ const ticker = TECHNOLOGIES.join(' / ') + ' /';
   }
   .ticker:hover .ticker__track {
     animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker__track {
+      animation: none;
+    }
   }
   .ticker__track span {
     padding-right: 24px;

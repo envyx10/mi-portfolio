@@ -1,23 +1,26 @@
 ---
 import ExternalLink from '@/components/ExternalLink.astro';
 import { EXPERIENCES, PROFILE, SKILLS } from '@/constants/portfolio-data';
+import { formatPeriod, toDecimalYear } from '@/lib/period';
 
-// Gantt timeline: decimal years from "YYYY-MM"
-const ym = (s: string) => {
-  const [y = 0, m = 1] = s.split('-').map(Number);
-  return y + (m - 1) / 12;
-};
+// Gantt timeline in decimal years, from the first job to today
 const now = new Date();
-const end = now.getFullYear() + (now.getMonth() + 1) / 12;
-const start = Math.min(...EXPERIENCES.map((e) => ym(e.from)));
-const pct = (v: number) => `${(((v - start) / (end - start)) * 100).toFixed(1)}%`;
-const ticks: number[] = [];
-for (let y = Math.ceil(start); y <= end; y += 2) ticks.push(y);
+const timelineEnd = now.getFullYear() + (now.getMonth() + 1) / 12;
+const timelineStart = Math.min(...EXPERIENCES.map((e) => toDecimalYear(e.from)));
+const toPercent = (year: number) => `${(((year - timelineStart) / (timelineEnd - timelineStart)) * 100).toFixed(1)}%`;
+const yearTicks: number[] = [];
+for (let y = Math.ceil(timelineStart); y <= timelineEnd; y += 2) yearTicks.push(y);
 
 const jobs = EXPERIENCES.map((job) => {
-  const from = ym(job.from);
-  const to = job.to ? ym(job.to) + 1 / 12 : end;
-  return { ...job, left: pct(from), width: pct(start + (to - from)), current: !job.to };
+  const from = toDecimalYear(job.from);
+  const to = job.to ? toDecimalYear(job.to) + 1 / 12 : timelineEnd;
+  return {
+    ...job,
+    period: formatPeriod(job.from, job.to),
+    left: toPercent(from),
+    width: toPercent(timelineStart + (to - from)),
+    current: !job.to,
+  };
 });
 ---
 
@@ -35,7 +38,7 @@ const jobs = EXPERIENCES.map((job) => {
 
   <div class="row row--head mono">
     <span class="c-name">Empresa / Rol</span>
-    <span class="c-bar">{Math.floor(start)} ——— {Math.floor(end)}</span>
+    <span class="c-bar">{Math.floor(timelineStart)} ——— {Math.floor(timelineEnd)}</span>
     <span class="c-period">Periodo</span>
   </div>
 
@@ -60,7 +63,7 @@ const jobs = EXPERIENCES.map((job) => {
   <div class="row row--axis">
     <span class="c-name"></span>
     <div class="c-bar track">
-      {ticks.map((y) => <span style={`left:${pct(y)}`}>{y}</span>)}
+      {yearTicks.map((y) => <span style={`left:${toPercent(y)}`}>{y}</span>)}
     </div>
     <span class="c-period"></span>
   </div>

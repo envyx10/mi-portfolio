@@ -49,7 +49,6 @@ export const EXPERIENCES: Experience[] = [
   {
     company: "Bettergy",
     position: "Fullstack Developer",
-    period: "feb. 2026 - actualidad",
     location: "Málaga, Andalucía, España",
     description:
       "Desarrollo fullstack de plataformas digitales de gestión energética, contribuyendo a productos como EnergySequence para optimizar el consumo, la eficiencia y la descarbonización de empresas e industrias.",
@@ -59,7 +58,6 @@ export const EXPERIENCES: Experience[] = [
   {
     company: "Freepik",
     position: "Frontend Engineer Intern",
-    period: "mar. 2025 - jun. 2025 · 4 meses",
     location: "Málaga, Andalucía, España · Híbrido",
     description:
       "Desarrollo de dashboards técnicos con React, Next.js y Tailwind CSS. Creación de sistemas de comparación y filtrado, refactorización de componentes legacy y propuestas de nuevas funcionalidades.",
@@ -70,7 +68,6 @@ export const EXPERIENCES: Experience[] = [
   {
     company: "VS Gamers",
     position: "Técnico informático",
-    period: "oct. 2017 - feb. 2023 · 5 años 5 meses",
     location: "Málaga y alrededores, España",
     description:
       "Resolución de problemas de hardware informático, mantenimiento de sistemas y soporte técnico especializado para equipos gaming y multimedia.",
@@ -81,7 +78,6 @@ export const EXPERIENCES: Experience[] = [
   {
     company: "ATLAS INFORMÁTICA S.L.",
     position: "Técnico informático",
-    period: "ene. 2017 - feb. 2023 · 6 años 2 meses",
     location: "Málaga y alrededores, España",
     description:
       "Mantenimiento informático integral, resolución de problemas de hardware y software, y gestión de infraestructura tecnológica empresarial.",
@@ -92,7 +88,6 @@ export const EXPERIENCES: Experience[] = [
   {
     company: "OZONE GAMING",
     position: "Diseñador gráfico creativo",
-    period: "dic. 2014 - dic. 2016 · 2 años 1 mes",
     location: "Málaga y alrededores, España · Presencial",
     description:
       "Diseño de productos y materiales gráficos utilizando Adobe Photoshop y herramientas de diseño digital para proyectos creativos y comerciales.",

@@ -14,12 +14,6 @@ const year = String(new Date().getFullYear()).slice(-2);
   </nav>
 </header>
 
-<script>
-  const fmt = new Intl.DateTimeFormat("es-ES", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Madrid" });
-  const tick = () => document.querySelectorAll("[data-clock]").forEach((el) => (el.textContent = fmt.format(new Date())));
-  tick();
-  setInterval(tick, 30_000);
-</script>
 
 <style>
   .header {

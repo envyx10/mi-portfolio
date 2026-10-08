@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "astro dev",
-    "clean": "rimraf .astro dist",
+    "clean": "node -e \"for (const d of ['.astro', 'dist']) require('fs').rmSync(d, { recursive: true, force: true })\"",
+    "test": "bun test",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
@@ -17,6 +18,7 @@
     "three": "^0.186.1"
   },
   "devDependencies": {
+    "@types/bun": "^1.4.2",
     "@types/node": "^22",
     "@types/three": "^0.186.0",
     "esbuild": ">=0.25.0",

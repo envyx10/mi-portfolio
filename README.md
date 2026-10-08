@@ -52,16 +52,17 @@ Construido con Astro y Three.js.
 
 ```
 src/
-├── components/sections/  # Secciones de la pagina (Astro + CSS scoped)
+├── components/           # ExternalLink + sections/ (secciones de la pagina, Astro + CSS scoped)
 ├── constants/            # Datos del portfolio, navegacion y stack
-├── layouts/              # Layout base HTML (fuentes, favicon, ruido de fondo)
+├── layouts/              # Layout base HTML (fuentes, favicon, ruido de fondo, reloj)
+├── lib/                  # period.ts (fechas del timeline) + tests
 ├── pages/                # index.astro (entry point)
 ├── scripts/              # sphere.ts (Three.js)
 ├── styles/               # globals.css (tokens, reset, utilidades)
 └── types/                # Interfaces TypeScript
 ```
 
-Los datos del portfolio (experiencia, proyectos, skills) estan centralizados en `src/constants/portfolio-data.ts`. Cada experiencia lleva `from`/`to` (`"YYYY-MM"`) para el timeline.
+Los datos del portfolio (experiencia, proyectos, skills) estan centralizados en `src/constants/portfolio-data.ts`. Cada experiencia lleva `from`/`to` (`"YYYY-MM"`): de ahi salen el timeline y el texto del periodo. El perfil (nombre, rol, empresa...) esta en `PROFILE`.
 
 ---
 
@@ -97,6 +98,7 @@ El servidor de desarrollo arranca en `http://localhost:4321`.
 | `bun run build` | Type-check + build estatico a `dist/` |
 | `bun run preview` | Previsualizar el build local |
 | `bun run check` | Verificar tipos con Astro check |
+| `bun run test` | Tests unitarios (bun test) |
 | `bun run clean` | Limpiar `.astro` y `dist` |
 
 ---
