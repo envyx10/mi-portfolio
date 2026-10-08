@@ -13,11 +13,20 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="cta">
-    <p class="kicker mono"><i></i>Trabajemos juntos</p>
-    <h2>Si tienes un proyecto en mente o simplemente quieres conectar, no dudes en escribirme<span class="acc">.</span></h2>
-    <div class="mail">
-      <a class="mail__link" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL} <span class="arrow">↗</span></a>
-      <button type="button" class="btn mail__copy" data-copy={CONTACT_EMAIL}>Copiar</button>
+    <h2 class="cond">Trabajemos juntos<span class="acc">.</span></h2>
+    <div class="cta__grid">
+      <div class="cta__text">
+        <p class="kicker mono"><i></i>¿Tienes algo en mente?</p>
+        <p class="lead">Si tienes un proyecto en mente o simplemente quieres conectar, no dudes en escribirme.</p>
+      </div>
+      <div class="mail">
+        <a class="mail__link" href={`mailto:${CONTACT_EMAIL}`}>
+          <span class="mono mail__label">Email</span>
+          <span class="mail__addr">{CONTACT_EMAIL}</span>
+          <span class="arrow mail__arrow">↗</span>
+        </a>
+        <button type="button" class="mail__copy mono" data-copy={CONTACT_EMAIL}>Copiar email</button>
+      </div>
     </div>
   </div>
 
@@ -59,7 +68,7 @@ const year = new Date().getFullYear();
       try {
         await navigator.clipboard.writeText(btn.dataset.copy!);
         btn.textContent = 'Copiado ✓';
-        setTimeout(() => (btn.textContent = 'Copiar'), 2000);
+        setTimeout(() => (btn.textContent = 'Copiar email'), 2000);
       } catch {
         window.prompt('Copia el email manualmente:', btn.dataset.copy);
       }
@@ -88,10 +97,30 @@ const year = new Date().getFullYear();
     border-right: 0;
   }
   .cta {
-    padding: clamp(56px, 8vw, 128px) var(--pad) clamp(40px, 5vw, 72px);
+    padding: clamp(48px, 7vw, 112px) var(--pad) clamp(40px, 5vw, 72px);
+  }
+  h2 {
+    margin: 0 0 clamp(32px, 4vw, 56px);
+    font-size: clamp(36px, 11.4vw, 200px);
+    line-height: 0.8;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .cta__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px 48px;
+    align-items: stretch;
+  }
+  .cta__text {
+    flex: 1 1 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
   }
   .kicker {
-    margin: 0 0 20px;
+    margin: 0;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -102,43 +131,62 @@ const year = new Date().getFullYear();
     height: 10px;
     background: var(--acc);
   }
-  h2 {
-    margin: 0 0 28px;
-    max-width: 1100px;
-    font-size: clamp(40px, 5.4vw, 88px);
-    line-height: 0.92;
-    font-weight: 900;
-    font-stretch: 70%;
-    text-transform: uppercase;
+  .lead {
+    margin: 0;
+    max-width: 460px;
+    font-size: clamp(19px, 1.6vw, 24px);
+    line-height: 1.4;
+    color: var(--soft);
   }
   .mail {
+    flex: 1.6 1 520px;
+    min-width: 0;
     display: flex;
-    flex-wrap: wrap;
-    border: 1px solid var(--bone);
-    width: fit-content;
-    max-width: 100%;
+    flex-direction: column;
+    border: 1px solid var(--acc);
   }
   .mail__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 16px;
-    min-height: 72px;
-    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px 24px;
+    padding: 20px 24px 24px;
     background: var(--acc);
     color: var(--ink);
-    font-size: clamp(18px, 2.4vw, 34px);
-    font-weight: 800;
-    font-stretch: 75%;
-    overflow-wrap: anywhere;
     transition: filter 0.2s;
   }
   .mail__link:hover {
     color: var(--ink);
     filter: brightness(1.1);
   }
+  .mail__label {
+    grid-column: 1 / -1;
+  }
+  .mail__addr {
+    align-self: end;
+    font-size: clamp(22px, 3.5vw, 58px);
+    line-height: 1;
+    font-weight: 900;
+    font-stretch: 68%;
+    overflow-wrap: anywhere;
+  }
+  .mail__arrow {
+    align-self: end;
+    font-size: clamp(28px, 3vw, 48px);
+    line-height: 1;
+  }
   .mail__copy {
-    min-height: 72px;
+    min-height: 52px;
+    padding: 0 24px;
+    background: transparent;
+    color: var(--bone);
     border: 0;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .mail__copy:hover {
+    background: var(--bone);
+    color: var(--ink);
   }
   .cols {
     display: grid;
