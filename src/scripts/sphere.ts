@@ -33,7 +33,12 @@ void main(){
 
 export function mountSphere(canvas: HTMLCanvasElement) {
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  let renderer: THREE.WebGLRenderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  } catch {
+    return; // no WebGL: the hero keeps its noise background
+  }
   renderer.setPixelRatio(dpr);
 
   const css = getComputedStyle(document.documentElement);
@@ -63,6 +68,8 @@ export function mountSphere(canvas: HTMLCanvasElement) {
     points.position.set(w > 900 ? -0.2 : 0, w > 900 ? 0.2 : 0, 0);
     // ponytail: shrink on narrow canvases so the sphere never clips horizontally
     points.scale.setScalar(Math.min(1, camera.aspect / 1.1));
+    // setSize clears the canvas; repaint so the sphere survives resizes when the loop is stopped (reduced motion)
+    renderer.render(scene, camera);
   };
   new ResizeObserver(resize).observe(canvas);
   resize();
